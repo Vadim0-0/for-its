@@ -17,7 +17,14 @@ html {
 body {
   position: relative;
   font-family: var(--font-family);
-  background-color: var(--white);
+
+  &.white {
+    background-color: var(--white);
+  }
+
+  &.seryy {
+    background-color: var(--seryy);
+  }
 
 }
 
@@ -41,7 +48,7 @@ button {
   padding: 12px;
   border-radius: 5px;
   font-weight: 500;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 100%;
   color: #292020;
   background-color: var(--yellow);
@@ -120,7 +127,7 @@ button {
     font-size: 24px;
   }
 
-  .btn-global1 {
+  .btn-global {
     font-size: 13px;
   }
 
