@@ -112,13 +112,78 @@ button {
   font-weight: 500;
   font-size: 36px;
   line-height: 110%;
-  letter-spacing: 0.5px;
+  letter-spacing: -0.5px;
   color: #0e0e0e;
 }
 
 .scroll-list {
   overflow-x: hidden;
   overflow-y: hidden;
+}
+
+.form-global {
+
+  & label {
+
+    & input {
+      padding: 16px 24px;
+      width: 100%;
+      border-radius: 5px;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 100%;
+      color: rgba(0, 0, 0, 0.6);
+      background-color: var(--seryy);
+
+      &::placeholder {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 100%;
+        color: rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
+
+  & textarea {
+    padding: 16px 24px;
+    width: 100%;
+    min-height: 100px;
+    grid-column: span 2;
+    resize: none;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 100%;
+    color: rgba(0, 0, 0, 0.6);
+    background-color: var(--seryy);
+
+    &::placeholder {
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 100%;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  & p {
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 110%;
+    letter-spacing: -0.01em;
+    color: rgba(0, 0, 0, 0.5);
+
+    & a {
+      text-decoration: underline;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
 }
 
 @media (max-width: 768px) {
@@ -133,5 +198,33 @@ button {
 
   .btn-global2 {
     font-size: 13px;
+  }
+
+  .form-global {
+
+    & label {
+
+      & input {
+        padding: 16px 15px;
+        font-size: 13px;
+
+        &::placeholder {
+          font-size: 13px;
+        }
+      }
+    }
+
+    & textarea {
+      padding: 16px 15px;
+      font-size: 13px;
+
+      &::placeholder {
+        font-size: 13px;
+      }
+    }
+
+    & p {
+      font-size: 10px;
+    }
   }
 }
