@@ -217,16 +217,19 @@
 
   .header {
     padding-bottom: 0;
-    padding: 15px 0 20px 0;
+    padding: 15px 0 15px 0;
     @include transitionEaseInOut;
 
     &.active {
       height: 100vh;
-      background-color: var(--seryy);
     }
 
     &-mobile {
       @include flex-betweenCenter;
+
+      & button {
+        padding-top: 2.9px;
+      }
     }
 
     &__content {
@@ -309,8 +312,10 @@
       }
 
       &-tel {
+        position: absolute;
+        bottom: 0;
+        left: 0;
         padding: 24px 15px;
-        margin-top: auto;
         width: 100%;
         margin-left: 0;
         background-color: var(--seryy);
