@@ -1,3 +1,21 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Переменная для удобного обращения к body
+  const body = document.body;
+
+  // Отключаем прокрутку
+  body.style.overflow = 'hidden';
+
+  // После полной загрузки страницы
+  window.addEventListener('load', function() {
+    // Скрываем прелоадер
+    document.getElementById('preloader').classList.add('hidden');
+
+    // Включаем прокрутку, сбрасывая стиль overflow
+    body.style.overflow = '';
+  });
+});
+
 document.addEventListener("DOMContentLoaded", function () {
   const menuBtn = document.getElementById("header-menu-btn");
   const menu = document.getElementById("header-menu");
