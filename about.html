@@ -73,13 +73,29 @@
         <nav class="header__content-nav">
           <ul class="header__content-nav__list">
             <li class="header__content-nav__list-item object">
-              <button id="object-btn">
+              <button class="object-btn" id="object-btn">
                 Объекты
                 <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 1.5L6 6.5L11 1.5" stroke="#282E36" stroke-width="1.5" stroke-linejoin="bevel" />
                 </svg>
               </button>
               <ul class="object-list" id="object-list">
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 1 </a>
+                </li>
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 2 </a>
+                </li>
+              </ul>
+            </li>
+            <li class="header__content-nav__list-item object">
+              <button class="object-btn">
+                Недвижимость
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#282E36" stroke-width="1.5" stroke-linejoin="bevel" />
+                </svg>
+              </button>
+              <ul class="object-list">
                 <li class="object-list__item">
                   <a href="#"> Ссылка 1 </a>
                 </li>
@@ -186,7 +202,7 @@
             <h1>
               Строим <br> новые районы <br> для тысяч семей
             </h1>
-            <a href="#" class="btn-global2">
+            <a href="#" class="btn-global2" id="pop-up-callback-open">
               Связаться с нами
             </a>
           </div>
@@ -241,7 +257,7 @@
           <nav class="footer__content-top__nav">
             <ul class="footer__content-top__nav-list">
               <li class="footer__content-top__nav-list__item object">
-                <button id="footer-object-btn">
+                <button class="footer-object-btn" id="footer-object-btn">
                   Объекты
                   <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
@@ -261,6 +277,27 @@
                   О компании
                 </a>
               </li>
+              <li class="footer__content-top__nav-list__item object">
+                <button class="footer-object-btn">
+                  Недвижимость
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
+                  </svg>
+                </button>
+                <ul class="object-list">
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 1 </a>
+                  </li>
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 2 </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer__content-top__nav-list__item">
+                <a href="#">
+                  Акции
+                </a>
+              </li>
               <li class="footer__content-top__nav-list__item">
                 <a href="#">
                   Акции и новости
@@ -268,7 +305,7 @@
               </li>
               <li class="footer__content-top__nav-list__item">
                 <a href="#">
-                  Контакты
+                  Способы покупки
                 </a>
               </li>
             </ul>
@@ -333,6 +370,49 @@
       </div>
     </div>
   </footer>
+
+  <div class="pop-up-callback" id="pop-up-callback">
+    <div class="pop-up-callback__content">
+      <button id="pop-up-callback-close" class="pop-up-callback-close">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.3">
+            <rect x="1.01172" width="17.1616" height="1.43013" rx="0.715067" transform="rotate(45 1.01172 0)" fill="black" />
+            <rect width="17.1616" height="1.43013" rx="0.715067" transform="matrix(0.707107 -0.707107 -0.707107 -0.707107 1.01172 13.1465)" fill="black" />
+          </g>
+        </svg>
+      </button>
+      <div class="pop-up-callback__content-info">
+        <h3 class="section-title">
+          Обратный звонок
+        </h3>
+        <p>
+          Введите свой номер телефона, <br> и мы обязательно с вами свяжемся
+        </p>
+      </div>
+      <form action="#" class="form-global pop-up-callback__content-form">
+        <label for="pop-up-callback-tel">
+          <input type="tel" name="pop-up-callback-tel" id="pop-up-callback-tel" placeholder="Телефон" >
+        </label>
+        <button class="btn-global">
+          Заказать звонок
+        </button>
+        <p>
+          Нажимая на кнопку “Заказать звонок”, вы принимаете <a href="#">политику конфиденциальности</a> и даете согласие на обработку персональных данных
+        </p>
+      </form>
+      <!-- Для отображения data-sent приписать active-->
+      <div class="data-sent">
+        <h3 class="section-title">
+          Данные успешно отправлены
+        </h3>
+        <button class="data-sent-button">
+          <svg width="32" height="23" viewBox="0 0 32 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M11.1902 23L0 12.0977L2.79755 9.37214L11.1902 17.5489L29.2025 0L32 2.72557L11.1902 23Z" fill="black" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <script src="js/main.min.js"></script>
 </body>
