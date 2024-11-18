@@ -614,6 +614,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Функция для десктопа
   const handleFacilitiesDesktop = () => {
     facilities.forEach(facility => {
+      // Игнорируем элементы с классом "one-object"
+      if (facility.classList.contains('one-object')) return;
+
       const img = facility.querySelector('.index-ourFacilities__content-info__img');
       const articleTop = facility.querySelector('.index-ourFacilities__content-info__article-top');
       const articleBottom = facility.querySelector('.index-ourFacilities__content-info__article-bottom');
@@ -694,8 +697,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkScreenWidth = () => {
     removeEventListeners();
     if (window.innerWidth <= 768) {
+      // Код для мобильных устройств работает для всех элементов
       handleFacilitiesMobile();
     } else {
+      // Код для десктопа игнорирует элементы с классом "one-object"
       handleFacilitiesDesktop();
     }
   };
@@ -703,6 +708,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkScreenWidth();
   window.addEventListener('resize', checkScreenWidth);
 });
+
 
 
 /*document.addEventListener('DOMContentLoaded', () => {
@@ -861,12 +867,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 
-
-
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('.stocksAndNews-feedback__content-form');
   const nameInput = document.getElementById('stocksAndNews-feedback-name');
@@ -1019,6 +1019,70 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const sortingBtn = document.querySelector(".apartments-products__content-top__sorting-btn");
+  const sortingList = document.querySelector(".apartments-products__content-top__sorting-list");
+  const sortingItems = document.querySelectorAll(".apartments-products__content-top__sorting-list__item");
+
+  // Открытие/закрытие списка при клике на кнопку
+  sortingBtn.addEventListener("click", (event) => {
+    event.stopPropagation(); // Чтобы клик не закрыл список
+    sortingBtn.classList.toggle("active");
+    sortingList.classList.toggle("active");
+  });
+
+  // Закрытие списка при клике вне области
+  document.addEventListener("click", (event) => {
+    if (!sortingList.contains(event.target) && !sortingBtn.contains(event.target)) {
+      sortingBtn.classList.remove("active");
+      sortingList.classList.remove("active");
+    }
+  });
+
+  // Закрытие списка при уходе курсора
+  sortingList.addEventListener("mouseleave", () => {
+    sortingBtn.classList.remove("active");
+    sortingList.classList.remove("active");
+  });
+
+  // Выбор элемента из списка
+  sortingItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      // Удалить класс active у всех пунктов
+      sortingItems.forEach((el) => el.classList.remove("active"));
+
+      // Добавить класс active к выбранному элементу
+      item.classList.add("active");
+
+      // Установить текст выбранного элемента в кнопку
+      const selectedText = item.querySelector("p").textContent;
+      sortingBtn.querySelector("p").textContent = selectedText;
+
+      // Закрыть список
+      sortingBtn.classList.remove("active");
+      sortingList.classList.remove("active");
+    });
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Получаем все элементы списка "facilities" и "cards"
+  const facilitiesItems = document.querySelectorAll('.residentialComplex-generalPlan__content-facilities__item');
+  const cardsItems = document.querySelectorAll('.residentialComplex-generalPlan__content-cards__item');
+
+  // Добавляем обработчик события для каждого элемента "facilities"
+  facilitiesItems.forEach((facility, index) => {
+    facility.addEventListener('click', () => {
+      // Удаляем класс "active" у всех карточек
+      cardsItems.forEach(card => card.classList.remove('active'));
+
+      // Добавляем класс "active" только к соответствующей карточке
+      if (cardsItems[index]) {
+        cardsItems[index].classList.add('active');
+      }
+    });
+  });
+});
 
 
 
