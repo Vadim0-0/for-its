@@ -947,6 +947,8 @@
 
     &-cards {
       display: flex;
+      overflow-x: hidden;
+      overflow-y: hidden;
       gap: 23px;
 
       &__item {
@@ -2108,18 +2110,20 @@
   }
 }
 
+/* Страница ЖК */
+
 .residentialComplex-hero {
   position: relative;
   overflow: hidden;
 
   &__images {
     position: absolute;
+    display: flex;
     width: 100%;
     height: 100%;
-    z-index: -1;
 
     & img {
-      width: 100%;
+      min-width: 100%;
       height: 100%;
     }
   }
@@ -2171,10 +2175,93 @@
 
 .residentialComplex-filter {
   padding-top: 0;
-  margin-top: -100px;
+  margin-top: -130px;
+  background-color: var(--seryy);
+
+  & .filter__content {
+    position: relative;
+    z-index: 1;
+
+    & h2 {
+      margin-bottom: 0
+    }
+
+    &-top {
+      @include grid-ColumnsEqually(4, 16px);
+      padding-bottom: 28px;
+      margin-bottom: 33px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+      &__blocks {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 10px;
+
+        &:nth-child(2),
+        &:nth-child(3) {
+          position: relative;
+          padding-left: 30px;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 6px;
+            transform: translateY(-50%);
+            height: 41px;
+            width: 1px;
+            background-color: rgba(0, 0, 0, 0.05);
+          }
+        }
+
+        &:last-child {
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 27px;
+
+          & p.text {
+            line-height: 110%;
+          }
+        }
+
+        & p {
+
+          &.name {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 120%;
+            letter-spacing: -0.01em;
+            color: rgba(0, 0, 0, 0.5);
+          }
+
+          &.text {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+            color: #000;
+          }
+        }
+      }
+    }
+  }
+}
+
+.residentialComplex-products {
+  padding-bottom: 101px;
+  background-color: var(--seryy);
 }
 
 .residentialComplex-generalPlan {
+  padding-bottom: 100px;
+  background-color: var(--seryy);
+
+  & .container {
+    &.first {
+      display: none;
+    }
+  }
 
   &__content {
     position: relative;
@@ -2182,9 +2269,13 @@
     padding: 36px;
     border-radius: 12px;
     min-height: 660px;
+    z-index: 1;
 
     & h2 {
-      color: #fff;
+
+      &.second {
+        color: #fff;
+      }
     }
 
     &-img {
@@ -2208,6 +2299,7 @@
         cursor: pointer;
 
         & p {
+          text-wrap: nowrap;
           font-weight: 600;
           font-size: 12px;
           line-height: 100%;
@@ -2227,7 +2319,7 @@
 
         &:nth-child(3) {
           top: 187px;
-          left: 584px;
+          left: 593px;
         }
 
         &:nth-child(4) {
@@ -2331,10 +2423,1324 @@
             }
           }
         }
+
+        &-btn {
+          padding: 15px 12px;
+        }
       }
     }
   }
 }
+
+.residentialComplex-about {
+  padding-bottom: 100px;
+  border-radius: 0 0 40px 40px;
+  background-color: var(--seryy);
+
+  &__content {
+    display: grid;
+    grid-template-columns: auto 683px;
+    gap: 36px;
+    padding: 48px;
+    border-radius: 12px;
+    background-color: var(--white);
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+
+      &__descrs {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+
+        & p {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 150%;
+          letter-spacing: -0.01em;
+          color: #727272;
+        }
+      }
+
+      & a {
+        padding: 17px 12px;
+        max-width: 200px;
+      }
+    }
+
+    &-examples {
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+
+      &__btns {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        gap: 10px;
+
+        & button {
+          text-wrap: nowrap;
+          padding: 13px 25px;
+          background-color:  #f6f6f6;
+
+          &.active {
+            background-color: var(--yellow);
+          }
+        }
+      }
+
+      &__images {
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+        border-radius: 12px;
+
+        & img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          @include transitionEase;
+
+          &.active {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}
+
+.residentialComplex-panorama {
+  padding: 100px 0 100px 0;
+
+  &__content {
+
+    & h2 {
+      margin-bottom: 36px;
+    }
+
+    &-info {
+      @include flex-center;
+      overflow: hidden;
+      height: 350px;
+      border-radius: 12px;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      background:linear-gradient(rgba(0, 0, 0, 0.2)), url("../img/residentialComplex/panorama/background-img.svg") ;
+      background-size: cover;
+
+      & a {
+        padding: 16px 29px;
+        background-color: var(--white);
+      }
+    }
+  }
+}
+
+.residentialComplex-advantages {
+  padding-bottom: 103px;
+
+  &__content {
+    overflow: hidden;
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 36px;
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        position: relative;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+        overflow: hidden;
+        padding: 36px;
+        border-radius: 12px;
+        min-width: 447px;
+        height: 560px;
+        @include transitionEaseInOut;
+
+        &:hover {
+          transform: translateY(-20px);
+        }
+
+        &-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+          }
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+
+        & h3 {
+          font-weight: 600;
+          font-size: 24px;
+          line-height: 110%;
+          color: #fff;
+        }
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.residentialComplex-infrastructure {
+  padding-bottom: 100px;
+
+  & h2 {
+    margin-bottom: 35px;
+  }
+
+  &__content {
+    position: relative;
+    overflow: hidden;
+    height: 660px;
+    border-radius: 12px;
+
+    &-map {
+      width: 100%;
+      height: 100%;
+
+      & .ymaps-2-1-79-image-with-content {
+        width: 43px !important;
+        height: 43px !important;
+        border-radius: 100px;
+        background-color: var(--yellow);
+        box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
+        background-repeat: no-repeat;
+        background-position: center !important;
+      }
+
+      & .ymaps-2-1-79-balloon {
+        border-radius: 100px;
+      }
+
+      & .ymaps-2-1-79-balloon__layout {
+        border-radius: 5px;
+
+        & ymaps {
+          font-weight: 400;
+          font-size: 12px;
+          letter-spacing: -0.01em;
+          color: #000;
+        }
+      }
+
+      & .ymaps-2-1-79-balloon__layout {
+
+        & .ymaps-2-1-79-balloon__content {
+
+          & ymaps {
+            min-width: 100px !important;
+            height: auto !important;
+          }
+        }
+      }
+    }
+
+    & .filter-buttons{
+      position: absolute;
+      overflow: hidden;
+      top: 36px;
+      left: 36px;
+      display: flex;
+      flex-direction: column;
+      width: 330px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+      z-index: 2;
+
+      & button {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 16px 24px;
+        background-color: var(--seryy);
+        @include transitionEaseInOut;
+
+        &:first-child {
+          & svg {
+            display: none;
+          }
+        }
+
+        &:last-child {
+          padding-bottom: 24px;
+        }
+
+        &.active {
+          background-color: var(--yellow);
+
+          & p.volue {
+            color: #000;
+          }
+        }
+
+        &:hover {
+          background-color: #E4E4E4;
+        }
+
+        & p {
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 110%;
+          letter-spacing: -0.01em;
+          color: #000;
+
+          &.volue {
+            margin-left: auto;
+            font-weight: 400;
+            color: rgba(0, 0, 0, 0.7);
+            @include transitionEaseInOut;
+          }
+        }
+      }
+    }
+
+    & .info {
+
+      &-content {
+
+        & p {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 110%;
+          letter-spacing: -0.01em;
+          color: #000;
+          background-color: var(--yellow);
+        }
+      }
+    }
+
+    & .map-icon {
+
+      &__item {
+
+        & .icon-text {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 110%;
+          letter-spacing: -0.01em;
+          color: #000;
+        }
+      }
+    }
+  }
+}
+
+.residentialComplex-placesNearby {
+  padding-bottom: 102px;
+
+  &__content {
+    overflow: hidden;
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 36px;
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-width: 683px;
+        height: 392px;
+        padding: 36px;
+        border-radius: 12px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+
+        &-link {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        &-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+
+          &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.6) 100%);
+          }
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        & h3 {
+          margin-bottom: 12px;
+          font-weight: 700;
+          font-size: 25px;
+          line-height: 120%;
+          letter-spacing: -0.01em;
+          color: #fff;
+        }
+
+        & p {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 400;
+          font-size: 15px;
+          line-height: 120%;
+          letter-spacing: -0.01em;
+          color: #fff;
+        }
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.residentialComplex-booklet {
+  padding-bottom: 100px;
+
+  &__content {
+    @include flex-betweenCenter;
+    padding: 36px;
+    border-radius: 12px;
+    background-color: var(--seryy);
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 465px;
+
+      & p {
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 140%;
+        letter-spacing: -0.01em;
+        color: #727272;
+      }
+    }
+
+    &-form {
+      max-width: 544px;
+
+      &__fields {
+        display: grid;
+        grid-template-columns: 320px 200px;
+        gap: 24px;
+        margin-bottom: 16px;
+
+        & label {
+
+          & input {
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.residentialComplex-calculation {
+  padding-bottom: 100px;
+
+  &__content {
+
+    & h2 {
+      margin-bottom: 36px;
+    }
+
+    &-widget {
+      @include flex-center;
+      height: 480px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      background-color: var(--seryy);
+
+      & p {
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 110%;
+        letter-spacing: -0.01em;
+        color: #0e0e0e;
+        opacity: 0.5;
+      }
+    }
+
+    & .descr {
+      max-width: 794px;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 130%;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.residentialComplex-video {
+  padding-bottom: 100px;
+  overflow: hidden;
+
+  & .content-container {
+    position: relative;
+  }
+
+  &__content {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    &.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: all;
+    }
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 36px;
+
+      &__switching {
+        @include flex-center(19px);
+        padding-right: 12px;
+
+        & button {
+          padding: 12px 25px;
+          background-color: var(--seryy);
+
+          &.active {
+            background-color: var(--yellow);
+          }
+
+          &.on {
+            background-color: var(--yellow);
+          }
+        }
+      }
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        position: relative;
+        @include flex-center;
+        border-radius: 12px;
+        overflow: hidden;
+        height: 392px;
+        min-width: 683px;
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+
+        &-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &-btn {
+          width: 80px;
+          height: 80px;
+          border-radius: 100px;
+          background-color: var(--white);
+        }
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.residentialComplex-design {
+  padding-bottom: 100px;
+
+  &__content {
+    overflow: hidden;
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 36px;
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        overflow: hidden;
+        border-radius: 12px;
+        min-width: 683px;
+        height: 392px;
+
+        &-btn {
+          display: block;
+          width: 100%;
+          height: 100%;
+          @include transitionEaseInOut;
+
+          &:hover {
+            transform: translateY(-20px);
+          }
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 24px;
+        }
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.residentialComplex-stages {
+  padding-bottom: 103px;
+
+  &__content {
+    overflow: hidden;
+
+    & h2 {
+      margin-bottom: 36px;
+    }
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 24px;
+
+      &__sorting {
+        display: flex;
+        gap: 24px;
+
+        &-block {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+
+          & p {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 100%;
+            color: #898989;
+          }
+
+          &__btn {
+            @include flex-betweenCenter;
+            min-width: 200px;
+            padding: 12px 17px 12px 14px;
+            border-radius: 5px;
+            background-color: var(--seryy);
+
+            & svg {
+              @include transitionEaseInOut;
+            }
+
+            &.active {
+              & svg {
+                transform: rotate(180deg);
+              }
+            }
+
+            & p {
+              margin-left: 10px;
+              margin-right: 29px;
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 114%;
+              color: #000;
+            }
+
+            & .arrow {
+              @include flex-center;
+              margin-left: auto;
+              @include transitionEaseInOut;
+            }
+          }
+
+          &__list {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 105%;
+            padding: 8px 0px;
+            border-radius: 5px;
+            background-color: var(--seryy);
+            @include transitionEase;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 1;
+
+            &.active {
+              opacity: 1;
+              visibility: visible;
+              pointer-events: all;
+            }
+
+            &-item {
+
+              &.active {
+
+                & p {
+                  background-color: #f7f7f7;
+                }
+              }
+
+              & p {
+                padding: 8px 24px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 114%;
+                color: #000;
+                @include transitionEaseInOut;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: #f7f7f7;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        padding: 12px;
+        min-width: 335px;
+        border-radius: 12px;
+        background-color: var(--seryy);
+        @include transitionEaseInOut;
+
+        &:hover {
+          background-color: #E4E4E4;
+        }
+
+        &:not(:last-child) {
+          margin-right: 16px;
+        }
+
+        &-img {
+          overflow: hidden;
+          height: 240px;
+          margin-bottom: 24px;
+          border-radius: 12px;
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &-article {
+          position: relative;
+          padding: 0px 8px 12px 8px;
+
+          & h3 {
+            text-align: start;
+            margin-bottom: 12px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 120%;
+            letter-spacing: -0.01em;
+            color: #000;
+          }
+
+          & p {
+            text-align: start;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 120%;
+            letter-spacing: -0.01em;
+            color: rgba(0, 0, 0, 0.5);
+
+            &.name {
+              position: absolute;
+              visibility: hidden;
+            }
+          }
+        }
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.residentialComplex-documents {
+  padding-bottom: 120px;
+
+  &__content {
+
+    &-top {
+      @include flex-betweenCenter;
+      margin-bottom: 36px;
+
+      &__btns {
+        @include flex-center(20px);
+
+        & button {
+          padding: 12px 21px;
+          background-color: var(--seryy);
+
+          &.active {
+            background-color: var(--yellow);
+          }
+        }
+      }
+    }
+
+    &-blocks {
+
+      &__block {
+        @include grid-ColumnsEqually(2, 24px);
+        display: none;
+
+        &.active {
+          display: grid;
+        }
+
+        & a {
+          position: relative;
+          padding: 24px;
+          border-radius: 8px;
+          background-color: var(--seryy);
+          @include transitionEaseInOut;
+
+          &:hover {
+            background-color: #E4E4E4;
+          }
+
+          & h3 {
+            margin-bottom: 16px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 110%;
+            letter-spacing: -0.01em;
+            color: #000;
+          }
+
+          & p {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 120%;
+            letter-spacing: -0.01em;
+            color: rgba(0, 0, 0, 0.5);
+          }
+
+          & .icon {
+            position: absolute;
+            top: 50%;
+            right: 24px;
+            transform: translateY(-50%);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.popUp-advantages {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(25px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  @include transitionEase;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &__content {
+    position: absolute;
+    width: 1105px;
+    top: 50%;
+    left: 50%;
+    @include transform-center;
+    display: grid;
+    grid-template-columns: 447px auto;
+    gap: 36px;
+    padding: 36px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+    background-color: var(--white);
+    @include transitionEase;
+    opacity: 0;
+    pointer-events: none;
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    &-close {
+      position: absolute;
+      top: 36px;
+      right: 36px;
+      @include transitionEaseInOut;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+
+    &-img {
+      overflow: hidden;
+      border-radius: 12px;
+
+      & img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &-info {
+
+      & h3 {
+        margin-bottom: 29px;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 110%;
+        color: #000;
+      }
+
+      &__descr {
+        display: flex;
+        flex-direction: column;
+        gap: 27px;
+
+        & p {
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 150%;
+          letter-spacing: -0.01em;
+          color: #727272;
+        }
+      }
+    }
+  }
+}
+
+.popUp-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  @include transitionEase;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &__top {
+    padding: 24px 36px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 42px;
+
+    &-close {
+      display: block;
+      margin-left: auto;
+      @include transitionEaseInOut;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__content {
+    @include flex-center;
+
+    &-block {
+      display: none;
+      position: relative;
+      overflow: hidden;
+      height: 634px;
+      width: 1105px;
+      border-radius: 12px;
+
+      &.active {
+        display: block;
+      }
+
+      &__video {
+        width: 100%;
+        height: 100%;
+      }
+
+      &__cards {
+
+        &.hidden {
+          display: none;
+        }
+
+        &-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: -1;
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &-play {
+          position: absolute;
+          @include flex-center;
+          top: 50%;
+          left: 50%;
+          @include transform-center;
+          width: 80px;
+          height: 80px;
+          border-radius: 100px;
+          background-color: var(--white);
+        }
+      }
+    }
+  }
+}
+
+.popUp-design {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  @include transitionEase;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &__top {
+    @include flex-betweenCenter;
+    padding: 24px 36px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 42px;
+
+    &-quantity {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      & p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 110%;
+        color: rgba(0, 0, 0, 0.5);
+
+        &.now {
+          color: #000;
+        }
+      }
+    }
+
+    &-close {
+      display: block;
+      margin-left: auto;
+      @include transitionEaseInOut;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__content {
+    @include flex-betweenCenter;
+    padding: 0 36px;
+    overflow: hidden;
+    display: none;
+
+
+    &.active {
+      display: flex;
+    }
+
+    &-scroll {
+      overflow: hidden;
+    }
+
+    &-images {
+      display: flex;
+      width: 1105px;
+
+      &__img {
+        overflow: hidden;
+        border-radius: 12px;
+        min-width: 100%;
+
+        &:not(:last-child) {
+          margin-right: 50px;
+        }
+
+        & img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    & button {
+
+      & svg {
+        stroke: var(--black);
+      }
+
+      z-index: 2;
+    }
+
+  }
+}
+
+.popUp-stages {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+  @include transitionEase;
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &__top {
+    @include flex-betweenCenter;
+    padding: 24px 36px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 42px;
+
+    &-quantity {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      & p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 110%;
+        color: rgba(0, 0, 0, 0.5);
+
+        &.now {
+          color: #000;
+        }
+      }
+    }
+
+    &-title {
+      @include flex-center(36px);
+
+      & p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 110%;
+        color: #000;
+      }
+    }
+
+    &-close {
+      display: block;
+      @include transitionEaseInOut;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+    }
+  }
+
+  &__content {
+    @include flex-betweenCenter;
+    padding: 0 36px;
+    overflow: hidden;
+    display: none;
+
+
+    &.active {
+      display: flex;
+    }
+
+    &-scroll {
+      overflow: hidden;
+    }
+
+    &-images {
+      display: flex;
+      width: 1105px;
+
+      &__img {
+        overflow: hidden;
+        border-radius: 12px;
+        min-width: 100%;
+
+        &:not(:last-child) {
+          margin-right: 50px;
+        }
+
+        & img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    & button {
+      z-index: 2;
+
+      & svg {
+        stroke: var(--black);
+      }
+    }
+
+  }
+}
+
+
+/* Внутренняя страница квартиры */
+
+
 
 /* Pop-up */
 
@@ -2481,6 +3887,53 @@
       align-items: flex-start;
     }
   }
+
+  /* Страница ЖК */
+
+  .residentialComplex-about {
+
+    &__content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .popUp-advantages {
+
+    &__content {
+      width: 90%;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .popUp-video {
+
+    &__content {
+
+      &-block {
+        width: 90%;
+      }
+    }
+  }
+
+  .popUp-design {
+
+    &__content {
+
+      &-images {
+        width: 100%;
+      }
+    }
+  }
+
+  .popUp-stages {
+
+    &__content {
+
+      &-images {
+        width: 100%;
+      }
+    }
+  }
 }
 
 @media (max-width: 1024px) {
@@ -2617,6 +4070,107 @@
         &__list {
           grid-template-columns: repeat(2, 1fr);
         }
+      }
+    }
+  }
+
+  .residentialComplex-filter {
+
+    & .filter__content {
+
+      &-top {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 20px;
+
+        &__blocks {
+
+          &:first-child {
+            grid-column: span 2;
+          }
+
+          &:nth-child(2) {
+            padding-left: 0;
+
+            &::after {
+              content: none;
+            }
+          }
+
+          &:nth-child(4) {
+            grid-column: span 2;
+          }
+        }
+      }
+    }
+  }
+
+  .residentialComplex-about {
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+
+      &-examples {
+
+        &__btns {
+          overflow-x: auto;
+        }
+
+        &__images {
+          height: 500px;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-booklet {
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+
+      &-form {
+        max-width: 100%;
+
+        &__fields {
+          grid-template-columns: auto 200px;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-video {
+
+    &__content {
+
+      &-top {
+        @include grid-ColumnsEqually(2, 20px);
+
+        & h2 {
+          grid-column: span 2;
+        }
+
+        &__switching {
+          justify-content: flex-start;
+          padding-left: 0;
+        }
+
+        &__btns {
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-documents {
+
+    &__content {
+
+      &-top {
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
       }
     }
   }
@@ -3800,6 +5354,807 @@
         padding: 12px 32px;
         font-size: 13px;
       }
+      }
+    }
+  }
+
+  .residentialComplex-hero {
+
+    &__content {
+      height: 482px;
+
+      &-control {
+        width: 100%;
+        bottom: 84px;
+
+        &__btns {
+          display: none
+        }
+      }
+    }
+  }
+
+  .residentialComplex-filter {
+    margin-top: -95px;
+
+    & .filter__content {
+
+      &-top {
+        padding-bottom: 20px;
+        margin-bottom: 25px;
+
+        &__blocks {
+          gap: 4px;
+
+          & p {
+            &.name {
+              font-size: 10px
+            }
+
+            &.text {
+              font-size: 12px;
+            }
+          }
+
+          &:nth-child(3) {
+            padding-left: 12px;
+
+            &::after {
+              left: -9px;
+              height: 31px;
+            }
+          }
+
+          &:last-child {
+            gap: 15px;
+
+            & svg {
+              width: 30px;
+              height: 38px;
+            }
+          }
+
+        }
+      }
+    }
+  }
+
+  .residentialComplex-products {
+    padding-bottom: 60px;
+  }
+
+  .residentialComplex-generalPlan {
+    padding-bottom: 0;
+    background-color: var(--seryy);
+
+    & .container {
+
+      &.first {
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      &.second {
+        padding: 0;
+      }
+    }
+
+    & h2 {
+      &.first {
+        display: block;
+      }
+
+      &.second {
+        display: none;
+      }
+    }
+
+    &__content {
+      min-height: 481px;
+      border-radius: 0;
+
+      &-img {
+        min-width: 1000px;
+        background-size: cover;
+      }
+
+      &-facilities {
+
+        &__item {
+          padding: 4px 5px;
+
+          & p {
+            font-size: 10px;
+          }
+
+          &:nth-child(1) {
+            top: 95px;
+            left: 534px;
+          }
+
+          &:nth-child(2) {
+            top: 182px;
+            left: 533px;
+          }
+
+          &:nth-child(3) {
+            top: 136px;
+            left: 432px;
+          }
+
+          &:nth-child(4) {
+            top: 230px;
+            left: 419px;
+          }
+
+          &:nth-child(5) {
+            top: 176px;
+            left: 322px;
+          }
+
+          &:nth-child(6) {
+            top: 274px;
+            left: 304px;
+          }
+        }
+
+      }
+
+      &-cards {
+        left: 310px;
+
+        &__item {
+          padding: 5px;
+
+          & h3 {
+            margin-bottom: 10px;
+            font-size: 14px;
+          }
+
+          & p {
+
+            &.date {
+              margin-bottom: 10px;
+              font-size: 10px;
+            }
+
+            &.quantity {
+              font-size: 12px;
+            }
+          }
+
+          &-links {
+            margin-bottom: 10px;
+
+            &__item {
+
+              & a {
+
+                & p {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .residentialComplex-about {
+    padding-top: 60px;
+    padding-bottom: 59px;
+    overflow: hidden;
+    background-color: var(--white);
+
+    &__content {
+      gap: 28px;
+      padding: 0;
+
+      &-info {
+        gap: 20px;
+
+        &__descrs {
+          gap: 18px;
+
+          & p {
+            font-size: 12px;
+          }
+        }
+
+        & a {
+          max-width: 100%;
+        }
+      }
+
+      &-examples {
+        gap: 15px;
+
+        &__btns {
+          width: 105%;
+
+          & button {
+            padding: 9px 13px;
+          }
+        }
+
+        &__images {
+          height: 196px;
+          border-radius: 8px;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-panorama {
+    padding: 0 0 60px 0;
+
+    &__content {
+
+      & h2 {
+        margin-bottom: 20px;
+      }
+
+      &-info {
+        border-radius: 8px;
+      }
+    }
+  }
+
+  .residentialComplex-advantages {
+    padding-bottom: 60px;
+    overflow: hidden;
+
+    &__content {
+      overflow: visible;
+
+      &-top {
+        margin-bottom: 19px;
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          padding: 15px;
+          min-width: 260px;
+          height: 325px;
+          border-radius: 8px;
+
+          &:not(:last-child) {
+            margin-right: 15px;
+          }
+
+          & h3 {
+            font-size: 16px;
+          }
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-infrastructure {
+    padding-bottom: 60px;
+
+    & h2 {
+      padding-left: 16px;
+      margin-bottom: 20px;
+    }
+
+    & .container {
+      padding: 0;
+    }
+
+    &__content {
+      height: 480px;
+
+      & .filter-buttons {
+        width: 180px;
+
+        & button {
+          padding: 9px 9px;
+
+          & p {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .residentialComplex-placesNearby {
+    padding-bottom: 60px;
+
+    &__content {
+
+      &-top {
+        margin-bottom: 20px;
+
+        & h2 {
+          max-width: 140px;
+        }
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          min-width: 290px;
+          padding: 15px;
+          height: 249px;
+          border-radius: 8px;
+
+          & h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+          }
+
+          & p {
+            & svg {
+              width: 9px;
+              height: 7px;
+            }
+            font-size: 11px;
+          }
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-booklet {
+    padding-bottom: 62px;
+
+    &__content {
+      padding: 20px;
+      border-radius: 8px;
+      gap: 2px;
+
+      &-info {
+        gap: 14px;
+
+        & p {
+          font-size: 13px;
+        }
+      }
+
+      &-form {
+
+        &__fields {
+          grid-template-columns: 1fr;
+          gap: 15px;
+        }
+
+        & button {
+          padding: 16px;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-calculation {
+    padding-bottom: 60px;
+
+    &__content {
+
+      & h2 {
+        margin-bottom: 18px;
+      }
+
+      &-widget {
+        margin-bottom: 16px;
+      }
+
+      & .descr {
+        font-size: 10px;
+        line-height: 120%;
+      }
+    }
+  }
+
+  .residentialComplex-video {
+    padding-bottom: 60px;
+
+    &__content {
+
+      &-top {
+        grid-template-columns: 1fr;
+        gap: 0;
+        row-gap: 20px;
+        margin-bottom: 20px;
+
+        &__switching {
+          @include grid-ColumnsEqually(2, 10px);
+          padding-right: 0;
+
+          & button {
+            padding: 8px 8px;
+          }
+        }
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          min-width: 290px;
+          height: 250px;
+          border-radius: 8px;
+
+          &-btn {
+            @include flex-center;
+            width: 48px;
+            height: 48px;
+
+            & svg {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-design {
+    padding-bottom: 60px;
+
+    &__content {
+
+      &-top {
+        margin-bottom: 20px;
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          min-width: 290px;
+          height: 250px;
+          border-radius: 8px;
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-stages {
+    padding-bottom: 60px;
+    overflow: hidden;
+
+    &__content {
+      overflow: visible;
+
+      & h2 {
+        margin-bottom: 21px;
+      }
+
+      &-top {
+        display: block;
+        margin-bottom: 19px;
+
+        &__sorting {
+          @include grid-ColumnsEqually(2, 10px);
+
+          &-block {
+            gap: 9px;
+
+            & p {
+              font-size: 10px;
+            }
+
+            &__btn {
+              min-width: 100%;
+              padding: 12px 17px 12px 5px;
+
+              & p {
+                font-size: 12px;
+              }
+            }
+
+            &__list {
+
+              &-item {
+
+                & p {
+                  font-size: 12px;
+                }
+              }
+            }
+          }
+        }
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          padding: 5px;
+          min-width: 260px;
+          border-radius: 8px;
+
+          &-img {
+            height: 165px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+          }
+
+          &-article {
+            padding: 0px 8px 9px 8px;
+
+            & h3 {
+              font-size: 16px;
+            }
+
+            & p {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .residentialComplex-documents {
+    padding-bottom: 60px;
+    overflow: hidden;
+
+    &__content {
+
+      &-top {
+        margin-bottom: 20px;
+
+        &__btns {
+          @include grid-ColumnsEqually(4, 10px);
+          justify-content: flex-start;
+          width: 105%;
+          overflow-x: auto;
+
+          & button {
+            padding: 9px 13px;
+            font-size: 12px;
+            text-wrap: nowrap;
+          }
+        }
+      }
+
+      &-blocks {
+
+        &__block {
+          grid-template-columns: repeat(1, 1fr);
+          gap: 15px;
+
+          & a {
+            padding: 14px 50px 14px 14px;
+
+            & h3 {
+              margin-bottom: 12px;
+              font-size: 14px;
+            }
+
+            & .icon {
+              right: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+
+  .popUp-advantages {
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding: 42px 15px;
+      border-radius: 8px;
+      gap: 17px;
+
+      &-close {
+        top: 15px;
+        right: 17px;
+      }
+
+      &-img {
+        height: 290px;
+      }
+
+      &-info {
+
+        & h3 {
+          margin-bottom: 7px;
+          font-size: 18px;
+        }
+
+        &__descr {
+
+          & p {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .popUp-video {
+
+    &__content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 100%;
+
+      &-block {
+        height: 184px;
+        width: 100%;
+
+        &__cards {
+
+          &-play {
+            width: 48px;
+            height: 48px;
+
+            & svg {
+              width: 19px;
+              height: 19px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .popUp-design {
+
+    &__top {
+
+      &-quantity {
+
+        & p {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      padding: 0;
+
+      & button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 0.67px solid rgba(255, 255, 255, 0.1);
+
+        & svg {
+          stroke: var(--white);
+        }
+
+        &.popUp-design-scroll-prev {
+          left: 15px;
+        }
+
+        &.popUp-design-scroll-next {
+          right: 15px;
+        }
+      }
+    }
+  }
+
+  .popUp-stages {
+
+    &__top {
+
+      &-quantity {
+
+        & p {
+          font-size: 12px;
+        }
+      }
+
+      &-title {
+
+        & p {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__content {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      padding: 0;
+
+      & button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 0.67px solid rgba(255, 255, 255, 0.1);
+
+        & svg {
+          stroke: var(--white);
+        }
+
+        &.popUp-stages-scroll-prev {
+          left: 15px;
+        }
+
+        &.popUp-stages-scroll-next {
+          right: 15px;
+        }
       }
     }
   }
