@@ -1,0 +1,3035 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Страница ЖК</title>
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body class="white">
+
+  <!-- Для отображения убрать классс hidden в браузере -->
+  <div class="preloader" id="preloader">
+    <div class="preloader__content">
+      <svg width="374" height="73" viewBox="0 0 374 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#131313">
+              <animate
+                attributeName="offset"
+                values="0; 1"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </stop>
+            <stop offset="0%" stop-color="#E4E4E4">
+              <animate
+                attributeName="offset"
+                values="0; 1"
+                dur="2s"
+                repeatCount="indefinite"
+              />
+            </stop>
+          </linearGradient>
+        </defs>
+
+        <path d="M198.002 48.1809L183.376 15.9075L169.136 48.1809H198.002ZM175.975 0.953125H190.514L223.231 71.9976H208.82L203.409 60.0424H163.894L158.658 71.9976H144.203L175.971 0.953125H175.975Z" fill="url(#gradient)" />
+        <path d="M217.551 0.953125H232.743L253.989 55.1362L275.242 0.953125H290.43L260.787 72.001H247.198L217.551 0.953125Z" fill="url(#gradient)" />
+        <path d="M310.34 36.2746C310.34 39.9395 310.968 43.2439 312.22 46.1841C313.476 49.1244 315.221 51.6312 317.46 53.7081C319.694 55.785 322.334 57.3834 325.379 58.5033C328.424 59.6232 331.735 60.1849 335.31 60.1849C338.884 60.1849 342.199 59.6232 345.241 58.5033C348.286 57.3799 350.918 55.7815 353.138 53.7081C355.362 51.6312 357.107 49.1244 358.377 46.1841C359.644 43.2439 360.283 39.943 360.283 36.2746C360.283 32.6063 359.648 29.3193 358.377 26.4102C357.107 23.5012 355.362 21.0394 353.138 19.0249C350.918 17.0105 348.286 15.471 345.241 14.41C342.199 13.3525 338.888 12.8185 335.31 12.8185C331.732 12.8185 328.424 13.349 325.379 14.41C322.334 15.471 319.694 17.007 317.46 19.0249C315.225 21.0394 313.476 23.5012 312.22 26.4102C310.968 29.3193 310.34 32.6063 310.34 36.2746ZM296.619 36.2746C296.619 30.9108 297.557 26.0011 299.434 21.5456C301.307 17.0902 303.943 13.2658 307.331 10.0655C310.72 6.86867 314.791 4.39304 319.537 2.63513C324.283 0.87722 329.541 0 335.31 0C341.079 0 346.303 0.87722 351.064 2.63513C355.825 4.39304 359.9 6.86867 363.292 10.0655C366.68 13.2658 369.312 17.0902 371.189 21.5456C373.062 26.0011 374 30.9108 374 36.2746C374 41.6385 373.062 46.614 371.189 51.1146C369.312 55.6151 366.68 59.488 363.292 62.7265C359.9 65.9718 355.825 68.4925 351.064 70.2955C346.303 72.0985 341.053 73 335.31 73C329.567 73 324.283 72.0985 319.537 70.2955C314.791 68.4925 310.72 65.9718 307.331 62.7265C303.943 59.4846 301.307 55.6151 299.434 51.1146C297.557 46.614 296.619 41.6662 296.619 36.2746Z" fill="url(#gradient)" />
+        <path d="M128.238 45.3862C130.144 43.826 131.721 42.0438 132.977 40.0466C134.229 38.046 135.16 35.8547 135.766 33.4796C136.372 31.0976 136.675 28.5942 136.675 25.9556C136.675 22.048 136.066 18.5461 134.839 15.4567C133.612 12.3639 131.743 9.74267 129.234 7.59296C126.722 5.43978 123.564 3.79629 119.753 2.65902C115.944 1.52176 111.443 0.953125 106.251 0.953125H74.9316V72.0011H88.6525V13.5012H106.598C111.819 13.5012 115.729 14.583 118.329 16.75C120.924 18.9171 122.221 21.9856 122.221 25.9522C122.221 27.984 121.899 29.8251 121.246 31.4755C120.6 33.126 119.617 34.5302 118.303 35.6813C116.989 36.8325 115.36 37.727 113.414 38.365C111.465 39.003 109.194 39.322 106.598 39.322H98.7003L106.729 51.8215L119.453 72.0045H136.245L121.531 49.2765C124.101 48.2467 126.335 46.95 128.238 45.3897" fill="url(#gradient)" />
+        <path d="M51.0679 31.1496C51.0679 31.1496 51.3308 30.7647 51.7032 30.0817C52.8971 27.9979 53.6419 26.0666 53.9267 23.8094C54.6314 20.0162 54.394 15.1551 51.1007 10.2211C49.9506 8.32455 48.4756 6.64639 46.6647 5.25948C46.6537 5.24908 46.6427 5.23868 46.6281 5.22827C43.1231 2.56541 38.3876 0.97393 32.44 0.97393L0.116827 0.953125H0V72.1085H40.0197C52.3786 72.112 62.0248 62.5111 62.4338 50.7224C62.6893 43.3891 60.3526 35.352 51.0642 31.1496H51.0679ZM40.0197 59.2033H15.079V13.8861H32.4436C36.8688 13.8861 40.4687 17.3048 40.4687 21.5071V21.7082C40.4687 24.0105 39.4793 25.602 37.6793 27.4708L25.2875 39.4225H40.0197C45.3758 39.4225 48.8407 44.0756 48.8407 49.228C48.8407 54.3804 45.5438 59.2033 40.0197 59.2033Z" fill="url(#gradient)" />
+      </svg>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-mobile">
+        <a href="#" class="header-mobile__logo">
+          <img src="./img/header/header-logo-mobile.svg" alt="logo">
+        </a>
+        <button class="header-mobile__btn" id="header-mobile-menu-open">
+          <svg width="29" height="15" viewBox="0 0 8 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <line y1="1.20703" x2="20" y2="1.20703" stroke="black" stroke-width="1.5"/>
+            <line y1="7.45703" x2="13.75" y2="7.45703" stroke="black" stroke-width="1.5"/>
+            <line y1="13.707" x2="20" y2="13.707" stroke="black" stroke-width="1.5"/>
+            </svg>
+        </button>
+      </div>
+      <div class="header__content" id="header-content">
+        <div class="header__content-mobile">
+          <a href="#" class="header__content-mobile__logo">
+            <img src="./img/header/header-logo-mobile.svg" alt="logo">
+          </a>
+          <button class="header__content-mobile__btn" id="header-mobile-menu-close">
+            <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <line x1="1.32709" y1="15.3994" x2="15.4692" y2="1.25722" stroke="black" stroke-width="1.5"/>
+              <line x1="1.45904" y1="1.32807" x2="15.6012" y2="15.4702" stroke="black" stroke-width="1.5"/>
+            </svg>
+          </button>
+        </div>
+        <a href="#" class="header__content-logo">
+          <img src="./img/header/header-logo.svg" alt="logo">
+        </a>
+        <nav class="header__content-nav">
+          <ul class="header__content-nav__list">
+            <li class="header__content-nav__list-item object">
+              <button class="object-btn" id="object-btn">
+                Объекты
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#282E36" stroke-width="1.5" stroke-linejoin="bevel" />
+                </svg>
+              </button>
+              <ul class="object-list" id="object-list">
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 1 </a>
+                </li>
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 2 </a>
+                </li>
+              </ul>
+            </li>
+            <li class="header__content-nav__list-item object">
+              <button class="object-btn">
+                Недвижимость
+                <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 1.5L6 6.5L11 1.5" stroke="#282E36" stroke-width="1.5" stroke-linejoin="bevel" />
+                </svg>
+              </button>
+              <ul class="object-list">
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 1 </a>
+                </li>
+                <li class="object-list__item">
+                  <a href="#"> Ссылка 2 </a>
+                </li>
+              </ul>
+            </li>
+            <li class="header__content-nav__list-item">
+              <a href="#">
+                Акции и новости
+              </a>
+            </li>
+            <li class="header__content-nav__list-item">
+              <a href="#">
+                Контакты
+              </a>
+            </li>
+            <li class="header__content-nav__list-item menu">
+              <button class="btn-global" id="header-menu-btn">
+                Меню
+                <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <line y1="0.966406" x2="16" y2="0.966406" stroke="black" stroke-width="1.2"/>
+                  <line y1="5.96641" x2="11" y2="5.96641" stroke="black" stroke-width="1.2"/>
+                  <line y1="10.9664" x2="16" y2="10.9664" stroke="black" stroke-width="1.2"/>
+                </svg>
+              </button>
+            </li>
+            <li class="header__content-nav__list-item mobile">
+              <a href="#">
+                Контакты
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="header__content-tel">
+          <a href="tel:+78006003322">
+            8 800 600 33 22
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13.8573 11.5757L14.2373 11.1982L13.3548 10.3116L12.9765 10.6891L13.8573 11.5757ZM15.5115 11.0399L17.104 11.9057L17.6998 10.8074L16.1082 9.94238L15.5115 11.0399ZM17.4098 13.6257L16.2265 14.8032L17.1073 15.6891L18.2907 14.5124L17.4098 13.6257ZM15.5048 15.1816C14.2965 15.2949 11.1715 15.1941 7.78649 11.8291L6.90482 12.7149C10.5982 16.3874 14.114 16.5674 15.6215 16.4266L15.5048 15.1816ZM7.78649 11.8291C4.56065 8.62072 4.02565 5.92322 3.95899 4.75239L2.71065 4.82322C2.79399 6.29655 3.45649 9.28655 6.90482 12.7149L7.78649 11.8291ZM8.93232 6.67905L9.17149 6.44072L8.29149 5.55488L8.05232 5.79239L8.93232 6.67905ZM9.36149 3.41155L8.31149 2.00822L7.31065 2.75822L8.36065 4.16072L9.36149 3.41155ZM4.77732 1.70239L3.46899 3.00239L4.35065 3.88905L5.65815 2.58905L4.77732 1.70239ZM8.49232 6.23572C8.05065 5.79239 8.05065 5.79239 8.05065 5.79405H8.04899L8.04649 5.79738C8.00688 5.83731 7.97143 5.88115 7.94065 5.92822C7.89565 5.99488 7.84649 6.08239 7.80482 6.19322C7.70338 6.47932 7.67811 6.78689 7.73149 7.08572C7.84315 7.80655 8.33982 8.75905 9.61149 10.0241L10.4932 9.13739C9.30232 7.95405 9.01899 7.23405 8.96649 6.89405C8.94149 6.73238 8.96732 6.65239 8.97482 6.63405C8.97982 6.62294 8.97982 6.62127 8.97482 6.62905C8.96739 6.64055 8.95903 6.65142 8.94982 6.66155L8.94149 6.66988L8.93315 6.67738L8.49232 6.23572ZM9.61149 10.0241C10.884 11.2891 11.8415 11.7824 12.5632 11.8924C12.9323 11.9491 13.2298 11.9041 13.4557 11.8199C13.5822 11.7736 13.7003 11.7072 13.8057 11.6232L13.8473 11.5857L13.8532 11.5807L13.8557 11.5782L13.8565 11.5766C13.8565 11.5766 13.8573 11.5757 13.4165 11.1324C12.9748 10.6891 12.9773 10.6882 12.9773 10.6882L12.979 10.6866L12.9807 10.6849L12.9857 10.6807L12.994 10.6724L13.0257 10.6474C13.0334 10.6424 13.0315 10.6429 13.0198 10.6491C12.999 10.6566 12.9173 10.6824 12.7532 10.6574C12.4082 10.6041 11.6832 10.3207 10.4932 9.13739L9.61149 10.0241ZM8.31149 2.00739C7.46149 0.874052 5.79149 0.694052 4.77732 1.70239L5.65815 2.58905C6.10149 2.14822 6.88815 2.19405 7.31065 2.75822L8.31149 2.00739ZM3.95982 4.75322C3.94315 4.46489 4.07565 4.16322 4.35065 3.88989L3.46815 3.00322C3.02065 3.44822 2.66815 4.07822 2.71065 4.82322L3.95982 4.75322ZM16.2265 14.8032C15.9982 15.0316 15.7515 15.1599 15.5057 15.1824L15.6215 16.4266C16.234 16.3691 16.7348 16.0607 17.1082 15.6899L16.2265 14.8032ZM9.17149 6.44072C9.99232 5.62489 10.0532 4.33572 9.36232 3.41238L8.36149 4.16155C8.69732 4.61072 8.64732 5.19988 8.29065 5.55572L9.17149 6.44072ZM17.1048 11.9066C17.7857 12.2766 17.8915 13.1482 17.4107 13.6266L18.2923 14.5124C19.409 13.4016 19.0648 11.5491 17.7007 10.8082L17.1048 11.9066ZM14.2373 11.1991C14.5573 10.8807 15.0723 10.8024 15.5123 11.0407L16.109 9.94322C15.2057 9.45155 14.0857 9.58739 13.3557 10.3124L14.2373 11.1991Z" fill="black" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-menu" id="header-menu">
+      <div class="container">
+        <div class="header-menu__content" id="header-menu-content">
+          <ul class="header-menu__content-list">
+            <li class="header-menu__content-list__item">
+              <h3>
+                Компания
+              </h3>
+            </li>
+            <li class="header-menu__content-list__item">
+              <a href="#">
+                О застройщике
+              </a>
+            </li>
+            <li class="header-menu__content-list__item">
+              <a href="#">
+                Контакты
+              </a>
+            </li>
+          </ul>
+          <ul class="header-menu__content-list">
+            <li class="header-menu__content-list__item">
+              <h3>
+                События
+              </h3>
+            </li>
+            <li class="header-menu__content-list__item">
+              <a href="#">
+                Акции
+              </a>
+            </li>
+            <li class="header-menu__content-list__item">
+              <a href="#">
+                Новости
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="residentialComplex-hero">
+      <div class="residentialComplex-hero__images">
+        <img src="./img/residentialComplex/hero/residentialComplex-background.svg" alt="img">
+        <img src="./img/residentialComplex/hero/residentialComplex-background.svg" alt="img">
+        <img src="./img/residentialComplex/hero/residentialComplex-background.svg" alt="img">
+        <img src="./img/residentialComplex/hero/residentialComplex-background.svg" alt="img">
+        <img src="./img/residentialComplex/hero/residentialComplex-background.svg" alt="img">
+      </div>
+      <div class="container">
+        <div class="residentialComplex-hero__content">
+          <div class="residentialComplex-hero__content-control">
+            <div class="paginations residentialComplex-hero__content-control__paginations">
+
+            </div>
+            <div class="residentialComplex-hero__content-control__btns">
+              <button class="btn-arrow" id="residentialComplex-scroll-prev">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="btn-arrow" id="residentialComplex-scroll-next">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="filter apartments-filter residentialComplex-filter">
+      <div class="container">
+        <div class="filter__content">
+          <div class="filter__content-top">
+            <div class="filter__content-top__blocks">
+              <p class="name">
+                Жилой комплекс
+              </p>
+              <h2 class="section-title">
+                Кипарис
+              </h2>
+            </div>
+            <div class="filter__content-top__blocks">
+              <p class="name">
+                Минимальная цена
+              </p>
+              <p class="text">
+                от 8,9 млн ₽
+              </p>
+            </div>
+            <div class="filter__content-top__blocks">
+              <p class="name">
+                Площадь
+              </p>
+              <p class="text">
+                19-70 м²
+              </p>
+            </div>
+            <div class="filter__content-top__blocks">
+              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="36" height="36" rx="5" fill="#F7F7F7" />
+                <path opacity="0.3" d="M18 11C19.5913 11 21.1174 11.6583 22.2426 12.83C23.3679 14.0017 24 15.5908 24 17.2478C24 19.3818 22.8827 21.1285 21.7053 22.3815C21.1171 23.0008 20.4753 23.5622 19.788 24.0587L19.504 24.26L19.3707 24.3523L19.1193 24.519L18.8953 24.6613L18.618 24.8293C18.4298 24.9412 18.2168 25 18 25C17.7832 25 17.5702 24.9412 17.382 24.8293L17.1047 24.6613L16.758 24.4391L16.63 24.3523L16.3567 24.1628C15.6152 23.6405 14.9246 23.0438 14.2947 22.3815C13.1173 21.1278 12 19.3818 12 17.2478C12 15.5908 12.6321 14.0017 13.7574 12.83C14.8826 11.6583 16.4087 11 18 11ZM18 15.1652C17.7374 15.1652 17.4773 15.2191 17.2346 15.3238C16.992 15.4284 16.7715 15.5818 16.5858 15.7752C16.4001 15.9686 16.2528 16.1982 16.1522 16.4509C16.0517 16.7035 16 16.9744 16 17.2478C16 17.5213 16.0517 17.7922 16.1522 18.0448C16.2528 18.2975 16.4001 18.5271 16.5858 18.7205C16.7715 18.9139 16.992 19.0673 17.2346 19.1719C17.4773 19.2766 17.7374 19.3305 18 19.3305C18.5304 19.3305 19.0391 19.111 19.4142 18.7205C19.7893 18.3299 20 17.8002 20 17.2478C20 16.6955 19.7893 16.1658 19.4142 15.7752C19.0391 15.3847 18.5304 15.1652 18 15.1652Z" fill="black" />
+              </svg>
+              <p class="text">
+                г. о. Анапа, с. Сукко, <br>
+                ул. Мирная, 11к3
+              </p>
+            </div>
+          </div>
+          <div class="filter__content-blocks">
+            <div class="filter__content-blocks__fields">
+              <div class="filter__content-blocks__fields-block select">
+                <span class="arrow">
+                  <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 0.5L5.5 5.5L10.5 0.5" stroke="" stroke-linejoin="bevel" />
+                  </svg>
+                </span>
+                <h3>Объект</h3>
+                <p class="select-descr">
+                  Любой
+                </p>
+                <div class="select-blocks">
+                  <span class="select-blocks__choise">
+                    Любой
+                  </span>
+                  <span class="select-blocks__choise">
+                    1
+                  </span>
+                  <span class="select-blocks__choise">
+                    Дом
+                  </span>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block checks">
+                <h3>Кол-во комнат</h3>
+                <div class="checks__blocks">
+                  <label for="numberOfRooms-value1" class="checks__blocks-label">
+                    <input type="checkbox" name="numberOfRooms" id="numberOfRooms-value1">
+                    <p class="checks__blocks-label__descr">
+                      Ст.
+                      <span class="checks__blocks-label__descr-line"></span>
+                    </p>
+                  </label>
+                  <label for="numberOfRooms-value2" class="checks__blocks-label">
+                    <input type="checkbox" name="numberOfRooms" id="numberOfRooms-value2">
+                    <p class="checks__blocks-label__descr">
+                      1
+                      <span class="checks__blocks-label__descr-line"></span>
+                    </p>
+                  </label>
+                  <label for="numberOfRooms-value3" class="checks__blocks-label">
+                    <input type="checkbox" name="numberOfRooms" id="numberOfRooms-value3">
+                    <p class="checks__blocks-label__descr">
+                      2
+                      <span class="checks__blocks-label__descr-line"></span>
+                    </p>
+                  </label>
+                  <label for="numberOfRooms-value4" class="checks__blocks-label">
+                    <input type="checkbox" name="numberOfRooms" id="numberOfRooms-value4">
+                    <p class="checks__blocks-label__descr">
+                      3+
+                      <span class="checks__blocks-label__descr-line"></span>
+                    </p>
+                  </label>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block slider">
+                <h3>Стоимость, млн ₽</h3>
+                <div class="slider__blocks">
+                  <div class="slider__blocks-inputs">
+                    <input type="number" class="min-input" value="17">
+                    <span class="slider__blocks-inputs__line"></span>
+                    <input type="number" class="max-input" value="55">
+                  </div>
+                  <div class="slider__blocks-container" data-min-price="17" data-max-price="55">
+                    <div class="slider__blocks-container__track"></div>
+                    <input type="range" id="minPriceSlider" class="slider__blocks-container__input min-slider" min="17" max="55" value="17">
+                    <input type="range" id="maxPriceSlider" class="slider__blocks-container__input max-slider" min="17" max="55" value="55">
+                  </div>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block select">
+                <span class="arrow">
+                  <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.5 0.5L5.5 5.5L10.5 0.5" stroke="#282E36" stroke-linejoin="bevel" />
+                  </svg>
+                </span>
+                <h3>Год сдачи</h3>
+                <p class="select-descr">
+                  Любой
+                </p>
+                <div class="select-blocks">
+                  <span class="select-blocks__choise">
+                    Любой
+                  </span>
+                  <span class="select-blocks__choise">
+                    Сдан
+                  </span>
+                  <span class="select-blocks__choise">
+                    2024
+                  </span>
+                  <span class="select-blocks__choise">
+                    2023
+                  </span>
+                  <span class="select-blocks__choise">
+                    2022
+                  </span>
+                  <span class="select-blocks__choise">
+                    2021
+                  </span>
+                  <span class="select-blocks__choise">
+                    2020
+                  </span>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block slider">
+                <h3>Площадь, м²</h3>
+                <div class="slider__blocks">
+                  <div class="slider__blocks-inputs">
+                    <input type="number" class="min-input" value="19">
+                    <span class="slider__blocks-inputs__line"></span>
+                    <input type="number" class="max-input" value="70">
+                  </div>
+                  <div class="slider__blocks-container" data-min-price="19" data-max-price="70">
+                    <div class="slider__blocks-container__track"></div>
+                    <input type="range" class="slider__blocks-container__input min-slider" min="19" max="70" value="17">
+                    <input type="range" class="slider__blocks-container__input max-slider" min="19" max="70" value="70">
+                  </div>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block slider">
+                <h3>Этаж</h3>
+                <div class="slider__blocks">
+                  <div class="slider__blocks-inputs">
+                    <input type="number" class="min-input" value="1">
+                    <span class="slider__blocks-inputs__line"></span>
+                    <input type="number" class="max-input" value="7">
+                  </div>
+                  <div class="slider__blocks-container" data-min-price="1" data-max-price="7">
+                    <div class="slider__blocks-container__track"></div>
+                    <input type="range" class="slider__blocks-container__input min-slider" min="1" max="7" value="1">
+                    <input type="range" class="slider__blocks-container__input max-slider" min="1" max="7" value="7">
+                  </div>
+                </div>
+              </div>
+              <div class="filter__content-blocks__fields-block slider">
+                <h3>Площадь кухни, м²</h3>
+                <div class="slider__blocks">
+                  <div class="slider__blocks-inputs">
+                    <input type="number" class="min-input" value="3">
+                    <span class="slider__blocks-inputs__line"></span>
+                    <input type="number" class="max-input" value="13">
+                  </div>
+                  <div class="slider__blocks-container" data-min-price="3" data-max-price="13">
+                    <div class="slider__blocks-container__track"></div>
+                    <input type="range" class="slider__blocks-container__input min-slider" min="3" max="13" value="3">
+                    <input type="range" class="slider__blocks-container__input max-slider" min="3" max="13" value="13">
+                  </div>
+                </div>
+              </div>
+              <div class="block-united">
+                <div class="filter__content-blocks__fields-block select">
+                  <span class="arrow">
+                    <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.5L5.5 5.5L10.5 0.5" stroke="" stroke-linejoin="bevel" />
+                    </svg>
+                  </span>
+                  <h3>Класс жилья</h3>
+                  <p class="select-descr">
+                    Любой
+                  </p>
+                  <div class="select-blocks">
+                    <span class="select-blocks__choise">
+                      Любой
+                    </span>
+                    <span class="select-blocks__choise">
+                      1
+                    </span>
+                    <span class="select-blocks__choise">
+                      Дом
+                    </span>
+                  </div>
+                </div>
+                <div class="filter__content-blocks__fields-block select">
+                  <span class="arrow">
+                    <svg width="11" height="6" viewBox="0 0 11 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.5 0.5L5.5 5.5L10.5 0.5" stroke="" stroke-linejoin="bevel" />
+                    </svg>
+                  </span>
+                  <h3>Объект</h3>
+                  <p class="select-descr">
+                    Корпус
+                  </p>
+                  <div class="select-blocks">
+                    <span class="select-blocks__choise">
+                      Любой
+                    </span>
+                    <span class="select-blocks__choise">
+                      1
+                    </span>
+                    <span class="select-blocks__choise">
+                      Дом
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="filter__content-blocks__btns">
+              <label for="advantages-value1" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value1" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value2" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value2" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value3" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value3" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value4" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value4" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value5" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value5" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value6" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value6" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value7" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value7" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value8" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value8" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value9" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value9" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <label for="advantages-value10" class="filter__content-blocks__btns-label">
+                <input type="checkbox" id="advantages-value10" name="advantages">
+                <span class="filter__content-blocks__btns-label__span">
+                  Квартира-бабочка
+                </span>
+              </label>
+              <button class="show-more">
+                Ещё <span>0</span> преимуществ
+              </button>
+            </div>
+          </div>
+          <div class="filter__content-bottom">
+            <button class="expand-filter">
+              <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L6 6L11 1" stroke="#282E36" stroke-linejoin="bevel" />
+              </svg>
+              Расширенный фильтр
+            </button>
+            <button class="resetting-filter">
+              <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 10.5L10.2543 0.5" stroke="#414141" />
+                <path d="M0.999645 0.5L10.2539 10.5" stroke="#414141" />
+              </svg>
+              Сброс фильтра
+            </button>
+            <button class="btn-global show-btn">
+              Показать 1252 квартиры
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="apartments-products residentialComplex-products">
+      <div class="container">
+        <div class="apartments-products__content">
+          <div class="apartments-products__content-top">
+            <div class="apartments-products__content-top__sorting">
+              <button class="apartments-products__content-top__sorting-btn">
+                <svg class="btn-svg" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g opacity="0.5">
+                    <path d="M5.33317 10.6663H2.6665L6.6665 14.6663V1.33301H5.33317V10.6663ZM9.33317 3.33301V14.6663H10.6665V5.33301H13.3332L9.33317 1.33301V3.33301Z" fill="black" />
+                  </g>
+                </svg>
+                <p>
+                  Сначала дешевле
+                </p>
+                <span class="arrow">
+                  <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.5" d="M1 0.5L6 5.5L11 0.5" stroke="#282E36" stroke-linejoin="bevel" />
+                  </svg>
+                </span>
+              </button>
+              <ul class="apartments-products__content-top__sorting-list">
+                <li class="apartments-products__content-top__sorting-list__item">
+                  <p>
+                    Любой
+                  </p>
+                </li>
+                <li class="apartments-products__content-top__sorting-list__item">
+                  <p>
+                    Сначала дешевле
+                  </p>
+                </li>
+                <li class="apartments-products__content-top__sorting-list__item">
+                  <p>
+                    Сначала дороже
+                  </p>
+                </li>
+                <li class="apartments-products__content-top__sorting-list__item">
+                  <p>
+                    С большей площадью
+                  </p>
+                </li>
+                <li class="apartments-products__content-top__sorting-list__item">
+                  <p>
+                    С меньшей площадью
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <button class="apartments-products__content-top__btn">
+              Квартирограмма
+            </button>
+          </div>
+          <div class="apartments-products__content-cards">
+            <ul class="apartments-products__content-cards__list">
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+              <li class="apartments-products__content-cards__list-item">
+                <a href="#" class="apartments-products__content-cards__list-item__links"></a>
+                <div class="apartments-products__content-cards__list-item__top">
+                  <p>
+                    №222
+                  </p>
+                </div>
+                <div class="apartments-products__content-cards__list-item__img">
+                  <img src="./img/apartmens/products/products-img.svg" alt="img">
+                </div>
+                <article class="apartments-products__content-cards__list-item__article">
+                  <p>
+                    Кипарис
+                  </p>
+                  <h3>
+                    1-комнатная, 35,7 м2
+                  </h3>
+                  <div class="apartments-products__content-cards__list-item__article-info">
+                    <p>
+                      Литер 4
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Этаж 5
+                    </p>
+                    <svg width="6" height="7" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle opacity="0.1" cx="3" cy="3.5" r="3" fill="black" />
+                    </svg>
+                    <p>
+                      Сдача 4 кв. 2026
+                    </p>
+                  </div>
+                </article>
+                <div class="apartments-products__content-cards__list-item__prices">
+                  <p class="price">
+                    от 12 535 000 ₽
+                  </p>
+                  <p class="discount">
+                    13 835 000 ₽
+                  </p>
+                  <span class="percentage">
+                    -12%
+                  </span>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="apartments-products__content-btn">
+            <button>
+              Загрузить ещё
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-generalPlan">
+      <div class="container first">
+        <h2 class="section-title">
+          Генплан
+        </h2>
+      </div>
+      <div class="container second">
+        <div class="residentialComplex-generalPlan__content">
+          <h2 class="section-title second">
+            Генплан
+          </h2>
+          <div class="residentialComplex-generalPlan__content-img"></div>
+          <ul class="residentialComplex-generalPlan__content-facilities">
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                7 литер
+              </p>
+            </li>
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                8 литер
+              </p>
+            </li>
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                9 литер
+              </p>
+            </li>
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                10 литер
+              </p>
+            </li>
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                11 литер
+              </p>
+            </li>
+            <li class="residentialComplex-generalPlan__content-facilities__item">
+              <p>
+                12 литер
+              </p>
+            </li>
+          </ul>
+          <ul class="residentialComplex-generalPlan__content-cards">
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 7
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 8
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 9
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 10
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 11
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+            <li class="residentialComplex-generalPlan__content-cards__item">
+              <h3>
+                Корпус 12
+              </h3>
+              <p class="date">
+                Срок сдачи — 1 кв. 2026
+              </p>
+              <p class="quantity">
+                133 квартиры
+              </p>
+              <ul class="residentialComplex-generalPlan__content-cards__item-links">
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+                <li class="residentialComplex-generalPlan__content-cards__item-links__item">
+                  <a href="#">
+                    <p>
+                      1-комн.
+                    </p>
+                    <p>
+                      от ХХ ХХХ ХХХ ₽
+                    </p>
+                  </a>
+                </li>
+              </ul>
+              <a href="#" class="btn-global residentialComplex-generalPlan__content-cards__item-btn">
+                Посмотреть квартиры
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-about">
+      <div class="container">
+        <div class="residentialComplex-about__content">
+          <div class="residentialComplex-about__content-info">
+            <h2 class="section-title">
+              Об объекте
+            </h2>
+            <div class="residentialComplex-about__content-info__descrs">
+              <p>
+                Кипарис — дом для тех, кто ценит гармонию, уют и природное спокойствие.
+              </p>
+              <p>
+                Жилой комплекс "Кипарис" создан для тех, кто стремится к балансу и умиротворению в городской суете. Его архитектура навеяна величием и долговечностью кипарисов — символом долголетия и устойчивости.
+              </p>
+              <p>
+                Проектировщики вдохновились красотой природы и южными пейзажами, чтобы воплотить в жизнь проект, где каждая деталь продумана для комфорта и спокойствия. "Кипарис" окружен зелеными зонами, предназначенными для прогулок, отдыха и занятий спортом, а закрытая территория и круглосуточная охрана гарантируют безопасность жителей.
+              </p>
+            </div>
+            <a href="#" class="btn-global">
+              Смотреть на карте
+            </a>
+          </div>
+          <div class="residentialComplex-about__content-examples">
+            <div class="residentialComplex-about__content-examples__btns">
+              <button class="btn-global active">
+                Фасад
+              </button>
+              <button class="btn-global">
+                Интерьер квартиры
+              </button>
+              <button class="btn-global">
+                Благоустройство
+              </button>
+              <button class="btn-global">
+                Холлы
+              </button>
+            </div>
+            <div class="residentialComplex-about__content-examples__images">
+              <img class="active" src="./img/residentialComplex/about/about-img1.svg" alt="img">
+              <img src="./img/index/ourFacilities/ourFacilities-img.svg" alt="img">
+              <img src="./img/index/ourFacilities/ourFacilities-img2.svg" alt="img">
+              <img src="./img/index/ourFacilities/ourFacilities-img3.svg" alt="img">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-panorama">
+      <div class="container">
+        <div class="residentialComplex-panorama__content">
+          <h2 class="section-title">
+            3D-панорама
+          </h2>
+          <div class="residentialComplex-panorama__content-info">
+            <a href="#" class="btn-global">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.79185 2.39683L3.82935 5.15183C3.44206 5.36773 3.11964 5.68338 2.89557 6.06601C2.67151 6.44863 2.55398 6.88427 2.55518 7.32767V12.6727C2.55413 13.1159 2.67173 13.5514 2.89579 13.9339C3.11984 14.3163 3.44218 14.6318 3.82935 14.8477L8.79352 17.6035C9.1628 17.809 9.57841 17.9168 10.001 17.9168C10.4236 17.9168 10.8392 17.809 11.2085 17.6035L16.1727 14.8485C16.56 14.6326 16.8824 14.3169 17.1065 13.9343C17.3305 13.5517 17.4481 13.1161 17.4469 12.6727V7.32767C17.4479 6.88441 17.3303 6.44894 17.1063 6.06648C16.8822 5.68402 16.5599 5.36849 16.1727 5.15267L11.2085 2.39683C10.8392 2.19134 10.4236 2.0835 10.001 2.0835C9.57841 2.0835 9.1628 2.19134 8.79352 2.39683H8.79185Z" stroke="black" stroke-width="1.5" />
+                <path d="M16.9419 5.83008L10.0003 10.0001M10.0003 10.0001L3.05859 5.83008M10.0003 10.0001V17.9084" stroke="black" stroke-width="1.5" />
+              </svg>
+              Смотреть 3D панораму
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-advantages">
+      <div class="container">
+        <div class="residentialComplex-advantages__content">
+          <div class="residentialComplex-advantages__content-top">
+            <h2 class="section-title">
+              Преимущества
+            </h2>
+            <div class="residentialComplex-advantages__content-top__btns">
+              <button class="btn-arrow" id="residentialComplex-advantages-prev">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="btn-arrow" id="residentialComplex-advantages-next">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="residentialComplex-advantages__content-blocks">
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img1.svg" alt="img">
+              </div>
+              <h3>
+                Свои школа и детсад
+              </h3>
+            </button>
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img2.svg" alt="img">
+              </div>
+              <h3>
+                Несколько видов отделки
+              </h3>
+            </button>
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img3.svg" alt="img">
+              </div>
+              <h3>
+                Активный отдых рядом
+              </h3>
+            </button>
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img1.svg" alt="img">
+              </div>
+              <h3>
+                Свои школа и детсад
+              </h3>
+            </button>
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img2.svg" alt="img">
+              </div>
+              <h3>
+                Несколько видов отделки
+              </h3>
+            </button>
+            <button class="residentialComplex-advantages__content-blocks__block">
+              <div class="residentialComplex-advantages__content-blocks__block-img">
+                <img src="./img/residentialComplex/advantages/advantages-img3.svg" alt="img">
+              </div>
+              <h3>
+                Активный отдых рядом
+              </h3>
+            </button>
+          </div>
+          <div class="paginations residentialComplex-advantages__content-paginations">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-infrastructure">
+      <div class="container">
+        <h2 class="section-title">
+          Инфраструктура
+        </h2>
+        <div class="residentialComplex-infrastructure__content">
+          <div class="residentialComplex-infrastructure__content-map" id="residentialComplex-map"></div>
+
+          <div id="filter-buttons" class="filter-buttons">
+            <!-- Кнопки добовляются автоматически -->
+          </div>
+          <div class="info">
+            <div id="marker-info" class="info-content">
+            </div>
+        </div>
+
+          <!-- Данные о метках -->
+          <div id="marker-data" style="display: none;">
+            <div data-type="school" data-title="Школы" data-coords="55.751574,37.573856" data-text="Ресторан №1"></div>
+            <div data-type="school" data-title="Школы" data-coords="55.751574,37.593856" data-text="Ресторан №2"></div>
+            <div data-type="kindergarten" data-title="Детские сады" data-coords="55.761574,37.583856" data-text="Детский сад №1"></div>
+            <div data-type="park" data-title="Парки и места отдыха" data-coords="55.741574,37.553856" data-text="Парк №1"></div>
+            <div data-type="cafe" data-title="Кафе и рестораны" data-coords="55.765574,37.575856" data-text="Кафе №1"></div>
+            <div data-type="pharmacies" data-title="Аптеки" data-coords="58.771574,37.563856" data-text="Аптека №1"></div>
+            <div data-type="shops" data-title="Магазины" data-coords="57.771574,37.563856" data-text="Магазин №1"></div>
+            <div data-type="entertainments" data-title="Развлечения" data-coords="56.771574,37.563856" data-text="Ресторан №1"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-placesNearby">
+      <div class="container">
+        <div class="residentialComplex-placesNearby__content">
+          <div class="residentialComplex-placesNearby__content-top">
+            <h2 class="section-title">
+              Места поблизости
+            </h2>
+            <div class="residentialComplex-placesNearby__content-top__btns">
+              <button class="btn-arrow" id="residentialComplex-placesNearby-prev">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="btn-arrow" id="residentialComplex-placesNearby-next">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ul class="residentialComplex-placesNearby__content-blocks">
+            <li class="residentialComplex-placesNearby__content-blocks__block">
+              <a href="#" class="residentialComplex-placesNearby__content-blocks__block-link"></a>
+              <div class="residentialComplex-placesNearby__content-blocks__block-img">
+                <img src="./img/residentialComplex/placesNearby/placesNearby-img1.svg" alt="img">
+              </div>
+              <h3>
+                До моря
+              </h3>
+              <p>
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.33333 3.75L2.33333 0.9375H9.66667L10.6667 3.75M9.66667 6.875C9.40145 6.875 9.1471 6.77623 8.95956 6.60041C8.77202 6.4246 8.66667 6.18614 8.66667 5.9375C8.66667 5.68886 8.77202 5.4504 8.95956 5.27459C9.1471 5.09877 9.40145 5 9.66667 5C9.93188 5 10.1862 5.09877 10.3738 5.27459C10.5613 5.4504 10.6667 5.68886 10.6667 5.9375C10.6667 6.18614 10.5613 6.4246 10.3738 6.60041C10.1862 6.77623 9.93188 6.875 9.66667 6.875ZM2.33333 6.875C2.06812 6.875 1.81376 6.77623 1.62623 6.60041C1.43869 6.4246 1.33333 6.18614 1.33333 5.9375C1.33333 5.68886 1.43869 5.4504 1.62623 5.27459C1.81376 5.09877 2.06812 5 2.33333 5C2.59855 5 2.8529 5.09877 3.04044 5.27459C3.22798 5.4504 3.33333 5.68886 3.33333 5.9375C3.33333 6.18614 3.22798 6.4246 3.04044 6.60041C2.8529 6.77623 2.59855 6.875 2.33333 6.875ZM10.6133 0.625C10.48 0.2625 10.1067 0 9.66667 0H2.33333C1.89333 0 1.52 0.2625 1.38667 0.625L0 4.375V9.375C0 9.54076 0.0702379 9.69973 0.195262 9.81694C0.320286 9.93415 0.489856 10 0.666667 10H1.33333C1.51014 10 1.67971 9.93415 1.80474 9.81694C1.92976 9.69973 2 9.54076 2 9.375V8.75H10V9.375C10 9.54076 10.0702 9.69973 10.1953 9.81694C10.3203 9.93415 10.4899 10 10.6667 10H11.3333C11.5101 10 11.6797 9.93415 11.8047 9.81694C11.9298 9.69973 12 9.54076 12 9.375V4.375L10.6133 0.625Z" fill="white" />
+                </svg>
+                11 минут на машине
+              </p>
+            </li>
+            <li class="residentialComplex-placesNearby__content-blocks__block">
+              <a href="#" class="residentialComplex-placesNearby__content-blocks__block-link"></a>
+              <div class="residentialComplex-placesNearby__content-blocks__block-img">
+                <img src="./img/residentialComplex/placesNearby/placesNearby-img2.svg" alt="img">
+              </div>
+              <h3>
+                До моря
+              </h3>
+              <p>
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.33333 3.75L2.33333 0.9375H9.66667L10.6667 3.75M9.66667 6.875C9.40145 6.875 9.1471 6.77623 8.95956 6.60041C8.77202 6.4246 8.66667 6.18614 8.66667 5.9375C8.66667 5.68886 8.77202 5.4504 8.95956 5.27459C9.1471 5.09877 9.40145 5 9.66667 5C9.93188 5 10.1862 5.09877 10.3738 5.27459C10.5613 5.4504 10.6667 5.68886 10.6667 5.9375C10.6667 6.18614 10.5613 6.4246 10.3738 6.60041C10.1862 6.77623 9.93188 6.875 9.66667 6.875ZM2.33333 6.875C2.06812 6.875 1.81376 6.77623 1.62623 6.60041C1.43869 6.4246 1.33333 6.18614 1.33333 5.9375C1.33333 5.68886 1.43869 5.4504 1.62623 5.27459C1.81376 5.09877 2.06812 5 2.33333 5C2.59855 5 2.8529 5.09877 3.04044 5.27459C3.22798 5.4504 3.33333 5.68886 3.33333 5.9375C3.33333 6.18614 3.22798 6.4246 3.04044 6.60041C2.8529 6.77623 2.59855 6.875 2.33333 6.875ZM10.6133 0.625C10.48 0.2625 10.1067 0 9.66667 0H2.33333C1.89333 0 1.52 0.2625 1.38667 0.625L0 4.375V9.375C0 9.54076 0.0702379 9.69973 0.195262 9.81694C0.320286 9.93415 0.489856 10 0.666667 10H1.33333C1.51014 10 1.67971 9.93415 1.80474 9.81694C1.92976 9.69973 2 9.54076 2 9.375V8.75H10V9.375C10 9.54076 10.0702 9.69973 10.1953 9.81694C10.3203 9.93415 10.4899 10 10.6667 10H11.3333C11.5101 10 11.6797 9.93415 11.8047 9.81694C11.9298 9.69973 12 9.54076 12 9.375V4.375L10.6133 0.625Z" fill="white" />
+                </svg>
+                11 минут на машине
+              </p>
+            </li>
+            <li class="residentialComplex-placesNearby__content-blocks__block">
+              <a href="#" class="residentialComplex-placesNearby__content-blocks__block-link"></a>
+              <div class="residentialComplex-placesNearby__content-blocks__block-img">
+                <img src="./img/residentialComplex/placesNearby/placesNearby-img1.svg" alt="img">
+              </div>
+              <h3>
+                До моря
+              </h3>
+              <p>
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.33333 3.75L2.33333 0.9375H9.66667L10.6667 3.75M9.66667 6.875C9.40145 6.875 9.1471 6.77623 8.95956 6.60041C8.77202 6.4246 8.66667 6.18614 8.66667 5.9375C8.66667 5.68886 8.77202 5.4504 8.95956 5.27459C9.1471 5.09877 9.40145 5 9.66667 5C9.93188 5 10.1862 5.09877 10.3738 5.27459C10.5613 5.4504 10.6667 5.68886 10.6667 5.9375C10.6667 6.18614 10.5613 6.4246 10.3738 6.60041C10.1862 6.77623 9.93188 6.875 9.66667 6.875ZM2.33333 6.875C2.06812 6.875 1.81376 6.77623 1.62623 6.60041C1.43869 6.4246 1.33333 6.18614 1.33333 5.9375C1.33333 5.68886 1.43869 5.4504 1.62623 5.27459C1.81376 5.09877 2.06812 5 2.33333 5C2.59855 5 2.8529 5.09877 3.04044 5.27459C3.22798 5.4504 3.33333 5.68886 3.33333 5.9375C3.33333 6.18614 3.22798 6.4246 3.04044 6.60041C2.8529 6.77623 2.59855 6.875 2.33333 6.875ZM10.6133 0.625C10.48 0.2625 10.1067 0 9.66667 0H2.33333C1.89333 0 1.52 0.2625 1.38667 0.625L0 4.375V9.375C0 9.54076 0.0702379 9.69973 0.195262 9.81694C0.320286 9.93415 0.489856 10 0.666667 10H1.33333C1.51014 10 1.67971 9.93415 1.80474 9.81694C1.92976 9.69973 2 9.54076 2 9.375V8.75H10V9.375C10 9.54076 10.0702 9.69973 10.1953 9.81694C10.3203 9.93415 10.4899 10 10.6667 10H11.3333C11.5101 10 11.6797 9.93415 11.8047 9.81694C11.9298 9.69973 12 9.54076 12 9.375V4.375L10.6133 0.625Z" fill="white" />
+                </svg>
+                11 минут на машине
+              </p>
+            </li>
+            <li class="residentialComplex-placesNearby__content-blocks__block">
+              <a href="#" class="residentialComplex-placesNearby__content-blocks__block-link"></a>
+              <div class="residentialComplex-placesNearby__content-blocks__block-img">
+                <img src="./img/residentialComplex/placesNearby/placesNearby-img2.svg" alt="img">
+              </div>
+              <h3>
+                До моря
+              </h3>
+              <p>
+                <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.33333 3.75L2.33333 0.9375H9.66667L10.6667 3.75M9.66667 6.875C9.40145 6.875 9.1471 6.77623 8.95956 6.60041C8.77202 6.4246 8.66667 6.18614 8.66667 5.9375C8.66667 5.68886 8.77202 5.4504 8.95956 5.27459C9.1471 5.09877 9.40145 5 9.66667 5C9.93188 5 10.1862 5.09877 10.3738 5.27459C10.5613 5.4504 10.6667 5.68886 10.6667 5.9375C10.6667 6.18614 10.5613 6.4246 10.3738 6.60041C10.1862 6.77623 9.93188 6.875 9.66667 6.875ZM2.33333 6.875C2.06812 6.875 1.81376 6.77623 1.62623 6.60041C1.43869 6.4246 1.33333 6.18614 1.33333 5.9375C1.33333 5.68886 1.43869 5.4504 1.62623 5.27459C1.81376 5.09877 2.06812 5 2.33333 5C2.59855 5 2.8529 5.09877 3.04044 5.27459C3.22798 5.4504 3.33333 5.68886 3.33333 5.9375C3.33333 6.18614 3.22798 6.4246 3.04044 6.60041C2.8529 6.77623 2.59855 6.875 2.33333 6.875ZM10.6133 0.625C10.48 0.2625 10.1067 0 9.66667 0H2.33333C1.89333 0 1.52 0.2625 1.38667 0.625L0 4.375V9.375C0 9.54076 0.0702379 9.69973 0.195262 9.81694C0.320286 9.93415 0.489856 10 0.666667 10H1.33333C1.51014 10 1.67971 9.93415 1.80474 9.81694C1.92976 9.69973 2 9.54076 2 9.375V8.75H10V9.375C10 9.54076 10.0702 9.69973 10.1953 9.81694C10.3203 9.93415 10.4899 10 10.6667 10H11.3333C11.5101 10 11.6797 9.93415 11.8047 9.81694C11.9298 9.69973 12 9.54076 12 9.375V4.375L10.6133 0.625Z" fill="white" />
+                </svg>
+                11 минут на машине
+              </p>
+            </li>
+          </ul>
+          <div class="paginations residentialComplex-placesNearby__content-paginations">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-booklet">
+      <div class="container">
+        <div class="residentialComplex-booklet__content">
+          <div class="residentialComplex-booklet__content-info">
+            <h2 class="section-title">
+              Буклет о ЖК «Кипарис»
+            </h2>
+            <p>
+              Получите PDF-буклет на электронную почту. <br>
+              В нем — планировки и вся информация о ЖК
+            </p>
+          </div>
+          <form action="#" class="form-global residentialComplex-booklet__content-form">
+            <div class="residentialComplex-booklet__content-form__fields">
+              <label for="residentialComplex-booklet-email">
+                <input type="email" id="residentialComplex-booklet-email" placeholder="Email">
+              </label>
+              <button class="btn-global">
+                Отправить
+              </button>
+            </div>
+            <p>
+              Нажимая на кнопку “Отправить”, вы принимаете <a href="#">политику конфиденциальности</a> и даете согласие на обработку персональных данных
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-calculation">
+      <div class="container">
+        <div class="residentialComplex-calculation__content">
+          <h2 class="section-title">
+            Расчет ипотеки
+          </h2>
+          <div class="residentialComplex-calculation__content-widget">
+            <p>
+              Виджет
+            </p>
+          </div>
+          <p class="descr">
+            * Приведенные расчеты носят предварительный характер. Окончательный расчет суммы кредита и размер ежемесячного платежа производятся банком после предоставления полного комплекта документов и проведения оценки платежеспособности клиента
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-video">
+      <div class="container">
+        <div class="content-container">
+          <div class="residentialComplex-video__content video-residentialComplex">
+            <div class="residentialComplex-video__content-top">
+              <h2 class="section-title">
+                Видео
+              </h2>
+              <div class="residentialComplex-video__content-top__switching">
+                <button class="btn-global on active" data-target="video-residentialComplex">
+                  Жилой комплекс
+                </button>
+                <button class="btn-global" data-target="video-district">
+                  Район
+                </button>
+              </div>
+              <div class="residentialComplex-video__content-top__btns">
+                <button class="btn-arrow residentialComplex-scroll-prev" id="video-residentialComplex-prev">
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <button class="btn-arrow residentialComplex-scroll-next" id="video-residentialComplex-next">
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <ul class="residentialComplex-video__content-blocks residentialComplex-video-blocks">
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <div class="paginations residentialComplex-video__content-paginations">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="residentialComplex-video__content video-district">
+            <div class="residentialComplex-video__content-top">
+              <h2 class="section-title">
+                Видео
+              </h2>
+              <div class="residentialComplex-video__content-top__switching" data-target="video-residentialComplex">
+                <button class="btn-global" data-target="video-residentialComplex">
+                  Жилой комплекс
+                </button>
+                <button class="btn-global on" data-target="video-district">
+                  Район
+                </button>
+              </div>
+              <div class="residentialComplex-video__content-top__btns">
+                <button class="btn-arrow residentialComplex-scroll-prev" id="video-district-prev">
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+                <button class="btn-arrow residentialComplex-scroll-next" id="video-district-next">
+                  <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <ul class="residentialComplex-video__content-blocks district-video-blocks">
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+              <li class="residentialComplex-video__content-blocks__block">
+                <div class="residentialComplex-video__content-blocks__block-img">
+                  <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+                </div>
+                <button class="residentialComplex-video__content-blocks__block-btn">
+                  <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+              </li>
+            </ul>
+            <div class="paginations residentialComplex-video__content-paginations">
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="residentialComplex-design">
+      <div class="container">
+        <div class="residentialComplex-design__content">
+          <div class="residentialComplex-design__content-top">
+            <h2 class="section-title">
+              Дизайн квартир
+            </h2>
+            <div class="residentialComplex-design__content-top__btns" id="residentialComplex-design-prev">
+              <button class="btn-arrow residentialComplex-scroll-prev">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="btn-arrow residentialComplex-scroll-next" id="residentialComplex-design-next">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <ul class="residentialComplex-design__content-blocks">
+            <li class="residentialComplex-design__content-blocks__block">
+              <button class="residentialComplex-design__content-blocks__block-btn">
+                <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+              </button>
+            </li>
+            <li class="residentialComplex-design__content-blocks__block">
+              <button class="residentialComplex-design__content-blocks__block-btn">
+                <img src="./img/residentialComplex/design/design-img2.svg" alt="img">
+              </button>
+            </li>
+            <li class="residentialComplex-design__content-blocks__block">
+              <button class="residentialComplex-design__content-blocks__block-btn">
+                <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+              </button>
+            </li>
+          </ul>
+          <div class="paginations residentialComplex-design__content-paginations">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-stages">
+      <div class="container">
+        <div class="residentialComplex-stages__content">
+          <h2 class="section-title">
+            Этапы строительства
+          </h2>
+          <div class="residentialComplex-stages__content-top">
+            <div class="residentialComplex-stages__content-top__sorting">
+              <div class="residentialComplex-stages__content-top__sorting-block">
+                <p>
+                  Корпус
+                </p>
+                <button class="residentialComplex-stages__content-top__sorting-block__btn">
+                  <p>
+                    Любой
+                  </p>
+                  <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.5" d="M1 0.5L6 5.5L11 0.5" stroke="#282E36" stroke-linejoin="bevel" />
+                  </svg>
+                </button>
+                <ul class="residentialComplex-stages__content-top__sorting-block__list">
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Любой
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Сначала дешевле
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Сначала дороже
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      С большей площадью
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      С меньшей площадью
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div class="residentialComplex-stages__content-top__sorting-block">
+                <p>
+                  Год и месяц
+                </p>
+                <button class="residentialComplex-stages__content-top__sorting-block__btn">
+                  <p>
+                    Любой
+                  </p>
+                  <svg width="12" height="6" viewBox="0 0 12 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.5" d="M1 0.5L6 5.5L11 0.5" stroke="#282E36" stroke-linejoin="bevel" />
+                  </svg>
+                </button>
+                <ul class="residentialComplex-stages__content-top__sorting-block__list">
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Любой
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Сначала дешевле
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      Сначала дороже
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      С большей площадью
+                    </p>
+                  </li>
+                  <li class="residentialComplex-stages__content-top__sorting-block__list-item">
+                    <p>
+                      С меньшей площадью
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="residentialComplex-stages__content-top__btns" id="residentialComplex-stages-prev">
+              <button class="btn-arrow residentialComplex-scroll-prev">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button class="btn-arrow residentialComplex-scroll-next" id="residentialComplex-stages-next">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="residentialComplex-stages__content-blocks">
+            <button class="residentialComplex-stages__content-blocks__block">
+              <div class="residentialComplex-stages__content-blocks__block-img">
+                <img src="./img/residentialComplex/stages/stages-img1.svg" alt="img">
+              </div>
+              <div class="residentialComplex-stages__content-blocks__block-article">
+                <h3 class="date">
+                  Октябрь 2024
+                </h3>
+                <p>
+                  3 фото
+                </p>
+                <p class="name">
+                  Корпус 1
+                </p>
+              </div>
+            </button>
+            <button class="residentialComplex-stages__content-blocks__block">
+              <div class="residentialComplex-stages__content-blocks__block-img">
+                <img src="./img/residentialComplex/stages/stages-img2.svg" alt="img">
+              </div>
+              <div class="residentialComplex-stages__content-blocks__block-article">
+                <h3 class="date">
+                  Сентябрь 2024
+                </h3>
+                <p>
+                  3 фото
+                </p>
+                <p class="name">
+                  Корпус 2
+                </p>
+              </div>
+            </button>
+            <button class="residentialComplex-stages__content-blocks__block">
+              <div class="residentialComplex-stages__content-blocks__block-img">
+                <img src="./img/residentialComplex/stages/stages-img3.svg" alt="img">
+              </div>
+              <div class="residentialComplex-stages__content-blocks__block-article">
+                <h3 class="date">
+                  Август 2024
+                </h3>
+                <p>
+                  5 фото
+                </p>
+                <p class="name">
+                  Корпус 3
+                </p>
+              </div>
+            </button>
+            <button class="residentialComplex-stages__content-blocks__block">
+              <div class="residentialComplex-stages__content-blocks__block-img">
+                <img src="./img/residentialComplex/stages/stages-img4.svg" alt="img">
+              </div>
+              <div class="residentialComplex-stages__content-blocks__block-article">
+                <h3 class="date">
+                  Октябрь 2024
+                </h3>
+                <p>
+                  3 фото
+                </p>
+                <p class="name">
+                  Корпус 1
+                </p>
+              </div>
+            </button>
+          </div>
+          <div class="paginations residentialComplex-stages__content-paginations">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="residentialComplex-documents">
+      <div class="container">
+        <div class="residentialComplex-documents__content">
+          <div class="residentialComplex-documents__content-top">
+            <h2 class="section-title">
+              Документы
+            </h2>
+            <div class="residentialComplex-documents__content-top__btns">
+              <button class="btn-global active">
+                Прочие документы
+              </button>
+              <button class="btn-global">
+                Проектные декларации
+              </button>
+              <button class="btn-global">
+                Разрешение на строительство
+              </button>
+            </div>
+          </div>
+          <div class="residentialComplex-documents__content-blocks">
+            <div class="residentialComplex-documents__content-blocks__block active">
+              <a href="file1.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p class="file-info">
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file1.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+            <div class="residentialComplex-documents__content-blocks__block">
+              <a href="file1.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p class="file-info">
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file1.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Договор купли-продажи
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+            <div class="residentialComplex-documents__content-blocks__block">
+              <a href="file1.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p class="file-info">
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file1.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file2.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+              <a href="file3.pdf" download>
+                <h3>
+                  Градостроительный план земельного участка
+                </h3>
+                <p>
+                  PDF, 6.96 МБ
+                </p>
+                <span class="icon">
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="36" height="36" rx="5" transform="matrix(0 -1 -1 0 36 36)" fill="white" />
+                    <path d="M18 12V24M18 24L22.5 19.5M18 24L13.5 19.5" stroke="black" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__content">
+        <div class="footer__content-top">
+          <div class="footer__content-top__links">
+            <a href="#" class="footer__content-top__links-logo">
+              <img src="./img/footer/footer-logo.svg" alt="img">
+            </a>
+          </div>
+          <nav class="footer__content-top__nav">
+            <ul class="footer__content-top__nav-list">
+              <li class="footer__content-top__nav-list__item object">
+                <button class="footer-object-btn" id="footer-object-btn">
+                  Объекты
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
+                  </svg>
+                </button>
+                <ul class="object-list" id="footer-object-list">
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 1 </a>
+                  </li>
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 2 </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer__content-top__nav-list__item">
+                <a href="#">
+                  О компании
+                </a>
+              </li>
+              <li class="footer__content-top__nav-list__item object">
+                <button class="footer-object-btn">
+                  Недвижимость
+                  <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1.5L6 6.5L11 1.5" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
+                  </svg>
+                </button>
+                <ul class="object-list">
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 1 </a>
+                  </li>
+                  <li class="object-list__item">
+                    <a href="#"> Ссылка 2 </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer__content-top__nav-list__item">
+                <a href="#">
+                  Акции
+                </a>
+              </li>
+              <li class="footer__content-top__nav-list__item">
+                <a href="#">
+                  Акции и новости
+                </a>
+              </li>
+              <li class="footer__content-top__nav-list__item">
+                <a href="#">
+                  Способы покупки
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <a href="tel:+78006003322" class="footer__content-top__tel">8 800 600 33 22 </a>
+        </div>
+        <ul class="footer__content-social">
+          <li class="footer__content-social__item">
+            <a href="#">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_0_505)">
+                  <path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM14.64 6.8C14.49 8.38 13.84 12.22 13.51 13.99C13.37 14.74 13.09 14.99 12.83 15.02C12.25 15.07 11.81 14.64 11.25 14.27C10.37 13.69 9.87 13.33 9.02 12.77C8.03 12.12 8.67 11.76 9.24 11.18C9.39 11.03 11.95 8.7 12 8.49C12.0069 8.45819 12.006 8.42517 11.9973 8.3938C11.9886 8.36244 11.9724 8.33367 11.95 8.31C11.89 8.26 11.81 8.28 11.74 8.29C11.65 8.31 10.25 9.24 7.52 11.08C7.12 11.35 6.76 11.49 6.44 11.48C6.08 11.47 5.4 11.28 4.89 11.11C4.26 10.91 3.77 10.8 3.81 10.45C3.83 10.27 4.08 10.09 4.55 9.9C7.47 8.63 9.41 7.79 10.38 7.39C13.16 6.23 13.73 6.03 14.11 6.03C14.19 6.03 14.38 6.05 14.5 6.15C14.6 6.23 14.63 6.34 14.64 6.42C14.63 6.48 14.65 6.66 14.64 6.8Z" fill="white" />
+                </g>
+                <defs>
+                </defs>
+              </svg>
+            </a>
+          </li>
+          <li class="footer__content-social__item">
+            <a href="#">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_0_507)">
+                  <path d="M1.4058 1.4058C0 2.8117 0 5.07464 0 9.6V10.4C0 14.9254 0 17.1883 1.4058 18.5942C2.8117 20 5.07464 20 9.6 20H10.4C14.9254 20 17.1883 20 18.5942 18.5942C20 17.1883 20 14.9254 20 10.4V9.6C20 5.0746 20 2.81165 18.5942 1.4058C17.1883 8.51495e-08 14.9254 0 10.4 0H9.6C5.0746 0 2.81165 8.51495e-08 1.4058 1.4058ZM3.375 6.08339H5.65835C5.73335 9.90005 7.41665 11.5167 8.75 11.85V6.08335H10.9V9.375C12.2167 9.23335 13.6 7.73335 14.0667 6.08335H16.2167C16.0408 6.93907 15.6902 7.74929 15.1869 8.46336C14.6836 9.17743 14.0384 9.77998 13.2917 10.2333C14.1255 10.6473 14.8619 11.2335 15.4523 11.9532C16.0427 12.6729 16.4737 13.5097 16.7167 14.4083H14.35C14.1319 13.6278 13.6882 12.929 13.0744 12.3997C12.4606 11.8704 11.7042 11.5342 10.9 11.4333V14.4083H10.6417C6.08335 14.4083 3.48335 11.2833 3.375 6.08335" fill="white" />
+                </g>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <div class="footer__content-bottom">
+          <div class="footer__content-bottom__left">
+            <p>
+              Все права защищены. <br>
+              Любая информация, представленная на данном сайте, носит исключительно информационный характери ни при каких условиях не является публичной офертой, определяемой положениями статьи 437 ГК РФ.
+            </p>
+            <div class="footer__content-bottom__left-links">
+              <p>
+                2024 © BRAVO
+              </p>
+              <a href="#">
+                Политика конфиденциальности
+              </a>
+            </div>
+          </div>
+          <p>
+            Разработано
+            <svg width="113" height="14" viewBox="0 0 113 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g opacity="0.5">
+                <path d="M7.52859 6.26832C6.79475 5.59367 5.95259 5.36878 4.96269 5.36878C3.74622 5.36878 3.07153 5.7372 3.07153 6.3688C3.07153 7.02432 3.68221 7.38798 5.00701 7.46931C6.96221 7.59373 9.43945 8.01955 9.43945 10.6943C9.43945 12.4694 7.94719 14.0006 4.98239 14.0006C3.34239 14.0006 1.70238 13.7374 0.19043 12.2063L1.45614 10.4311C2.18995 11.2254 3.87429 11.8187 5.0267 11.8379C5.99201 11.857 6.89818 11.3689 6.89818 10.6321C6.89818 9.93827 6.31211 9.65119 4.83957 9.56985C2.88437 9.42629 0.554874 8.73249 0.554874 6.44537C0.554874 4.11994 3.03211 3.30176 4.92823 3.30176C6.54851 3.30176 7.76498 3.60796 8.96173 4.62713L7.52859 6.26832Z" fill="white" />
+                <path d="M21.0522 8.63664C21.0522 11.5362 19.0132 13.8856 15.6495 13.8856C12.2858 13.8856 10.2715 11.5362 10.2715 8.63664C10.2715 5.75618 12.3301 3.3877 15.6298 3.3877C18.9295 3.3877 21.0522 5.75618 21.0522 8.63664ZM12.8374 8.63664C12.8374 10.1678 13.783 11.5984 15.6544 11.5984C17.5259 11.5984 18.4715 10.1678 18.4715 8.63664C18.4715 7.12463 17.3782 5.6557 15.6544 5.6557C13.8027 5.6557 12.8374 7.12463 12.8374 8.63664Z" fill="white" />
+                <path d="M24.7309 3.62609V8.86065C24.7309 10.3918 25.5928 11.5545 27.2328 11.5545C28.8089 11.5545 29.8824 10.2674 29.8824 8.73627V3.58301L32.4235 3.59259V13.679H30.1334L29.9662 12.3105C28.8925 13.3297 27.9074 13.8225 26.4546 13.8225C23.9774 13.8225 22.1699 12.0043 22.1699 8.8798V3.6165L24.7309 3.62609Z" fill="white" />
+                <path d="M38.1208 0.682617L38.1614 3.61284H41.018V5.75642H38.1367V10.1058C38.1367 11.0676 38.6835 11.5365 39.4813 11.5365C39.4813 11.5365 40.1363 11.5413 40.7815 11.3068L41.2542 13.2973C41.2542 13.2973 40.0919 13.7566 39.3139 13.7805C37.0633 13.8619 35.5956 12.6178 35.5956 10.1058V5.75642H33.6602V3.61284H35.5956V0.904625L38.1208 0.682617Z" fill="white" />
+                <path d="M45.3424 0V4.96186C46.2682 3.79913 47.4009 3.44985 48.578 3.44985C51.5183 3.44985 52.8233 5.38768 52.8233 8.34948V13.6558H50.2575V8.36863C50.2575 6.53127 49.2676 5.75614 47.9033 5.75614C46.3916 5.75614 45.3375 7.00017 45.3375 8.51218V13.6558H42.7715V0.263164L45.3424 0Z" fill="white" />
+                <path d="M61.4711 13.7227V8.33022C61.4711 7.00482 60.7569 5.79906 59.3485 5.79906C57.9595 5.79906 57.142 7.00482 57.142 8.33022V13.7179H54.5762V3.6124L56.9499 3.63633L57.1371 4.86123C57.6838 3.84206 58.8804 3.47363 59.8703 3.47363C61.1116 3.47363 62.3476 3.96168 62.9388 5.35407C63.8646 3.92342 65.0614 3.51671 66.4057 3.51671C69.3459 3.51671 70.799 5.27273 70.799 8.29193V13.7227H68.2329V8.29193C68.2329 6.96656 67.6667 5.84211 66.2777 5.84211C64.8891 5.84211 63.8843 7.00482 63.8843 8.33501L64.0271 13.7227H61.4711Z" fill="white" />
+                <path d="M74.5471 9.50727C74.7146 10.7513 75.8276 11.6509 77.635 11.6509C78.5806 11.6509 79.8218 11.3016 80.4078 10.713L82.0478 12.2872C80.9545 13.3877 79.1666 13.9189 77.5907 13.9189C74.0201 13.9189 71.8975 11.7753 71.8975 8.55029C71.8975 5.48804 74.0399 3.28223 77.4035 3.28223C80.8707 3.28223 83.0377 5.36362 82.6338 9.50727H74.5471ZM80.1762 7.44502C80.0087 6.13876 78.9599 5.48324 77.4873 5.48324C76.0984 5.48324 74.9656 6.13876 74.5866 7.44502H80.1762Z" fill="white" />
+                <path d="M95.0483 0V13.6606H92.6548L92.4874 12.273C91.6895 13.4788 90.4091 13.8855 89.1481 13.8855C86.0997 13.8855 83.8096 11.9237 83.8096 8.61743C83.8096 5.14844 86.0602 3.34937 89.0843 3.34937C90.1775 3.34937 91.8768 3.92354 92.4874 4.96183V0.267949L95.0483 0ZM86.3656 8.61743C86.3656 10.3735 87.6707 11.5792 89.3058 11.5792C90.9261 11.5792 92.3102 10.4357 92.3102 8.61743C92.3102 6.86141 90.9212 5.67956 89.3058 5.67956C87.6707 5.67477 86.3656 6.79922 86.3656 8.61743Z" fill="white" />
+                <path d="M99.7377 1.45436C99.7377 3.39221 96.7139 3.39221 96.7139 1.45436C96.709 -0.483485 99.7377 -0.483485 99.7377 1.45436ZM96.9406 3.53576V13.6508H99.5064V3.54532L96.9406 3.53576Z" fill="white" />
+                <path d="M109.721 3.57942L112.193 3.59377V13.661H109.775L109.646 12.1921C109.056 13.3739 107.44 13.9481 106.283 13.9672C103.215 13.9864 100.944 12.149 100.944 8.61782C100.944 5.14883 103.318 3.33062 106.347 3.34976C107.736 3.34976 109.056 3.98134 109.646 4.98137L109.721 3.57942ZM103.515 8.61782C103.515 10.5365 104.879 11.6801 106.583 11.6801C110.617 11.6801 110.617 5.57468 106.583 5.57468C104.879 5.57468 103.515 6.6991 103.515 8.61782Z" fill="white" />
+              </g>
+            </svg>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="popUp-advantages">
+    <div class="popUp-advantages__content">
+      <button class="popUp-advantages__content-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.39838" y1="15.6122" x2="15.5405" y2="1.47011" stroke="black" stroke-width="1.5"/>
+          <line x1="1.53033" y1="1.53998" x2="15.6725" y2="15.6821" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+      <div class="popUp-advantages__content-img">
+        <img src="./img/residentialComplex/advantages/advantages-img1.svg" alt="img">
+      </div>
+      <div class="popUp-advantages__content-info">
+        <h3>
+          Свои школа и детсад
+        </h3>
+        <div class="popUp-advantages__content-info__descr">
+          <p>
+            В жилом комплексе предусмотрены собственные школа и детский сад, что обеспечивает удобство для семей с детьми. Образовательные учреждения находятся в шаговой доступности, что позволяет сэкономить время на поездках и гарантирует безопасность детей.
+          </p>
+          <p>
+            В них созданы все условия для комфортного обучения и развития, соответствующие современным стандартам.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="popUp-advantages__content">
+      <button class="popUp-advantages__content-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.39838" y1="15.6122" x2="15.5405" y2="1.47011" stroke="black" stroke-width="1.5"/>
+          <line x1="1.53033" y1="1.53998" x2="15.6725" y2="15.6821" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+      <div class="popUp-advantages__content-img">
+        <img src="./img/residentialComplex/advantages/advantages-img2.svg" alt="img">
+      </div>
+      <div class="popUp-advantages__content-info">
+        <h3>
+          Несколько видов отделки
+        </h3>
+        <div class="popUp-advantages__content-info__descr">
+          <p>
+            В жилом комплексе предусмотрены собственные школа и детский сад, что обеспечивает удобство для семей с детьми. Образовательные учреждения находятся в шаговой доступности, что позволяет сэкономить время на поездках и гарантирует безопасность детей.
+          </p>
+          <p>
+            В них созданы все условия для комфортного обучения и развития, соответствующие современным стандартам.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="popUp-advantages__content">
+      <button class="popUp-advantages__content-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.39838" y1="15.6122" x2="15.5405" y2="1.47011" stroke="black" stroke-width="1.5"/>
+          <line x1="1.53033" y1="1.53998" x2="15.6725" y2="15.6821" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+      <div class="popUp-advantages__content-img">
+        <img src="./img/residentialComplex/advantages/advantages-img3.svg" alt="img">
+      </div>
+      <div class="popUp-advantages__content-info">
+        <h3>
+          Активный отдых рядом
+        </h3>
+        <div class="popUp-advantages__content-info__descr">
+          <p>
+            В жилом комплексе предусмотрены собственные школа и детский сад, что обеспечивает удобство для семей с детьми. Образовательные учреждения находятся в шаговой доступности, что позволяет сэкономить время на поездках и гарантирует безопасность детей.
+          </p>
+          <p>
+            В них созданы все условия для комфортного обучения и развития, соответствующие современным стандартам.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popUp-video popUp-video__residentialComplex">
+    <div class="popUp-video__top">
+      <button class="popUp-video__top-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.32758" y1="15.6118" x2="15.4697" y2="1.46962" stroke="black" stroke-width="1.5"/>
+          <line x1="1.45953" y1="1.53949" x2="15.6017" y2="15.6816" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-video__content">
+      <div class="popUp-video__content-block">
+        <video src="video.mp4" controls="" style="display: none;" class="popUp-video__content-block__video"></video>
+        <div class="popUp-video__content-block__cards">
+          <div class="popUp-video__content-block__cards-img">
+            <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+          </div>
+          <button class="popUp-video__content-block__cards-play">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="popUp-video__content-block">
+        <video src="video.mp4" controls="" style="display: none;" class="popUp-video__content-block__video"></video>
+        <div class="popUp-video__content-block__cards">
+          <div class="popUp-video__content-block__cards-img">
+            <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+          </div>
+          <button class="popUp-video__content-block__cards-play">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popUp-video popUp-video__district">
+    <div class="popUp-video__top">
+      <button class="popUp-video__top-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.32758" y1="15.6118" x2="15.4697" y2="1.46962" stroke="black" stroke-width="1.5"/>
+          <line x1="1.45953" y1="1.53949" x2="15.6017" y2="15.6816" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-video__content">
+      <div class="popUp-video__content-block">
+        <video src="video.mp4" controls="" style="display: none;" class="popUp-video__content-block__video"></video>
+        <div class="popUp-video__content-block__cards">
+          <div class="popUp-video__content-block__cards-img">
+            <img src="./img/residentialComplex/video/block1/video-img2.svg" alt="img">
+          </div>
+          <button class="popUp-video__content-block__cards-play">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="popUp-video__content-block">
+        <video src="video.mp4" controls="" style="display: none;" class="popUp-video__content-block__video"></video>
+        <div class="popUp-video__content-block__cards">
+          <div class="popUp-video__content-block__cards-img">
+            <img src="./img/residentialComplex/video/block1/video-img1.svg" alt="img">
+          </div>
+          <button class="popUp-video__content-block__cards-play">
+            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.6325 5.86032C8.51863 5.79056 8.38892 5.75318 8.25655 5.75198C8.12418 5.75079 7.99386 5.78582 7.87883 5.85352C7.7638 5.92121 7.66816 6.01917 7.60162 6.13742C7.53508 6.25568 7.50002 6.39003 7.5 6.52682V24.4732C7.50002 24.61 7.53508 24.7444 7.60162 24.8626C7.66816 24.9809 7.7638 25.0788 7.87883 25.1465C7.99386 25.2142 8.12418 25.2493 8.25655 25.2481C8.38892 25.2469 8.51863 25.2095 8.6325 25.1397L23.2862 16.1665C23.3982 16.0979 23.4909 16.0004 23.5553 15.8835C23.6197 15.7667 23.6535 15.6345 23.6535 15.5C23.6535 15.3656 23.6197 15.2334 23.5553 15.1165C23.4909 14.9997 23.3982 14.9021 23.2862 14.8335L8.6325 5.86032Z" fill="black" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popUp-design">
+    <div class="popUp-design__top">
+      <div class="popUp-design__top-quantity">
+        <p class="now">
+          1
+        </p>
+        <p>
+          /
+        </p>
+        <p class="total">
+          8
+        </p>
+      </div>
+      <button class="popUp-design__top-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.32758" y1="15.6118" x2="15.4697" y2="1.46962" stroke="black" stroke-width="1.5"/>
+          <line x1="1.45953" y1="1.53949" x2="15.6017" y2="15.6816" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-design__content">
+      <button class="btn-arrow popUp-design-scroll-prev">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="popUp-design__content-scroll">
+        <div class="popUp-design__content-images">
+          <div class="popUp-design__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+          <div class="popUp-design__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+        </div>
+      </div>
+      <button class="btn-arrow popUp-design-scroll-next">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-design__content">
+      <button class="btn-arrow popUp-design-scroll-prev">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="popUp-design__content-scroll">
+        <div class="popUp-design__content-images">
+          <div class="popUp-design__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+          <div class="popUp-design__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+          <div class="popUp-design__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+        </div>
+      </div>
+      <button class="btn-arrow popUp-design-scroll-next">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="popUp-stages">
+    <div class="popUp-stages__top">
+      <div class="popUp-stages__top-quantity">
+        <p class="now">
+          1
+        </p>
+        <p>
+          /
+        </p>
+        <p class="total">
+          8
+        </p>
+      </div>
+      <div class="popUp-stages__top-title">
+        <p class="name">
+          Корпус 1
+        </p>
+        <p class="date">
+          Октябрь 2024
+        </p>
+      </div>
+      <button class="popUp-stages__top-close">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="1.32758" y1="15.6118" x2="15.4697" y2="1.46962" stroke="black" stroke-width="1.5"/>
+          <line x1="1.45953" y1="1.53949" x2="15.6017" y2="15.6816" stroke="black" stroke-width="1.5"/>
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-stages__content">
+      <button class="btn-arrow popUp-stages-scroll-prev">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="popUp-stages__content-scroll">
+        <div class="popUp-stages__content-images">
+          <div class="popUp-stages__content-images__img">
+            <img src="./img/residentialComplex/stages/stages-img1.svg" alt="img">
+          </div>
+          <div class="popUp-stages__content-images__img">
+            <img src="./img/residentialComplex/stages/stages-img1.svg" alt="img">
+          </div>
+        </div>
+      </div>
+      <button class="btn-arrow popUp-stages-scroll-next">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+    <div class="popUp-stages__content">
+      <button class="btn-arrow popUp-stages-scroll-prev">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 7L1 7M1 7L7 1M1 7L7 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <div class="popUp-stages__content-scroll">
+        <div class="popUp-stages__content-images">
+          <div class="popUp-stages__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+          <div class="popUp-stages__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+          <div class="popUp-stages__content-images__img">
+            <img src="./img/residentialComplex/design/design-img1.svg" alt="img">
+          </div>
+        </div>
+      </div>
+      <button class="btn-arrow popUp-stages-scroll-next">
+        <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 7L17 7M17 7L11 1M17 7L11 13" stroke="" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+  <script src="js/main.min.js"></script>
+</body>
+</html>
