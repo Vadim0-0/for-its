@@ -17,7 +17,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   background-color: var(--white);
   z-index: 10;
   @include transitionEaseInOut;
@@ -3353,6 +3353,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   backdrop-filter: blur(25px);
   background: rgba(0, 0, 0, 0.5);
   z-index: 5;
@@ -3360,6 +3361,7 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
+  overflow-y: auto;
 
   &.active {
     opacity: 1;
@@ -3443,6 +3445,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   background-color: var(--white);
   @include transitionEase;
   z-index: 10;
@@ -3534,6 +3537,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   background-color: var(--white);
   @include transitionEase;
   z-index: 10;
@@ -3634,6 +3638,7 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
   background-color: var(--white);
   @include transitionEase;
   z-index: 10;
@@ -3740,7 +3745,806 @@
 
 /* Внутренняя страница квартиры */
 
+.apartmentPage-hero {
+  padding: 36px 0 100px 0;
+  margin-bottom: 100px;
+  border-radius: 0 0 40px 40px;
+  background-color: var(--seryy);
 
+  &__content {
+    display: grid;
+    grid-template-columns: auto 401px;
+    gap: 24px;
+
+    &-left {
+      border-radius: 12px;
+      background-color: var(--white);
+
+      &__top {
+        @include flex-betweenCenter;
+        padding: 24px 24px;
+
+        &-back {
+          @include flex-center(15px);
+
+          & a {
+            padding: 12px 10px;
+          }
+
+          & p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: #000;
+          }
+        }
+
+        &-name {
+          @include flex-center(15px);
+
+          & p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 120%;
+            color: #000;
+          }
+        }
+
+        &-number {
+
+          & p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            color: rgba(0, 0, 0, 0.5);
+          }
+        }
+      }
+
+      &__info {
+        display: grid;
+        grid-template-columns: auto 310px;
+
+        &-block {
+          display: flex;
+          flex-direction: column;
+          padding: 10px;
+          border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+          &__top {
+            @include flex-betweenCenter;
+            padding-bottom: 10px;
+
+            & h3 {
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 140%;
+              color: rgba(0, 0, 0, 0.5);
+            }
+
+            &-btn {
+              padding: 8px 8px;
+            }
+
+            &-open {
+              display: none;
+            }
+          }
+
+          &__bottom {
+            margin: auto;
+          }
+        }
+
+        & .double {
+          border-left: 1px solid rgba(0, 0, 0, 0.05);
+
+          & .apartmentPage-hero__content-left__info-block {
+            gap: 10px;
+            padding-bottom: 51px;
+          }
+        }
+      }
+    }
+
+    &-right {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      &__block {
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 24px;
+        border-radius: 12px;
+        background-color: var(--white);
+
+        &:nth-child(2) {
+          padding: 0 24px;
+        }
+
+        &-line {
+          margin-bottom: 24px;
+          width: 120%;
+          height: 1px;
+          background-color: rgba(0, 0, 0, 0.05);
+          transform: translateX(-30px);
+        }
+
+        & p {
+
+          &.number {
+            margin-bottom: 16px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            color: rgba(0, 0, 0, 0.5);
+          }
+        }
+
+        & h2 {
+          margin-bottom: 23px;
+          font-weight: 600;
+          font-size: 25px;
+          line-height: 120%;
+          color: #000;
+
+          & sup {
+            font-size: 14px;
+          }
+        }
+
+        &-price {
+          @include flex-betweenCenter;
+          align-items: flex-end;
+          gap: 5px;
+          margin-bottom: 24px;
+
+          & p {
+
+            &.price {
+              font-weight: 600;
+              font-size: 20px;
+              line-height: 120%;
+              color: #000;
+            }
+
+            &.discount {
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 120%;
+              text-decoration: line-through;
+              color: rgba(0, 0, 0, 0.5);
+            }
+
+            &.percentage {
+              padding: 5px;
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 100%;
+              letter-spacing: -0.01em;
+              color: #000;
+              border-radius: 5px;
+              background-color: var(--yellow);
+            }
+          }
+        }
+
+        & button {
+
+          &.apartmentPage-hero__content-right__block-btn1 {
+            padding: 17px;
+            margin-bottom: 16px
+          }
+
+          &.apartmentPage-hero__content-right__block-btn2 {
+            padding: 20px
+          }
+        }
+
+        &-list {
+
+          &__item {
+            @include flex-betweenCenter;
+            padding: 24px 0;
+
+            &:not(:last-child) {
+              border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            }
+
+            & p {
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 120%;
+              color: #000;
+
+              &:nth-child(1) {
+                font-weight: 400;
+                color: rgba(0, 0, 0, 0.5);
+              }
+
+              & sup {
+                font-size: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.apartmentPage-feedback {
+  padding-bottom: 121px;
+
+  &__content {
+    @include flex-betweenCenter;
+    padding: 34px 36px;
+    border-radius: 12px;
+    background-color: var(--seryy);
+
+    &-info {
+      max-width: 473px;
+
+      & .section-title {
+        line-height: 100%;
+      }
+
+      & p {
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 140%;
+        letter-spacing: -0.01em;
+        color: #727272;
+      }
+    }
+
+    &-form {
+
+      &__fields {
+        display: grid;
+        grid-template-columns: 257px 257px 200px;
+        gap: 24px;
+        margin-bottom: 16px;
+
+        & label {
+
+          & input {
+            padding: 14px 24px;
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.popUp-plan {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  backdrop-filter: blur(25px);
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  @include transitionEase;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  overflow-y: auto;
+
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+
+  &-close {
+    position: absolute;
+    top: 36px;
+    right: 36px;
+    @include transitionEaseInOut;
+
+    &:hover {
+      transform: rotate(90deg);
+    }
+  }
+
+  &__content {
+    position: absolute;
+    overflow: hidden;
+    width: 598px;
+    top: 50%;
+    left: 50%;
+    @include transform-center;
+    border-radius: 12px;
+    @include transitionEase;
+    opacity: 0;
+    pointer-events: none;
+    background-color: var(--white);
+
+    & img {
+      width: 100%;
+    }
+
+    &.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.apartmentProgram-filter {
+  padding-top: 59px;
+
+  & .filter__content {
+
+    &-top {
+      @include flex-betweenCenter;
+      margin-bottom: 36px;
+
+      & h2 {
+        margin-bottom: 0;
+      }
+
+      &__btn {
+        padding: 10px 23px;
+      }
+    }
+  }
+}
+
+.apartmentProgram-table {
+  padding-top: 36px;
+  padding-bottom: 119px;
+  overflow: hidden;
+
+  &__top {
+    @include flex-betweenCenter;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    &-status {
+      @include flex-center(32px);
+
+      & span {
+        @include flex-center(12px);
+
+        & p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 100%;
+          color: #222;
+        }
+      }
+    }
+
+    &-result {
+      @include flex-center(24px);
+
+      & p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: #000;
+
+        & span {
+          font-weight: 600;
+        }
+      }
+    }
+
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    width: 100%;
+
+    & .fixed-floor-numbers {
+      position: sticky;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 55px;
+      padding-bottom: 80px;
+      top: 0;
+      z-index: 5;
+
+      &.left {
+        left: 39px;
+      }
+
+      &.right {
+        right: 39px;
+      }
+
+      & .floor-label {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        text-align: center;
+        color: #414141;
+        opacity: 0.5;
+
+        &:nth-child(1) {
+          position: absolute;
+          bottom: 32px;
+        }
+      }
+
+      & .floor {
+        padding-bottom: 12px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        text-align: center;
+        color: #222;
+      }
+
+    }
+
+    & .table-wrapper {
+      padding-top: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-wrap: nowrap;
+      flex-grow: 1;
+      gap: 53px;
+      margin-left: 60px;
+      margin-right: 60px;
+
+      & .building-type {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 100%;
+        color: #000;
+      }
+
+      & .building-title {
+        margin-top: 16px;
+        margin-bottom: 24px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        color: #414141;
+        opacity: 0.5;
+      }
+
+      & .building-table {
+        display: grid;
+        grid-template-columns: repeat(16, 50px);
+        gap: 9px;
+        column-gap: 13px;
+        margin: 0 auto;
+      }
+
+      & .cell {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 7px;
+        width: 54px;
+        height: 54px;
+        border-radius: 5px;
+        cursor: pointer;
+        @include transitionEase;
+
+        &:hover {
+          transform: scale(1.05);
+          z-index: 1;
+
+          & .tooltip {
+            visibility: visible;
+            opacity: 1;
+          }
+        }
+
+        &:nth-child(1),
+        &:nth-child(17),
+        &:nth-child(33),
+        &:nth-child(49),
+        &:nth-child(65),
+        &:nth-child(81),
+        &:nth-child(97),
+        &:nth-child(113),
+        &:nth-child(129),
+        &:nth-child(145) {
+
+          & .tooltip {
+            bottom: 50%;
+            left: 120%;
+            transform: translateY(50%);
+
+            &::after {
+              bottom: 50%;
+              left: -15px;
+              transform: translateY(50%) rotate(90deg);
+
+            }
+          }
+        }
+
+        &.green {
+          background-color: #31b86a;
+
+          & .tooltip {
+            &-top {
+              &__type {
+                background-color: #31b86a;
+              }
+            }
+          }
+        }
+
+        &.yellow {
+          background-color: #fed400;
+
+          & .tooltip {
+            &-top {
+              &__type {
+                background-color: #fed400;
+              }
+            }
+          }
+        }
+
+        &.grey {
+          background-color: #e0e0e0;
+
+          & .tooltip {
+            &-top {
+              &__type {
+                background-color: #e0e0e0;
+              }
+            }
+          }
+        }
+
+        & .number {
+          font-weight: 700;
+          font-size: 16px;
+          line-height: 90%;
+          color: #fff;
+        }
+
+        & .size {
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 90%;
+          color: #fff;
+        }
+
+        & .tooltip {
+          position: absolute;
+          padding: 16px;
+          bottom: 120%;
+          left: 50%;
+          transform: translateX(-50%);
+          border-radius: 8px;
+          box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+          background-color: var(--white);
+          visibility: hidden;
+          opacity: 0;
+          @include transitionEase;
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translate(-50%);
+            width: 19px;
+            height: 13px;
+            background-image: url(../img/apartmentProgram/arrow-bottom.svg);
+            background-repeat: no-repeat;
+          }
+
+          &-top {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 6px;
+
+            &__type {
+              padding: 6px 8px;
+              border-radius: 2px;
+              font-weight: 700;
+              font-size: 14px;
+              line-height: 90%;
+              color: #fff;
+            }
+
+            &__number {
+              text-wrap: nowrap;
+              font-weight: 600;
+              font-size: 12px;
+              line-height: 90%;
+              color: rgba(0, 0, 0, 0.5);
+            }
+          }
+
+          &-price {
+            margin-bottom: 6px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 120%;
+            color: #000;
+          }
+
+          &-size {
+            font-family: var(--font-family);
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            color: #000;
+          }
+        }
+      }
+    }
+
+    & .details-panel {
+      position: absolute;
+      width: 433px;
+      top: -83px;
+      right: -50%;
+      padding: 40px;
+      border-radius: 12px 0 0 12px;
+      box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
+      background-color: var(--white);
+      z-index: 5;
+      @include transitionEase;
+
+      &.open {
+        right: 0;
+      }
+
+      &__top {
+        @include flex-betweenCenter;
+        margin-bottom: 36px;
+
+        & p {
+          padding: 5px 10px;
+          border-radius: 5px;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 171%;
+          color: #fff;
+
+          &.green {
+            background-color: #31b86a;
+          }
+
+          &.yellow {
+            background-color: #fed400;
+          }
+
+          &.grey {
+            background-color: #e0e0e0;
+          }
+        }
+      }
+
+      &__img {
+        @include flex-center;
+        margin: auto;
+        margin-bottom: 67px;
+        width: 275px;
+      }
+
+      &__location {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 16px;
+
+        & p {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 114%;
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+
+      & h3 {
+        margin-bottom: 16px;
+        font-weight: 600;
+        font-size: 25px;
+        line-height: 120%;
+        color: #000;
+      }
+
+      & .adress {
+        margin-bottom: 24px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 114%;
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      &-line {
+        display: block;
+        margin-bottom: 24px;
+        height: 1px;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+
+      &-price {
+        @include flex-betweenCenter;
+        margin-bottom: 24px;
+        gap: 15px;
+
+        & p {
+
+          &.price {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 120%;
+            color: #000;
+          }
+
+          &.discount {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            text-decoration: line-through;
+            color: rgba(0, 0, 0, 0.5);
+          }
+
+          &.percentage {
+            padding: 5px;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 100%;
+            letter-spacing: -0.01em;
+            color: #000;
+            border-radius: 5px;
+            background-color: var(--yellow);
+          }
+        }
+      }
+
+      &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 28px;
+
+        &-item {
+          @include flex-betweenCenter;
+
+          & p {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 120%;
+            color: rgba(0, 0, 0, 0.5);
+
+            &:nth-child(2) {
+              font-weight: 500;
+              color: #000;
+            }
+          }
+        }
+      }
+
+      &__btn1 {
+        margin-bottom: 16px;
+        width: 100%;
+      }
+
+      &__btn2 {
+        padding: 16px;
+        width: 100%;
+      }
+    }
+  }
+}
 
 /* Pop-up */
 
@@ -3931,6 +4735,52 @@
 
       &-images {
         width: 100%;
+      }
+    }
+  }
+
+  .apartmentPage-hero {
+
+    &__content {
+
+      &-left {
+
+        &__top {
+          position: relative;
+          padding-bottom: 55px;
+
+          &-name {
+            position: absolute;
+            bottom: 15px;
+          }
+        }
+
+        &__info {
+          grid-template-columns: 1fr;
+
+          & .double {
+            @include grid-ColumnsEqually(2, 0);
+          }
+        }
+      }
+    }
+  }
+
+  .apartmentPage-feedback {
+
+    &__content {
+
+      &-form {
+        max-width: 538px;
+
+        &__fields {
+          justify-content: flex-end;
+          grid-template-columns: 257px 257px;
+
+          & button {
+            grid-column: span 2;
+          }
+        }
       }
     }
   }
@@ -4172,6 +5022,22 @@
         gap: 20px;
         align-items: flex-start;
       }
+    }
+  }
+
+  .apartmentPage-hero {
+
+    &__content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .apartmentPage-feedback {
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
     }
   }
 }
@@ -6154,6 +7020,433 @@
 
         &.popUp-stages-scroll-next {
           right: 15px;
+        }
+      }
+    }
+  }
+
+  .apartmentPage-hero {
+    overflow: hidden;
+    padding: 17px 0 60px 0;
+    margin-bottom: 0;
+    background-color: var(--white);
+
+    &__content {
+      gap: 35px;
+
+      &-left {
+
+        &__top {
+          padding: 0;
+          padding-bottom: 48px;
+
+          &-back {
+
+            & p {
+              font-size: 12px;
+            }
+          }
+
+          &-name {
+            gap: 10px;
+
+            & p {
+              font-size: 11px;
+            }
+
+            & svg {
+              width: 4px;
+              height: 4px;
+            }
+          }
+
+          &-number {
+            & p {
+              font-size: 12px;
+            }
+          }
+        }
+
+        &__info {
+
+          &-block {
+            position: relative;
+
+            &__top {
+              padding-bottom: 0;
+
+              & h3 {
+                font-weight: 600;
+                font-size: 14px;
+                line-height: 110%;
+                letter-spacing: -0.01em;
+                color: #000;
+              }
+
+              &-btn {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                border: none;
+
+                & svg {
+                  display: none;
+                }
+              }
+            }
+
+            &__bottom {
+              padding-top: 23px;
+              width: 85%;
+            }
+
+          }
+
+          & .double {
+            padding-top: 23px;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            border-left: none;
+
+            & .apartmentPage-hero__content-left__info-block {
+              overflow: hidden;
+              padding: 0;
+              border-radius: 8px;
+              border-top: none;
+              background-color: var(--seryy);
+              @include transitionEase;
+
+              &__top {
+                padding: 15px;
+
+                &-open {
+                  @include flex-center;
+                  width: 32px;
+                  height: 32px;
+                  border-radius: 4px;
+                  background-color: var(--white);
+                }
+
+                &-btn {
+                  top: 70px;
+                }
+              }
+
+              &__bottom {
+                @include flex-center;
+                padding: 15px 0;
+              }
+            }
+          }
+        }
+      }
+
+      &-right {
+        gap: 13px;
+
+        &__block {
+          overflow: visible;
+          padding: 0;
+          border-radius: 0;
+
+          &:nth-child(2) {
+            padding: 0;
+          }
+
+          & p {
+
+            &.number {
+              margin-bottom: 10px;
+              font-size: 11px;
+            }
+          }
+
+          & h2 {
+            margin-bottom: 13px;
+            font-size: 20px;
+
+            & sup {
+              font-size: 12px;
+            }
+          }
+
+          &-line {
+            margin-bottom: 16px;
+          }
+
+          &-price {
+
+            & p {
+
+              &.price {
+                font-size: 16px;
+              }
+
+              &.discount {
+                font-size: 11px;
+              }
+
+              &.percentage {
+                font-size: 10px;
+              }
+            }
+          }
+
+          & button {
+
+            &.apartmentPage-hero__content-right__block-btn1 {
+              padding: 15px;
+              margin-bottom: 17px;
+            }
+
+            &.apartmentPage-hero__content-right__block-btn2 {
+              padding: 18px;
+            }
+          }
+
+          &-list {
+
+            &__item {
+              padding: 15px 0;
+
+              & p {
+                font-size: 12px;
+
+                & sup {
+                  font-size: 7px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .apartmentPage-feedback {
+    padding-bottom: 60px;
+
+    &__content {
+      padding: 20px;
+      border-radius: 8px;
+
+      &-info {
+        & .section-title {
+          max-width: 190px;
+          line-height: 110%;
+        }
+      }
+
+      &-form {
+
+        &__fields {
+          grid-template-columns: 1fr;
+          gap: 15px;
+
+          & label {
+
+            & input {
+              padding: 16px 15px;
+            }
+          }
+
+          & button {
+            padding: 17px;
+            grid-column: span 1;
+          }
+        }
+      }
+    }
+  }
+
+  .popUp-plan {
+    overflow-y: auto;
+
+    &__content {
+      width: 100%;
+    }
+  }
+
+  .apartmentProgram-filter {
+    position: relative;
+    padding-top: 32px;
+    margin-bottom: 80px;
+
+    & .filter__content {
+      &-top {
+        margin-bottom: 20px;
+
+        &__btn {
+          position: absolute;
+          width: 90%;
+          bottom: -58px;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    }
+  }
+
+  .apartmentProgram-table {
+    padding-top: 0;
+
+    &__top {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 21px;
+      padding-bottom: 22px;
+
+      &-status {
+        gap: 17px;
+
+        & span {
+          gap: 5px;
+
+          & svg {
+            width: 8px;
+            height: 8px;
+          }
+
+          & p {
+            font-size: 11px;
+          }
+        }
+      }
+
+      &-result {
+
+        & p {
+          font-size: 12px;
+        }
+      }
+    }
+
+    &__content {
+
+      & .fixed-floor-numbers {
+        padding-top: 51px;
+        padding-bottom: 62px;
+
+        &.left {
+          left: 15px;
+        }
+
+        &.right {
+          display: none;
+        }
+
+        & .floor-label {
+          font-size: 12px;
+
+          &:nth-child(1) {
+            bottom: 20px;
+          }
+        }
+
+        & .floor {
+          font-size: 12px;
+        }
+      }
+
+      & .table-wrapper {
+        padding-top: 30px;
+        margin-left: 34px;
+        margin-right: 0px;
+
+        & .building-type {
+          font-size: 12px;
+        }
+
+        & .building-title {
+          margin-top: 8px;
+          margin-bottom: 20px;
+          font-size: 12px;
+        }
+
+        & .building-table {
+
+          & .cell {
+
+            &:hover {
+              & .tooltip {
+                visibility: hidden;
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+
+      & .details-panel {
+        height: 150%;
+        width: 100%;
+        right: -200%;
+        padding: 15px;
+        border-radius: 0;
+
+        &__img {
+          margin-bottom: 54px;
+          width: 208px;
+        }
+
+        &__location {
+          margin-bottom: 11px;
+          gap: 9px;
+
+          & p {
+            font-size: 12px;
+          }
+        }
+
+        & h3 {
+          font-size: 18px;
+        }
+
+        & .adress {
+          margin-bottom: 13px;
+          font-size: 12px;
+        }
+
+        &-line {
+          margin-bottom: 21px;
+        }
+
+        &-price {
+          margin-bottom: 20px;
+
+          & p {
+
+            &.price {
+              font-size: 18px;
+            }
+
+            &.discount {
+              font-size: 12px;
+            }
+
+            &.percentage {
+              font-size: 10px;
+            }
+          }
+
+        }
+
+        &__list {
+          margin-bottom: 17px;
+          gap: 15px;
+
+          &-item {
+
+            & p {
+              font-size: 12px;
+            }
+          }
+        }
+
+        &__btn1 {
+          margin-bottom: 11px;
         }
       }
     }
