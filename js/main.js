@@ -264,23 +264,47 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener("DOMContentLoaded", function() {
   const popUp = document.querySelector(".pop-up-callback");
   const closeButton = document.getElementById("pop-up-callback-close");
+  const telInput = document.getElementById("pop-up-callback-tel");
 
   function openPopUp() {
-    popUp.classList.add("active");
-    document.body.style.overflow = "hidden";
+      popUp.classList.add("active");
+      document.body.style.overflow = "hidden";
   }
 
   function closePopUp() {
-    popUp.classList.remove("active");
-    document.body.style.overflow = "";
+      popUp.classList.remove("active");
+      document.body.style.overflow = "";
   }
 
   document.getElementById("pop-up-callback-open").addEventListener("click", openPopUp);
-
   closeButton.addEventListener("click", closePopUp);
 
   const openButtons = document.querySelectorAll(".pop-up-callback-open");
   openButtons.forEach(button => button.addEventListener("click", openPopUp));
+
+  // Маска и проверка номера телефона
+  telInput.addEventListener('input', () => {
+      // Если номер не начинается с +7, добавляем префикс
+      if (!telInput.value.startsWith('+7')) {
+          telInput.value = '+7';
+      }
+
+      // Удаляем все символы, кроме цифр и плюса
+      telInput.value = telInput.value.replace(/[^\d+]/g, '');
+
+      // Ограничиваем длину номера до 12 символов
+      if (telInput.value.length > 12) {
+          telInput.value = telInput.value.slice(0, 12);
+      }
+  });
+
+  // Предотвращение отправки формы, если номер некорректный
+  document.querySelector('.form-global').addEventListener('submit', function(event) {
+      if (telInput.value.length < 12) {
+          event.preventDefault(); // Блокируем отправку формы
+          alert('Введите корректный номер телефона. Номер должен содержать 11 цифр.');
+      }
+  });
 });
 
 
@@ -712,48 +736,6 @@ document.addEventListener('DOMContentLoaded', () => {
   checkScreenWidth();
   window.addEventListener('resize', checkScreenWidth);
 });
-
-/*document.addEventListener('DOMContentLoaded', () => {
-  const facilities = document.querySelectorAll('.index-ourFacilities__content-info__article-bottom__available');
-
-  facilities.forEach(facility => {
-      const items = facility.querySelectorAll('.index-ourFacilities__content-info__article-bottom__available-list__item');
-      const button = facility.querySelector('.available-btn');
-
-      // Initially show the first two items
-      items.forEach((item, index) => {
-          if (index < 2) {
-              item.style.display = 'list-item'; // Show first two items
-          } else {
-              item.style.display = 'none'; // Hide others
-          }
-      });
-
-      // Set initial button text
-      button.innerHTML = `Показать еще <span>${items.length - 2}</span>`;
-
-      button.addEventListener('click', () => {
-          const hiddenItems = Array.from(items).filter(item => item.style.display === 'none');
-          const isExpanded = hiddenItems.length === 0;
-
-          if (isExpanded) {
-              // Collapse: hide all except first two
-              items.forEach((item, index) => {
-                  if (index >= 2) {
-                      item.style.display = 'none';
-                  }
-              });
-              button.innerHTML = `Показать еще <span>${items.length - 2}</span>`;
-          } else {
-              // Expand: show all items
-              items.forEach(item => {
-                  item.style.display = 'list-item';
-              });
-              button.textContent = 'Скрыть';
-          }
-      });
-  });
-});*/
 
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы для навигации
@@ -2605,10 +2587,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
-
-
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем все кнопки блока advantages и pop-up контенты
   const popUpAdvantages = document.querySelector('.popUp-video__residentialComplex');
@@ -2749,6 +2727,284 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+
+/* Страница квартиры */
+document.addEventListener("DOMContentLoaded", () => {
+  // Кнопки для управления содержимым
+  const planBtn = document.getElementById("apartmentPage-plan-btn");
+  const floorPlanBtn = document.getElementById("apartmentPage-floorPlan-btn");
+  const generalPlanBtn = document.getElementById("apartmentPage-generalPlan-btn");
+  const closeBtn = document.querySelector(".popUp-plan-close");
+
+  // Контейнер и блоки содержимого
+  const popUpPlan = document.querySelector(".popUp-plan");
+  const planBlock = document.getElementById("apartmentPage-plan-block");
+  const floorPlanBlock = document.getElementById("apartmentPage-floorPlan-block");
+  const generalPlanBlock = document.getElementById("apartmentPage-generalPlan-block");
+
+  // Утилита для удаления класса active у всех блоков и восстановления скролла
+  function removeActiveClasses() {
+    popUpPlan.classList.remove("active");
+    planBlock.classList.remove("active");
+    floorPlanBlock.classList.remove("active");
+    generalPlanBlock.classList.remove("active");
+    document.body.style.overflow = ""; // Возвращаем скролл
+  }
+
+  // Добавляем события на кнопки
+  planBtn.addEventListener("click", () => {
+    removeActiveClasses();
+    popUpPlan.classList.add("active");
+    planBlock.classList.add("active");
+    document.body.style.overflow = "hidden"; // Отключаем скролл
+  });
+
+  floorPlanBtn.addEventListener("click", () => {
+    removeActiveClasses();
+    popUpPlan.classList.add("active");
+    floorPlanBlock.classList.add("active");
+    document.body.style.overflow = "hidden"; // Отключаем скролл
+  });
+
+  generalPlanBtn.addEventListener("click", () => {
+    removeActiveClasses();
+    popUpPlan.classList.add("active");
+    generalPlanBlock.classList.add("active");
+    document.body.style.overflow = "hidden"; // Отключаем скролл
+  });
+
+  // Закрытие модального окна
+  closeBtn.addEventListener("click", () => {
+    removeActiveClasses();
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const updateBlockHeight = () => {
+      if (window.innerWidth < 768) {
+          const blocks = document.querySelectorAll('.apartmentPage-hero__content-left__info-block.mobile');
+
+          blocks.forEach(block => {
+              const top = block.querySelector('.apartmentPage-hero__content-left__info-block__top');
+              const bottom = block.querySelector('.apartmentPage-hero__content-left__info-block__bottom');
+              const openButton = block.querySelector('.apartmentPage-hero__content-left__info-block__top-open');
+
+              // Установить начальную высоту на основе top
+              block.style.height = `${top.offsetHeight}px`;
+
+              // Добавить обработчик клика на openButton
+              openButton.addEventListener('click', () => {
+                  const isExpanded = block.style.height === `${top.offsetHeight + bottom.offsetHeight}px`;
+
+                  // Переключить высоту
+                  block.style.height = isExpanded
+                      ? `${top.offsetHeight}px` // Свернуть до высоты top
+                      : `${top.offsetHeight + bottom.offsetHeight}px`; // Развернуть до высоты top + bottom
+
+                  // Заменить SVG внутри кнопки
+                  const svg = openButton.querySelector('svg');
+                  if (svg) {
+                      if (isExpanded) {
+                          // Свернутое состояние (крест)
+                          svg.outerHTML = `
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <g opacity="0.5">
+                                      <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
+                                      <rect width="15.2548" height="1.27123" rx="0.635615" transform="matrix(0 -1 -1 0 9.63562 16.6279)" fill="black" />
+                                  </g>
+                              </svg>`;
+                      } else {
+                          // Развернутое состояние (горизонтальная линия)
+                          svg.outerHTML = `
+                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <g opacity="0.5">
+                                      <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
+                                  </g>
+                              </svg>`;
+                      }
+                  }
+              });
+          });
+      } else {
+          // Сбросить высоту, если ширина экрана больше или равна 768px
+          const blocks = document.querySelectorAll('.apartmentPage-hero__content-left__info-block.mobile');
+          blocks.forEach(block => {
+              block.style.height = '';
+          });
+      }
+  };
+
+  // Выполнить при загрузке страницы и при изменении размера окна
+  updateBlockHeight();
+  window.addEventListener('resize', updateBlockHeight);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.apartmentPage-feedback__content-form');
+  const nameInput = document.getElementById('apartmentPage-feedback-name');
+  const telInput = document.getElementById('apartmentPage-feedback-tel');
+
+
+  telInput.addEventListener('input', () => {
+
+    if (!telInput.value.startsWith('+7')) {
+      telInput.value = '+7';
+    }
+
+    telInput.value = telInput.value.replace(/[^\d+]/g, '');
+
+    if (telInput.value.length > 12) {
+      telInput.value = telInput.value.slice(0, 12);
+    }
+  });
+
+  nameInput.addEventListener('input', () => {
+    nameInput.value = nameInput.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+  });
+
+  form.addEventListener('submit', (event) => {
+    let isValid = true;
+
+    nameInput.style.backgroundColor = '';
+    telInput.style.backgroundColor = '';
+
+    if (!nameInput.value.trim()) {
+      nameInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+      isValid = false;
+    }
+
+    if (telInput.value.length < 12) {
+      telInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+      isValid = false;
+    }
+
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
+});
+
+const data = [
+  { buildingType: "Литер 1", building: "Подъезд 1", floor: 10, column: 1, type: 2, size: 51.2, status: 'green', price: 12535000 },
+  { buildingType: "Литер 1", building: "Подъезд 1", floor: 9, column: 2, type: 2, size: 51.2, status: 'yellow', price: 12300000 },
+  { buildingType: "Литер 1", building: "Подъезд 2", floor: 8, column: 1, type: 2, size: 51.2, status: 'green', price: 13000000 },
+  { buildingType: "Литер 1", building: "Подъезд 2", floor: 7, column: 2, type: 3, size: 60.0, status: 'grey', price: 0 }
+];
+
+const floors = 10;
+const tableWrapper = document.querySelector('.table-wrapper');
+const fixedFloorNumbersLeft = document.querySelector('.fixed-floor-numbers.left');
+const fixedFloorNumbersRight = document.querySelector('.fixed-floor-numbers.right');
+const detailsPanel = document.getElementById("detailsPanel");
+const panelTitle = document.getElementById("panelTitle");
+const panelFloor = document.getElementById("panelFloor");
+const panelSize = document.getElementById("panelSize");
+const panelStatus = document.getElementById("panelStatus");
+const panelPrice = document.getElementById("panelPrice");
+const panelBuildingType = document.getElementById("panelBuildingType");
+const panelEntrance = document.getElementById("panelEntrance");
+
+// Заполнить фиксированную нумерацию этажей
+for (let i = floors; i >= 1; i--) {
+  const floor = document.createElement('div');
+  floor.className = 'floor';
+  floor.textContent = i;
+  fixedFloorNumbersLeft.appendChild(floor);
+
+  const floorRight = floor.cloneNode(true);
+  fixedFloorNumbersRight.appendChild(floorRight);
+}
+
+// Генерация зданий
+const buildings = [...new Set(data.map(d => d.building))];
+buildings.forEach(building => {
+  const buildingData = data.filter(d => d.building === building);
+  const buildingType = buildingData[0]?.buildingType || "Unknown";
+
+  const buildingContainer = document.createElement('div');
+  buildingContainer.className = 'building-container';
+
+  // Верхние заголовки
+  const titleType = document.createElement('div');
+  titleType.className = 'building-type';
+  titleType.textContent = buildingType;
+
+  const title = document.createElement('div');
+  title.className = 'building-title';
+  title.textContent = building;
+
+  const buildingTable = document.createElement('div');
+  buildingTable.className = 'building-table';
+
+  // Создание ячеек таблицы
+  for (let floor = floors; floor >= 1; floor--) {
+    for (let column = 1; column <= 16; column++) {
+      const cellData = buildingData.find(d => d.floor === floor && d.column === column);
+
+      const cell = document.createElement('div');
+      cell.className = `cell ${cellData ? cellData.status : 'grey'}`;
+      if (cellData) {
+        cell.innerHTML = `
+          <div class="number">${cellData.type}</div>
+          <div class="size">${cellData.size}</div>
+          <div class="tooltip">
+            <div class="tooltip-top">
+              <p class="tooltip-top__type">${cellData.type}</p>
+              <p class="tooltip-top__number">Квартира №${floor * 10 + column}</p>
+            </div>
+            <p class="tooltip-price">${cellData.price} ₽</p>
+            <p class="tooltip-size">${cellData.size} м²</p>
+          </div>
+        `;
+        cell.addEventListener('click', () => {
+          panelTitle.textContent = `Квартира №${floor * 10 + column} ` + cellData.size + 'м²';
+          panelFloor.textContent = floor;
+          panelBuildingType.textContent = buildingType;
+          panelEntrance.textContent = building;
+          panelSize.textContent = cellData.size;
+          panelStatus.textContent = cellData.status === 'green' ? 'Свободно' :
+            cellData.status === 'yellow' ? 'Забронировано' : 'Не доступно';
+
+            // Очистим старые классы
+            panelStatus.classList.remove('green', 'yellow', 'grey');
+
+            // Добавим новый класс в зависимости от статуса
+            if (cellData.status === 'green') {
+                panelStatus.classList.add('green');
+            } else if (cellData.status === 'yellow') {
+                panelStatus.classList.add('yellow');
+            } else {
+                panelStatus.classList.add('grey');
+            }
+
+          panelPrice.textContent = cellData.price.toLocaleString() + " ₽";
+          detailsPanel.classList.add('open');
+        });
+      }
+      buildingTable.appendChild(cell);
+    }
+  }
+
+  // Нижние заголовки
+  const titleTypeBottom = titleType.cloneNode(true);
+  const titleBottom = title.cloneNode(true);
+
+  // Добавление заголовков и таблицы
+  buildingContainer.appendChild(titleType);
+  buildingContainer.appendChild(title);
+  buildingContainer.appendChild(buildingTable);
+  buildingContainer.appendChild(titleBottom);
+  buildingContainer.appendChild(titleTypeBottom);
+
+  tableWrapper.appendChild(buildingContainer);
+});
+
+function closeDetails() {
+  detailsPanel.classList.remove('open');
+}
+
+
 
 
 
