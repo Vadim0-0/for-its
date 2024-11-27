@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const menu = document.getElementById("header-menu");
   const menuContent = document.getElementById("header-menu-content");
 
-  // SVG-код для разных состояний
   const svgDefault = `
     <svg width="23" height="12" viewBox="0 0 23 12" fill="none" xmlns="http://www.w3.org/2000/svg">
       <line y1="0.966406" x2="16" y2="0.966406" stroke="black" stroke-width="1.2"/>
@@ -555,7 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const productLists = document.querySelectorAll('.index-about__content-cards'); // Находим все элементы с этим классом
+  const productLists = document.querySelectorAll('.index-about__content-cards');
   const maxScrollStep = 40; // Максимальная длина шага прокрутки
 
   // Функция плавного скроллинга для одного элемента
@@ -739,49 +738,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы для навигации
-  const btnVideo = document.getElementById("index-btn-stocks-stocks"); // Button for stocks
-  const btnRead = document.getElementById("index-btn--stocks-news"); // Button for news
-  const reviewsVideoBlocks = document.querySelector(".stocks-list"); // Stock content block
-  const reviewsReadBlocks = document.querySelector(".news-list"); // News content block
-  const btnPrev = document.getElementById("index-btn--stocks-prev"); // Previous button
-  const btnNext = document.getElementById("index-btn--stocks-next"); // Next button
+  const btnVideo = document.getElementById("index-btn-stocks-stocks");
+  const btnRead = document.getElementById("index-btn--stocks-news");
+  const reviewsVideoBlocks = document.querySelector(".stocks-list");
+  const reviewsReadBlocks = document.querySelector(".news-list");
+  const btnPrev = document.getElementById("index-btn--stocks-prev");
+  const btnNext = document.getElementById("index-btn--stocks-next");
 
   // Начальные настройки
-  let activeBlock = reviewsVideoBlocks; // By default, show the stocks content block
+  let activeBlock = reviewsVideoBlocks;
 
   // Функция для получения ширины карточки и правого отступа из CSS для текущего активного блока
   function getScrollWidthForActiveBlock() {
-    const firstCard = activeBlock.querySelector("li"); // Assuming cards are <li> elements
+    const firstCard = activeBlock.querySelector("li");
     if (firstCard) {
       const style = window.getComputedStyle(firstCard);
-      const cardWidth = parseFloat(style.width); // Read width from CSS
-      const marginRight = parseFloat(style.marginRight); // Read right margin from CSS
+      const cardWidth = parseFloat(style.width);
+      const marginRight = parseFloat(style.marginRight);
       return cardWidth + marginRight;
     }
     return 0;
   }
 
-  let scrollWidth = getScrollWidthForActiveBlock(); // Initial scroll width
+  let scrollWidth = getScrollWidthForActiveBlock();
 
   // Функция для переключения видимых блоков
   function toggleActiveBlock(showElement, hideElement, activeButton, inactiveButton) {
-    // Show the specified block and hide the other
+
     showElement.style.display = "flex";
     hideElement.style.display = "none";
 
-    // Update active button
     activeButton.classList.add("active");
     inactiveButton.classList.remove("active");
 
-    // Reassign active block for scrolling
     activeBlock = showElement;
 
-    // Update scroll width for the new active block
     scrollWidth = getScrollWidthForActiveBlock();
-    activeBlock.scrollTo({ left: 0 }); // Reset scroll position
+    activeBlock.scrollTo({ left: 0 });
   }
 
-  // Switch content blocks when buttons "Акции" and "Новости" are clicked
   btnVideo.addEventListener("click", () => toggleActiveBlock(reviewsVideoBlocks, reviewsReadBlocks, btnVideo, btnRead));
   btnRead.addEventListener("click", () => toggleActiveBlock(reviewsReadBlocks, reviewsVideoBlocks, btnRead, btnVideo));
 
@@ -805,11 +800,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }, 400);
   }
 
-  // Event listeners for "previous" and "next" buttons
   btnPrev.addEventListener("click", () => preciseScroll(-1));
   btnNext.addEventListener("click", () => preciseScroll(1));
 
-  // Adding swipe functionality for mobile devices
   let startX = 0;
   let currentX = 0;
 
@@ -825,23 +818,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const isMobile = window.innerWidth < 768;
 
     if (isMobile) {
-      // On smaller screens (< 768px), swipe scrolls content without card alignment
+
       const scrollAmount = startX - currentX;
       activeBlock.scrollBy({
         left: scrollAmount,
         behavior: "smooth"
       });
     } else {
-      // On larger screens, scroll is tied to the card width
+
       if (startX - currentX > 50) {
-        preciseScroll(1); // Scroll right
+        preciseScroll(1);
       } else if (currentX - startX > 50) {
-        preciseScroll(-1); // Scroll left
+        preciseScroll(-1);
       }
     }
   });
 
-  // Update scroll width on window resize
   window.addEventListener("resize", () => {
     scrollWidth = getScrollWidthForActiveBlock();
   });
@@ -1070,7 +1062,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
+/* hero */
 document.addEventListener('DOMContentLoaded', () => {
   const heroBlock = document.querySelector('.residentialComplex-hero');
   const blocksContainer = document.querySelector('.residentialComplex-hero__images');
@@ -1195,6 +1187,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePagination(); // Обновляем пагинацию при загрузке
 });
 
+/* Генплан */
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем все элементы списка "facilities" и "cards"
   const facilitiesItems = document.querySelectorAll('.residentialComplex-generalPlan__content-facilities__item');
@@ -1234,8 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
+/* О нас */
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем все элементы списка "facilities" и "cards"
   const facilitiesItems = document.querySelectorAll('.residentialComplex-about__content-examples__btns button');
@@ -1554,7 +1546,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 /* Места поблизости */
 document.addEventListener('DOMContentLoaded', () => {
   const blocksContainer = document.querySelector('.residentialComplex-placesNearby__content-blocks');
@@ -1678,7 +1669,6 @@ document.addEventListener('DOMContentLoaded', () => {
   createPaginations(); // Создаем пагинацию
   updatePagination(); // Обновляем пагинацию при загрузке
 });
-
 
 /* Видео */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1974,7 +1964,6 @@ document.addEventListener('DOMContentLoaded', () => {
   createPaginations(); // Создаем пагинацию
   updatePagination(); // Обновляем пагинацию при загрузке
 });
-
 
 /* Дизайн квартир */
 document.addEventListener('DOMContentLoaded', () => {
@@ -2565,7 +2554,7 @@ document.addEventListener('DOMContentLoaded', () => {
   updatePagination(); // Обновляем пагинацию при загрузке
 });
 
-
+/* документы */
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем все элементы списка "facilities" и "cards"
   const facilitiesItems = document.querySelectorAll('.residentialComplex-documents__content-top__btns button');
@@ -2587,6 +2576,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+
+/* Модальные окна */
 document.addEventListener('DOMContentLoaded', () => {
   // Получаем все кнопки блока advantages и pop-up контенты
   const popUpAdvantages = document.querySelector('.popUp-video__residentialComplex');
@@ -2782,55 +2773,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener('DOMContentLoaded', () => {
   const updateBlockHeight = () => {
-      if (window.innerWidth < 768) {
-          const blocks = document.querySelectorAll('.apartmentPage-hero__content-left__info-block.mobile');
+      const blocks = document.querySelectorAll('.apartmentPage-hero__content-left__info-block.mobile');
 
+      if (window.innerWidth < 768) {
           blocks.forEach(block => {
               const top = block.querySelector('.apartmentPage-hero__content-left__info-block__top');
               const bottom = block.querySelector('.apartmentPage-hero__content-left__info-block__bottom');
               const openButton = block.querySelector('.apartmentPage-hero__content-left__info-block__top-open');
 
-              // Установить начальную высоту на основе top
-              block.style.height = `${top.offsetHeight}px`;
+              // Установить начальную высоту
+              if (!block.dataset.initialized) {
+                  block.style.height = `${top.offsetHeight}px`;
+                  block.dataset.initialized = true; // Отметить как инициализированный
 
-              // Добавить обработчик клика на openButton
-              openButton.addEventListener('click', () => {
-                  const isExpanded = block.style.height === `${top.offsetHeight + bottom.offsetHeight}px`;
+                  // Добавить обработчик клика один раз
+                  openButton.addEventListener('click', () => {
+                      const isExpanded = block.classList.contains('expanded');
 
-                  // Переключить высоту
-                  block.style.height = isExpanded
-                      ? `${top.offsetHeight}px` // Свернуть до высоты top
-                      : `${top.offsetHeight + bottom.offsetHeight}px`; // Развернуть до высоты top + bottom
-
-                  // Заменить SVG внутри кнопки
-                  const svg = openButton.querySelector('svg');
-                  if (svg) {
                       if (isExpanded) {
-                          // Свернутое состояние (крест)
-                          svg.outerHTML = `
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <g opacity="0.5">
-                                      <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
-                                      <rect width="15.2548" height="1.27123" rx="0.635615" transform="matrix(0 -1 -1 0 9.63562 16.6279)" fill="black" />
-                                  </g>
-                              </svg>`;
+                          // Свернуть
+                          block.style.height = `${top.offsetHeight}px`;
+                          block.classList.remove('expanded');
                       } else {
-                          // Развернутое состояние (горизонтальная линия)
-                          svg.outerHTML = `
-                              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                  <g opacity="0.5">
-                                      <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
-                                  </g>
-                              </svg>`;
+                          // Развернуть
+                          block.style.height = `${top.offsetHeight + bottom.offsetHeight}px`;
+                          block.classList.add('expanded');
                       }
-                  }
-              });
+
+                      // Заменить SVG внутри кнопки
+                      const svg = openButton.querySelector('svg');
+                      if (svg) {
+                          svg.outerHTML = isExpanded
+                              ? `
+                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g opacity="0.5">
+                                          <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
+                                          <rect width="15.2548" height="1.27123" rx="0.635615" transform="matrix(0 -1 -1 0 9.63562 16.6279)" fill="black" />
+                                      </g>
+                                  </svg>`
+                              : `
+                                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <g opacity="0.5">
+                                          <rect x="1.37256" y="8.36426" width="15.2548" height="1.27123" rx="0.635615" fill="black" />
+                                      </g>
+                                  </svg>`;
+                      }
+                  });
+              }
           });
       } else {
-          // Сбросить высоту, если ширина экрана больше или равна 768px
-          const blocks = document.querySelectorAll('.apartmentPage-hero__content-left__info-block.mobile');
+          // Сбросить высоту для больших экранов
           blocks.forEach(block => {
               block.style.height = '';
+              block.classList.remove('expanded');
+              block.removeAttribute('data-initialized'); // Сбросить инициализацию
           });
       }
   };
@@ -2885,126 +2881,494 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-const data = [
-  { buildingType: "Литер 1", building: "Подъезд 1", floor: 10, column: 1, type: 2, size: 51.2, status: 'green', price: 12535000 },
-  { buildingType: "Литер 1", building: "Подъезд 1", floor: 9, column: 2, type: 2, size: 51.2, status: 'yellow', price: 12300000 },
-  { buildingType: "Литер 1", building: "Подъезд 2", floor: 8, column: 1, type: 2, size: 51.2, status: 'green', price: 13000000 },
-  { buildingType: "Литер 1", building: "Подъезд 2", floor: 7, column: 2, type: 3, size: 60.0, status: 'grey', price: 0 }
-];
 
-const floors = 10;
-const tableWrapper = document.querySelector('.table-wrapper');
-const fixedFloorNumbersLeft = document.querySelector('.fixed-floor-numbers.left');
-const fixedFloorNumbersRight = document.querySelector('.fixed-floor-numbers.right');
-const detailsPanel = document.getElementById("detailsPanel");
-const panelTitle = document.getElementById("panelTitle");
-const panelFloor = document.getElementById("panelFloor");
-const panelSize = document.getElementById("panelSize");
-const panelStatus = document.getElementById("panelStatus");
-const panelPrice = document.getElementById("panelPrice");
-const panelBuildingType = document.getElementById("panelBuildingType");
-const panelEntrance = document.getElementById("panelEntrance");
+/* Квартирограмма */
+document.addEventListener('DOMContentLoaded', () => {
+  /* Вписывать данные, автоматически подставятся. При указании "Подъезд 3" автоматически добавится ещё одна таблица */
+  const data = [
+    { buildingType: "Литер 1", building: "Подъезд 1", floor: 10, column: 1, type: 2, size: 51.2, status: 'green', price: 12535000 },
+    { buildingType: "Литер 1", building: "Подъезд 1", floor: 9, column: 2, type: 2, size: 51.2, status: 'yellow', price: 12300000 },
+    { buildingType: "Литер 1", building: "Подъезд 2", floor: 8, column: 1, type: 2, size: 51.2, status: 'green', price: 13000000 },
+    { buildingType: "Литер 1", building: "Подъезд 2", floor: 7, column: 2, type: 3, size: 60.0, status: 'grey', price: 0 }
+  ];
 
-// Заполнить фиксированную нумерацию этажей
-for (let i = floors; i >= 1; i--) {
-  const floor = document.createElement('div');
-  floor.className = 'floor';
-  floor.textContent = i;
-  fixedFloorNumbersLeft.appendChild(floor);
+  const floors = 10;
+  const tableWrapper = document.querySelector('.table-wrapper');
+  const fixedFloorNumbersLeft = document.querySelector('.fixed-floor-numbers.left');
+  const fixedFloorNumbersRight = document.querySelector('.fixed-floor-numbers.right');
+  const detailsPanel = document.getElementById("detailsPanel");
+  const panelTitle = document.getElementById("panelTitle");
+  const panelFloor = document.getElementById("panelFloor");
+  const panelSize = document.getElementById("panelSize");
+  const panelStatus = document.getElementById("panelStatus");
+  const panelPrice = document.getElementById("panelPrice");
+  const panelBuildingType = document.getElementById("panelBuildingType");
+  const panelEntrance = document.getElementById("panelEntrance");
+  const closeDetailsButton = document.getElementById('closeDetailsButton');
 
-  const floorRight = floor.cloneNode(true);
-  fixedFloorNumbersRight.appendChild(floorRight);
-}
+  // Заполнить фиксированную нумерацию этажей
+  for (let i = floors; i >= 1; i--) {
+    const floor = document.createElement('div');
+    floor.className = 'floor';
+    floor.textContent = i;
+    fixedFloorNumbersLeft.appendChild(floor);
 
-// Генерация зданий
-const buildings = [...new Set(data.map(d => d.building))];
-buildings.forEach(building => {
-  const buildingData = data.filter(d => d.building === building);
-  const buildingType = buildingData[0]?.buildingType || "Unknown";
+    const floorRight = floor.cloneNode(true);
+    fixedFloorNumbersRight.appendChild(floorRight);
+  }
 
-  const buildingContainer = document.createElement('div');
-  buildingContainer.className = 'building-container';
+  // Генерация зданий
+  const buildings = [...new Set(data.map(d => d.building))];
+  buildings.forEach(building => {
+    const buildingData = data.filter(d => d.building === building);
+    const buildingType = buildingData[0]?.buildingType || "Unknown";
 
-  // Верхние заголовки
-  const titleType = document.createElement('div');
-  titleType.className = 'building-type';
-  titleType.textContent = buildingType;
+    const buildingContainer = document.createElement('div');
+    buildingContainer.className = 'building-container';
 
-  const title = document.createElement('div');
-  title.className = 'building-title';
-  title.textContent = building;
+    // Верхние заголовки
+    const titleType = document.createElement('div');
+    titleType.className = 'building-type';
+    titleType.textContent = buildingType;
 
-  const buildingTable = document.createElement('div');
-  buildingTable.className = 'building-table';
+    const title = document.createElement('div');
+    title.className = 'building-title';
+    title.textContent = building;
 
-  // Создание ячеек таблицы
-  for (let floor = floors; floor >= 1; floor--) {
-    for (let column = 1; column <= 16; column++) {
-      const cellData = buildingData.find(d => d.floor === floor && d.column === column);
+    const buildingTable = document.createElement('div');
+    buildingTable.className = 'building-table';
 
-      const cell = document.createElement('div');
-      cell.className = `cell ${cellData ? cellData.status : 'grey'}`;
-      if (cellData) {
-        cell.innerHTML = `
-          <div class="number">${cellData.type}</div>
-          <div class="size">${cellData.size}</div>
-          <div class="tooltip">
-            <div class="tooltip-top">
-              <p class="tooltip-top__type">${cellData.type}</p>
-              <p class="tooltip-top__number">Квартира №${floor * 10 + column}</p>
+    // Создание ячеек таблицы
+    for (let floor = floors; floor >= 1; floor--) {
+      for (let column = 1; column <= 16; column++) {
+        const cellData = buildingData.find(d => d.floor === floor && d.column === column);
+
+        const cell = document.createElement('div');
+        cell.className = `cell ${cellData ? cellData.status : 'grey'}`;
+        if (cellData) {
+          cell.innerHTML = `
+            <div class="number">${cellData.type}</div>
+            <div class="size">${cellData.size}</div>
+            <div class="tooltip">
+              <div class="tooltip-top">
+                <p class="tooltip-top__type">${cellData.type}</p>
+                <p class="tooltip-top__number">Квартира №${floor * 10 + column}</p>
+              </div>
+              <p class="tooltip-price">${cellData.price} ₽</p>
+              <p class="tooltip-size">${cellData.size} м²</p>
             </div>
-            <p class="tooltip-price">${cellData.price} ₽</p>
-            <p class="tooltip-size">${cellData.size} м²</p>
-          </div>
-        `;
-        cell.addEventListener('click', () => {
-          panelTitle.textContent = `Квартира №${floor * 10 + column} ` + cellData.size + 'м²';
-          panelFloor.textContent = floor;
-          panelBuildingType.textContent = buildingType;
-          panelEntrance.textContent = building;
-          panelSize.textContent = cellData.size;
-          panelStatus.textContent = cellData.status === 'green' ? 'Свободно' :
-            cellData.status === 'yellow' ? 'Забронировано' : 'Не доступно';
+          `;
+          cell.addEventListener('click', () => {
+            panelTitle.textContent = `Квартира №${floor * 10 + column} ` + cellData.size + 'м²';
+            panelFloor.textContent = floor;
+            panelBuildingType.textContent = buildingType;
+            panelEntrance.textContent = building;
+            panelSize.textContent = cellData.size;
+            panelStatus.textContent = cellData.status === 'green' ? 'Свободно' :
+              cellData.status === 'yellow' ? 'Забронировано' : 'Не доступно';
 
-            // Очистим старые классы
-            panelStatus.classList.remove('green', 'yellow', 'grey');
+              // Очистим старые классы
+              panelStatus.classList.remove('green', 'yellow', 'grey');
 
-            // Добавим новый класс в зависимости от статуса
-            if (cellData.status === 'green') {
-                panelStatus.classList.add('green');
-            } else if (cellData.status === 'yellow') {
-                panelStatus.classList.add('yellow');
-            } else {
-                panelStatus.classList.add('grey');
-            }
+              // Добавим новый класс в зависимости от статуса
+              if (cellData.status === 'green') {
+                  panelStatus.classList.add('green');
+              } else if (cellData.status === 'yellow') {
+                  panelStatus.classList.add('yellow');
+              } else {
+                  panelStatus.classList.add('grey');
+              }
 
-          panelPrice.textContent = cellData.price.toLocaleString() + " ₽";
-          detailsPanel.classList.add('open');
-        });
+            panelPrice.textContent = cellData.price.toLocaleString() + " ₽";
+            detailsPanel.classList.add('open');
+          });
+        }
+        buildingTable.appendChild(cell);
       }
-      buildingTable.appendChild(cell);
+    }
+
+    // Нижние заголовки
+    const titleTypeBottom = titleType.cloneNode(true);
+    const titleBottom = title.cloneNode(true);
+
+    // Добавление заголовков и таблицы
+    buildingContainer.appendChild(titleType);
+    buildingContainer.appendChild(title);
+    buildingContainer.appendChild(buildingTable);
+    buildingContainer.appendChild(titleBottom);
+    buildingContainer.appendChild(titleTypeBottom);
+
+    tableWrapper.appendChild(buildingContainer);
+  });
+
+  closeDetailsButton.addEventListener('click', closeDetails);
+
+  function closeDetails() {
+    detailsPanel.classList.remove('open');
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const productLists = document.querySelectorAll('.apartmentProgram-table__content .table-wrapper'); // Находим все элементы с этим классом
+  const maxScrollStep = 40; // Максимальная длина шага прокрутки
+
+  // Функция плавного скроллинга для одного элемента
+  function startSmoothScroll(container, targetScrollPosition) {
+    let isScrolling = false;
+    let animationFrameId;
+
+    function smoothScrollStep() {
+      const currentScrollPosition = container.scrollLeft;
+      const difference = targetScrollPosition - currentScrollPosition;
+
+      if (Math.abs(difference) > 1) {
+        const scrollStep = Math.sign(difference) * Math.min(maxScrollStep, Math.abs(difference));
+        container.scrollLeft += scrollStep;
+        animationFrameId = requestAnimationFrame(smoothScrollStep);
+      } else {
+        isScrolling = false;
+        container.scrollLeft = targetScrollPosition;
+        cancelAnimationFrame(animationFrameId);
+      }
+    }
+
+    if (!isScrolling) {
+      isScrolling = true;
+      animationFrameId = requestAnimationFrame(smoothScrollStep);
     }
   }
 
-  // Нижние заголовки
-  const titleTypeBottom = titleType.cloneNode(true);
-  const titleBottom = title.cloneNode(true);
+  // Проверка переполнения контейнера
+  function isOverflowing(container) {
+    return container.scrollWidth > container.clientWidth;
+  }
 
-  // Добавление заголовков и таблицы
-  buildingContainer.appendChild(titleType);
-  buildingContainer.appendChild(title);
-  buildingContainer.appendChild(buildingTable);
-  buildingContainer.appendChild(titleBottom);
-  buildingContainer.appendChild(titleTypeBottom);
+  // Добавление обработчиков событий для всех контейнеров
+  productLists.forEach((container) => {
+    let targetScrollPosition = 0;
 
-  tableWrapper.appendChild(buildingContainer);
+    // Обработчик колеса мыши
+    container.addEventListener('wheel', (event) => {
+      if (isOverflowing(container)) {
+        event.preventDefault();
+        targetScrollPosition += event.deltaY;
+        targetScrollPosition = Math.max(
+          0,
+          Math.min(targetScrollPosition, container.scrollWidth - container.clientWidth)
+        );
+        startSmoothScroll(container, targetScrollPosition);
+      }
+    });
+
+    // Обработчик для свайпа на мобильных устройствах
+    let startX;
+
+    container.addEventListener('touchstart', (event) => {
+      if (isOverflowing(container)) {
+        startX = event.touches[0].clientX;
+        cancelAnimationFrame(animationFrameId); // Останавливаем предыдущее движение
+      }
+    });
+
+    container.addEventListener('touchmove', (event) => {
+      if (isOverflowing(container) && startX) {
+        const touchX = event.touches[0].clientX;
+        const scrollDelta = startX - touchX;
+        targetScrollPosition += scrollDelta;
+        targetScrollPosition = Math.max(
+          0,
+          Math.min(targetScrollPosition, container.scrollWidth - container.clientWidth)
+        );
+        startX = touchX;
+        startSmoothScroll(container, targetScrollPosition);
+      }
+    });
+
+    container.addEventListener('touchend', () => {
+      startX = null;
+    });
+  });
 });
 
-function closeDetails() {
-  detailsPanel.classList.remove('open');
-}
+
+/* Способы покупки */
+document.addEventListener('DOMContentLoaded', () => {
+  // Получаем все элементы списка "facilities" и "cards"
+  const facilitiesItems = document.querySelectorAll('.purchaseMethods-hero__content-btns button');
+  const cardsItems = document.querySelectorAll('.purchaseMethods-hero__content-blocks .purchaseMethods-hero__content-blocks__block');
+
+  // Добавляем обработчик события для каждого элемента "facilities"
+  facilitiesItems.forEach((facility, index) => {
+    facility.addEventListener('click', () => {
+      // Удаляем класс "active" у всех карточек
+      cardsItems.forEach(card => card.classList.remove('active'));
+      facilitiesItems.forEach(card => card.classList.remove('active'));
+
+      // Добавляем класс "active" только к соответствующей карточке
+      if (cardsItems[index]) {
+        cardsItems[index].classList.add('active');
+        facilitiesItems[index].classList.add('active');
+      }
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Получаем все элементы списка
+  const items = document.querySelectorAll('.purchaseMethods-steps__content-list__item');
+
+  // Перебираем элементы и задаем их номер
+  items.forEach((item, index) => {
+    // Ищем элемент с классом для номера
+    const numberElement = item.querySelector('.purchaseMethods-steps__content-list__item-number');
+
+    if (numberElement) {
+      // Задаем номер, начиная с 1
+      numberElement.textContent = index + 1;
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const blocksContainer = document.querySelector('.purchaseMethods-stocks__content-blocks');
+  const blocks = Array.from(document.querySelectorAll('.purchaseMethods-stocks__content-blocks__block'));
+  const paginationsContainer = document.querySelector('.purchaseMethods-stocks__content-paginations');
+  const btnPrev = document.getElementById('purchaseMethods-stocks-prev');
+  const btnNext = document.getElementById('purchaseMethods-stocks-next');
+  const svgPrev = btnPrev.querySelector('svg');
+  const svgNext = btnNext.querySelector('svg');
+
+  let currentIndex = 0;
+  let blockWidth = blocks[0].offsetWidth;
+  let blockMarginRight = parseFloat(window.getComputedStyle(blocks[0]).marginRight);
+  let startX = 0;
+  let endX = 0;
+
+  // Функция для плавного ускорения и замедления (ease in-out quad)
+  const easeInOutQuad = (t) => {
+    return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  };
+
+  // Создание пагинации
+  function createPaginations() {
+    paginationsContainer.innerHTML = ''; // Очищаем старые пагинации
+    blocks.forEach((_, index) => {
+      const span = document.createElement('span');
+      if (index === currentIndex) {
+        span.classList.add('active'); // Добавляем класс "active" текущему элементу
+      }
+      paginationsContainer.appendChild(span);
+    });
+  }
+
+  function updatePagination() {
+    const paginations = Array.from(paginationsContainer.children); // Получаем обновленный список пагинаций
+    paginations.forEach((pagination, index) => {
+      pagination.classList.toggle('active', index === currentIndex);
+    });
+    updateButtonOpacity();
+  }
+
+  function updateDimensions() {
+    blockWidth = blocks[0].offsetWidth;
+    blockMarginRight = parseFloat(window.getComputedStyle(blocks[0]).marginRight);
+    updateBlockPosition(0);
+  }
+
+  // Анимация перехода с использованием easeInOutQuad
+  function animateScroll(targetOffset) {
+    const start = parseFloat(window.getComputedStyle(blocksContainer).transform.split(',')[4]) || 0;
+    const distance = targetOffset - start;
+    const duration = 500;
+    let startTime = null;
+
+    function animationStep(timestamp) {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const easedProgress = easeInOutQuad(progress);
+
+      blocksContainer.style.transform = `translateX(${start + distance * easedProgress}px)`;
+
+      if (progress < 1) {
+        requestAnimationFrame(animationStep);
+      }
+    }
+
+    requestAnimationFrame(animationStep);
+  }
+
+  function updateBlockPosition() {
+    const targetOffset = -(blockWidth + blockMarginRight) * currentIndex;
+    animateScroll(targetOffset);
+  }
+
+  function updateButtonOpacity() {
+    svgPrev.style.opacity = currentIndex === 0 ? '0.5' : '1';
+    svgNext.style.opacity = currentIndex === blocks.length - 1 ? '0.5' : '1';
+  }
+
+  btnPrev.addEventListener('click', () => {
+    if (currentIndex > 0) {
+      currentIndex--;
+      updateBlockPosition();
+      updatePagination();
+    }
+  });
+
+  btnNext.addEventListener('click', () => {
+    if (currentIndex < blocks.length - 1) {
+      currentIndex++;
+      updateBlockPosition();
+      updatePagination();
+    }
+  });
+
+  // Обработчики для свайпа на контейнере blocksContainer
+  blocksContainer.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX; // Начальная позиция пальца
+    endX = startX; // Сбрасываем endX для начала
+  });
+
+  blocksContainer.addEventListener('touchmove', (e) => {
+    endX = e.touches[0].clientX; // Текущая позиция пальца
+  });
+
+  blocksContainer.addEventListener('touchend', () => {
+    const swipeDistance = startX - endX; // Расстояние свайпа
+    if (Math.abs(swipeDistance) > 50) { // Если свайп достаточно длинный
+      if (swipeDistance > 0 && currentIndex < blocks.length - 1) {
+        currentIndex++; // Свайп влево (вперед)
+      } else if (swipeDistance < 0 && currentIndex > 0) {
+        currentIndex--; // Свайп вправо (назад)
+      }
+      updateBlockPosition();
+      updatePagination();
+    }
+  });
+
+  window.addEventListener('resize', updateDimensions);
+
+  createPaginations(); // Создаем пагинацию
+  updatePagination(); // Обновляем пагинацию при загрузке
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.querySelector('.purchaseMethods-feedback__content-form');
+  const nameInput = document.getElementById('purchaseMethods-feedback-name');
+  const telInput = document.getElementById('purchaseMethods-feedback-tel');
 
 
+  telInput.addEventListener('input', () => {
+
+    if (!telInput.value.startsWith('+7')) {
+      telInput.value = '+7';
+    }
+
+    telInput.value = telInput.value.replace(/[^\d+]/g, '');
+
+    if (telInput.value.length > 12) {
+      telInput.value = telInput.value.slice(0, 12);
+    }
+  });
+
+  nameInput.addEventListener('input', () => {
+    nameInput.value = nameInput.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+  });
+
+  form.addEventListener('submit', (event) => {
+    let isValid = true;
+
+    nameInput.style.backgroundColor = '';
+    telInput.style.backgroundColor = '';
+
+    if (!nameInput.value.trim()) {
+      nameInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+      isValid = false;
+    }
+
+    if (telInput.value.length < 12) {
+      telInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+      isValid = false;
+    }
+
+    if (!isValid) {
+      event.preventDefault();
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Получаем все элементы заголовков FAQ
+  const faqHeaders = document.querySelectorAll('.purchaseMethods-questions__content-faq__item-top');
+
+  faqHeaders.forEach(header => {
+    // Добавляем обработчик события клика на каждый заголовок
+    header.addEventListener('click', function() {
+      // Получаем родительский элемент FAQ item
+      const faqItem = header.parentElement;
+      // Получаем блок с ответом
+      const answer = faqItem.querySelector('.purchaseMethods-questions__content-faq__item-answer');
+
+      // Если блок уже открыт (класс active), то сворачиваем его
+      if (faqItem.classList.contains('active')) {
+        faqItem.style.height = `${header.offsetHeight}px`; // Ставим высоту только заголовка
+        faqItem.classList.remove('active');
+      } else {
+        // Закрываем все остальные блоки, если нужно сделать аккордеон
+        document.querySelectorAll('.purchaseMethods-questions__content-faq__item.active').forEach(activeItem => {
+          activeItem.style.height = `${activeItem.querySelector('.purchaseMethods-questions__content-faq__item-top').offsetHeight}px`;
+          activeItem.classList.remove('active');
+        });
+
+        // Получаем полную высоту: высота заголовка + высота ответа
+        const fullHeight = header.offsetHeight + answer.scrollHeight;
+        // Задаем новую высоту блоку FAQ item
+        faqItem.style.height = `${fullHeight}px`;
+        // Добавляем класс active
+        faqItem.classList.add('active');
+      }
+    });
+  });
+
+  // Устанавливаем начальную высоту для всех блоков FAQ item
+  document.querySelectorAll('.purchaseMethods-questions__content-faq__item').forEach(item => {
+    const header = item.querySelector('.purchaseMethods-questions__content-faq__item-top');
+    item.style.height = `${header.offsetHeight}px`;
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const items = document.querySelectorAll(".purchaseMethods-questions__content-faq__item");
+  const button = document.querySelector(".purchaseMethods-questions__content-btn");
+
+  const showCount = 5; // Количество элементов, которые будут видны изначально
+  let isExpanded = false;
+
+  function updateVisibility() {
+      items.forEach((item, index) => {
+          if (index < showCount || isExpanded) {
+              item.style.display = "block";
+          } else {
+              item.style.display = "none";
+          }
+      });
+
+      const hiddenCount = items.length - showCount;
+      if (hiddenCount > 0) {
+          button.style.display = "flex";
+          button.innerHTML = isExpanded ? "Скрыть" : `Ещё <span>${hiddenCount}</span> вопросов`;
+      } else {
+          button.style.display = "none";
+      }
+  }
+
+  button.addEventListener("click", function () {
+      isExpanded = !isExpanded;
+      updateVisibility();
+  });
+
+  updateVisibility();
+});
 
 
 
