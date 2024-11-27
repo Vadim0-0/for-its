@@ -3832,7 +3832,9 @@
           }
 
           &__bottom {
+            overflow: hidden;
             margin: auto;
+            border-radius: 12px;
           }
         }
 
@@ -4077,6 +4079,8 @@
   }
 }
 
+/* Квартирограмма */
+
 .apartmentProgram-filter {
   padding-top: 59px;
 
@@ -4190,7 +4194,7 @@
 
     & .table-wrapper {
       padding-top: 24px;
-      overflow-y: auto;
+      overflow-x: hidden;
       display: flex;
       flex-wrap: nowrap;
       flex-grow: 1;
@@ -4546,6 +4550,446 @@
   }
 }
 
+.apartmentProgram-empty {
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  &__content {
+    @include flex-center;
+    min-height: 424px;
+
+    & h3 {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 100%;
+      letter-spacing: -0.01em;
+      color: #000;
+    }
+  }
+}
+
+
+/* Способы покупки */
+
+.purchaseMethods-hero {
+  padding: 47px 0 100px 0;
+  background-color: var(--seryy);
+
+  &__content {
+    overflow: hidden;
+
+    & h2 {
+      margin-bottom: 24px;
+    }
+
+    &-btns {
+      display: flex;
+      align-items: center;
+      overflow-x: auto;
+      gap: 10px;
+      margin-bottom: 36px;
+
+      & button {
+        text-wrap: nowrap;
+        padding: 13px 24px;
+        background-color: var(--white);
+
+        &.active {
+          background-color: var(--yellow);
+        }
+      }
+    }
+
+    &-blocks {
+      position: relative;
+      min-height: 500px;
+
+      &__block {
+        position: absolute;
+        padding: 36px;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        @include transitionEase;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateX(100%);
+
+        &.active {
+          opacity: 1;
+          visibility: visible;
+          pointer-events: all;
+          transform: translateX(0);
+        }
+
+        &-info {
+          position: relative;
+          max-width: 392px;
+          z-index: 1;
+
+          & h3 {
+            margin-bottom: 24px;
+            font-weight: 700;
+            font-size: 48px;
+            line-height: 110%;
+            letter-spacing: -0.01em;
+            color: #fff;
+          }
+
+          & p {
+            margin-bottom: 36px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 150%;
+            letter-spacing: -0.01em;
+            color: #fff;
+          }
+
+          & a {
+            max-width: 200px;
+            padding: 15px;
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+
+            &:hover {
+              border: 1px solid rgba(255, 255, 255, 0.25);
+              background-color: rgba(255, 255, 255, 0.1);
+            }
+          }
+        }
+
+        &-img {
+          position: absolute;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+          border-radius: 12px;
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+.purchaseMethods-steps {
+  padding-bottom: 100px;
+  border-radius: 0 0 40px 40px;
+  background-color: var(--seryy);
+
+  &__content {
+
+    & h2 {
+      margin-bottom: 36px;
+    }
+
+    &-list {
+      @include grid-ColumnsEqually(3, 24px);
+
+      &__item {
+        position: relative;
+        overflow: hidden;
+        min-height: 153px;
+        padding: 36px;
+        border-radius: 12px 12px 0 12px;
+        background-color: var(--white);
+
+        & h3 {
+          max-width: 300px;
+          font-weight: 600;
+          font-size: 20px;
+          line-height: 130%;
+          color: #000;
+        }
+
+        & .icon {
+          position: absolute;
+          @include flex-center;
+          bottom: 0;
+          right: 0;
+          width: 65px;
+          height: 65px;
+          background-repeat: no-repeat;
+          background-image: url(../img/purchaseMethods/steps/line.svg);
+          background-size: cover;
+        }
+
+        &-number {
+          font-weight: 500;
+        font-size: 20px;
+        line-height: 110%;
+        letter-spacing: -0.01em;
+        color: #000;
+        }
+
+        &:last-child {
+          padding-bottom: 0;
+          display: flex;
+          align-items: end;
+          justify-content: center;
+          background-color: inherit;
+
+          & a {
+            padding: 19px 32px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.purchaseMethods-stocks {
+  padding: 100px 0 100px 0;
+
+  &__content {
+    overflow: hidden;
+
+    &-top {
+      @include flex-betweenCenter;
+      align-items: end;
+      margin-bottom: 36px;
+
+      &__btns {
+        @include flex-center(5px);
+      }
+    }
+
+    &-blocks {
+      display: flex;
+
+      &__block {
+        position: relative;
+        overflow: hidden;
+        padding: 12px;
+        border-radius: 12px;
+        min-width: 335px;
+        background-color: var(--seryy);
+        @include transitionEaseInOut;
+
+        &:hover {
+          transform: translateY(-20px);
+        }
+
+        &:not(:last-child) {
+          margin-right: 16px;
+        }
+
+        &-link {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        &-img {
+          margin-bottom: 10px;
+          overflow: hidden;
+          width: 100%;
+          height: 240px;
+          border-radius: 12px;
+
+          & img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        &-article {
+          padding: 16px 8px;
+
+          & h3 {
+            margin-bottom: 16px;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 120%;
+            letter-spacing: -0.01em;
+            color: #000;
+          }
+
+          &__top {
+            @include flex-betweenCenter;
+
+            & p {
+              font-weight: 400;
+              font-size: 12px;
+              line-height: 120%;
+              letter-spacing: -0.01em;
+              color: rgba(0, 0, 0, 0.5);
+            }
+
+            & span {
+              padding: 5px 10px;
+              border-radius: 5px;
+              font-weight: 300;
+              font-size: 12px;
+              line-height: 120%;
+              letter-spacing: -0.01em;
+              color: #000;
+              border: 1px solid #fed400
+            }
+          }
+        }
+
+      }
+    }
+
+    &-paginations {
+      display: none;
+    }
+  }
+}
+
+.purchaseMethods-feedback {
+  padding-bottom: 103px;
+
+  &__content {
+    @include flex-betweenCenter;
+    gap: 10px;
+    padding: 34px 36px;
+    border-radius: 12px;
+    background-color: var(--seryy);
+
+    &-info {
+      max-width: 473px;
+
+      & .section-title {
+        margin-bottom: 24px;
+        line-height: 100%;
+      }
+
+      & p {
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 140%;
+        letter-spacing: -0.01em;
+        color: #727272;
+      }
+    }
+
+    &-form {
+
+      &__fields {
+        display: grid;
+        grid-template-columns: 257px 257px 200px;
+        gap: 24px;
+        margin-bottom: 16px;
+
+        & label {
+
+          & input {
+            padding: 14px 24px;
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
+}
+
+.purchaseMethods-questions {
+  padding-bottom: 119px;
+
+  &__content {
+
+    & h2 {
+      margin-bottom: 36px;
+    }
+
+    &-faq {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 36px;
+
+      &__item {
+        overflow: hidden;
+        border-radius: 8px;
+        background-color: var(--seryy);
+        cursor: pointer;
+        @include transitionEase;
+
+        &.active {
+
+          & .purchaseMethods-questions__content-faq__item-top {
+
+            & .icon {
+              background-color: var(--yellow);
+
+              &::after {
+                width: 14px;
+                height: 2px;
+                background-image: url(../img/purchaseMethods/questions/Vector-minus.svg)
+              }
+            }
+          }
+        }
+
+        &-top {
+          @include flex-betweenCenter;
+          padding: 24px 24px;
+
+          & h3 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 110%;
+            color: #000;
+          }
+
+          & .icon {
+            position: relative;
+            min-width: 36px;
+            min-height: 36px;
+            border-radius: 5px;
+            background-color: var(--white);
+            @include transitionEase;
+
+            &::after {
+              content: '';
+              position: absolute;
+              width: 14px;
+              height: 14px;
+              top: 50%;
+              left: 50%;
+              @include transform-center;
+              background-image: url(../img/purchaseMethods/questions/Vector-plus.svg);
+              background-repeat: no-repeat;
+              @include transitionEase;
+            }
+          }
+        }
+
+        &-answer {
+          padding: 0 24px 24px 24px;
+
+          & p {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 110%;
+            color: rgba(0, 0, 0, 0.8);
+          }
+        }
+      }
+
+    }
+
+    &-btn {
+      padding: 21px 31px;
+      margin: auto;
+      color: #000;
+    }
+  }
+}
+
+
 /* Pop-up */
 
 .pop-up-callback {
@@ -4739,6 +5183,7 @@
     }
   }
 
+  /* Внутренняя страница квартиры */
   .apartmentPage-hero {
 
     &__content {
@@ -4768,6 +5213,25 @@
 
   .apartmentPage-feedback {
 
+    &__content {
+
+      &-form {
+        max-width: 538px;
+
+        &__fields {
+          justify-content: flex-end;
+          grid-template-columns: 257px 257px;
+
+          & button {
+            grid-column: span 2;
+          }
+        }
+      }
+    }
+  }
+
+  /* Способы покупки */
+  .purchaseMethods-feedback {
     &__content {
 
       &-form {
@@ -4924,6 +5388,7 @@
     }
   }
 
+  /* Страница ЖК */
   .residentialComplex-filter {
 
     & .filter__content {
@@ -5025,6 +5490,7 @@
     }
   }
 
+  /* Внутренняя страница квартиры */
   .apartmentPage-hero {
 
     &__content {
@@ -5033,6 +5499,26 @@
   }
 
   .apartmentPage-feedback {
+
+    &__content {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+    }
+  }
+
+  /* Способы покупки */
+  .purchaseMethods-steps {
+
+    &__content {
+
+      &-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  .purchaseMethods-feedback {
 
     &__content {
       flex-direction: column;
@@ -6224,6 +6710,7 @@
     }
   }
 
+  /* СТраница ЖК */
   .residentialComplex-hero {
 
     &__content {
@@ -7025,6 +7512,8 @@
     }
   }
 
+  /* Внутренняя страница квартиры */
+
   .apartmentPage-hero {
     overflow: hidden;
     padding: 17px 0 60px 0;
@@ -7136,7 +7625,9 @@
 
               &__bottom {
                 @include flex-center;
+                overflow: visible;
                 padding: 15px 0;
+                border-radius: 8px;
               }
             }
           }
@@ -7268,6 +7759,8 @@
       width: 100%;
     }
   }
+
+  /* Квартирограмма */
 
   .apartmentProgram-filter {
     position: relative;
@@ -7448,6 +7941,284 @@
         &__btn1 {
           margin-bottom: 11px;
         }
+      }
+    }
+  }
+
+  .apartmentProgram-empty {
+    padding-top: 49px;
+    padding-bottom: 71px;
+
+    &__content {
+      min-height: 273px;
+
+      & h3 {
+        font-size: 16px;
+      }
+    }
+  }
+
+  /* Способы покупки */
+  .purchaseMethods-hero {
+    padding: 31px 0 60px 0;
+
+    &__content {
+
+      & h2 {
+        margin-bottom: 17px;
+      }
+
+      &-btns {
+        margin-bottom: 20px;
+
+        & button {
+          padding: 9px 22px;
+        }
+      }
+
+      &-blocks {
+        min-height: 373px;
+
+        &__block {
+          display: flex;
+          align-items: end;
+          padding: 16px;
+          border-radius: 8px;
+
+          &-info {
+
+            & h3 {
+              margin-bottom: 14px;
+              font-size: 24px;
+            }
+
+            & p {
+              margin-bottom: 21px;
+              font-size: 12px;
+            }
+
+            & a {
+              max-width: 133px;
+              padding: 10px;
+            }
+          }
+
+          &-img {
+
+            &::after {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(202deg, rgba(126, 102, 84, 0) 0%, #7e6654 100%);
+            }
+
+            & img {
+              object-position: 80%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .purchaseMethods-steps {
+    padding-bottom: 60px;
+    border-radius: 0;
+
+    &__content {
+
+      & h2 {
+        margin-bottom: 22px;
+      }
+
+      &-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+
+        &__item {
+          min-height: 100px;
+          padding: 15px;
+          border-radius: 8px 8px 0 8px;
+
+          & h3 {
+            font-size: 14px;
+          }
+
+          & .icon {
+            width: 40px;
+            height: 40px;
+
+            & p {
+              font-size: 12px;
+            }
+          }
+
+          &:last-child {
+            padding: 0;
+            padding-top: 5px;
+            min-height: auto;
+
+            & a {
+              padding: 15px 39px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .purchaseMethods-stocks {
+    padding: 60px 0 60px 0;
+    overflow: hidden;
+
+    &__content {
+      overflow: visible;
+
+      &-top {
+        margin-bottom: 20px;
+
+        &__btns {
+          display: none;
+        }
+      }
+
+      &-blocks {
+        margin-bottom: 20px;
+
+        &__block {
+          padding: 5px 5px 10px 5px;
+          min-width: 260px;
+          border-radius: 8px;
+
+          &:hover {
+            transform: none;
+          }
+
+          &-img {
+            height: 164px;
+            border-radius: 8px;
+          }
+
+          &-article {
+            padding: 6px 9px;
+
+            & h3 {
+              margin-bottom: 15px;
+              font-size: 16px;
+            }
+
+            &__top {
+
+              & p {
+                font-size: 12px;
+              }
+
+              & span {
+                padding: 4px 4px;
+                font-size: 10px;
+              }
+            }
+
+          }
+        }
+      }
+
+      &-paginations {
+        display: flex;
+        justify-content: center;
+
+        & span {
+          background-color: #dfdfdf;
+        }
+      }
+    }
+  }
+
+  .purchaseMethods-feedback {
+    padding-bottom: 60px;
+
+    &__content {
+      padding: 20px;
+      border-radius: 8px;
+
+      &-info {
+        & .section-title {
+          margin-bottom: 15px;
+          max-width: 190px;
+          line-height: 110%;
+        }
+
+        & p {
+          font-size: 13px;
+        }
+      }
+
+      &-form {
+
+        &__fields {
+          grid-template-columns: 1fr;
+          gap: 14px;
+
+          & label {
+
+            & input {
+              padding: 16px 15px;
+            }
+          }
+
+          & button {
+            padding: 17px;
+            grid-column: span 1;
+          }
+        }
+      }
+    }
+  }
+
+  .purchaseMethods-questions {
+    padding-bottom: 60px;
+
+    &__content {
+
+      & h2 {
+        margin-bottom: 20px;
+      }
+
+      &-faq {
+        gap: 13px;
+        margin-bottom: 21px;
+
+        &__item {
+
+          &-top {
+            padding: 24px 15px;
+
+            & h3 {
+              font-size: 14px;
+              line-height: 124%;
+            }
+
+            & .icon {
+              min-width: 32px;
+              min-height: 32px;
+            }
+          }
+
+          &-answer {
+            padding: 0 50px 24px 15px;
+
+            & p {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+
+      &-btn {
+        padding: 10px 29px;
       }
     }
   }
