@@ -260,52 +260,125 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 /* Pop-up */
-document.addEventListener("DOMContentLoaded", function() {
-  const popUp = document.querySelector(".pop-up-callback");
-  const closeButton = document.getElementById("pop-up-callback-close");
-  const telInput = document.getElementById("pop-up-callback-tel");
+document.addEventListener('DOMContentLoaded', () => {
+	var grcScript = document.createElement("script");
+	grcScript.setAttribute('src', 'https://www.google.com/recaptcha/api.js?render=' + recaptchaKey)
+	document.body.appendChild(grcScript)
 
-  function openPopUp() {
-      popUp.classList.add("active");
-      document.body.style.overflow = "hidden";
-  }
+	var forms = document.querySelectorAll('.js-ajax-form');
+	forms.forEach((form, i) => {
+		var nameInput = form.querySelector('.js-form__name-input');
+		var telInput = form.querySelector('.js-form__tel-input');
 
-  function closePopUp() {
-      popUp.classList.remove("active");
-      document.body.style.overflow = "";
-  }
+		var grcInput = form.querySelector('.js-recaptcha-response');
+		if (grcInput === null) {
+			grcInput = document.createElement("input");
+			grcInput.classList.add('js-recaptcha-response');
+			grcInput.setAttribute('name', 'recaptchaResponse');
+			grcInput.setAttribute('type', 'hidden');
+			grcInput.style.display = 'none';
+			form.appendChild(grcInput);
+		}
 
-  document.getElementById("pop-up-callback-open").addEventListener("click", openPopUp);
-  closeButton.addEventListener("click", closePopUp);
+		telInput.addEventListener('input', () => {
 
-  const openButtons = document.querySelectorAll(".pop-up-callback-open");
-  openButtons.forEach(button => button.addEventListener("click", openPopUp));
+			if (!telInput.value.startsWith('+7')) {
+				telInput.value = '+7';
+			}
 
-  // Маска и проверка номера телефона
-  telInput.addEventListener('input', () => {
-      // Если номер не начинается с +7, добавляем префикс
-      if (!telInput.value.startsWith('+7')) {
-          telInput.value = '+7';
-      }
+			telInput.value = telInput.value.replace(/[^\d+]/g, '');
 
-      // Удаляем все символы, кроме цифр и плюса
-      telInput.value = telInput.value.replace(/[^\d+]/g, '');
+			if (telInput.value.length > 12) {
+				telInput.value = telInput.value.slice(0, 12);
+			}
+		});
 
-      // Ограничиваем длину номера до 12 символов
-      if (telInput.value.length > 12) {
-          telInput.value = telInput.value.slice(0, 12);
-      }
-  });
+		if (nameInput !== null) {
+			nameInput.addEventListener('input', () => {
+				nameInput.value = nameInput.value.replace(/[^a-zA-Zа-яА-ЯёЁ\s]/g, '');
+			});
+		}
 
-  // Предотвращение отправки формы, если номер некорректный
-  document.querySelector('.form-global').addEventListener('submit', function(event) {
-      if (telInput.value.length < 12) {
-          event.preventDefault(); // Блокируем отправку формы
-          alert('Введите корректный номер телефона. Номер должен содержать 11 цифр.');
-      }
-  });
+		form.addEventListener('submit', (event) => {
+			event.preventDefault();
+			let isValid = true;
+
+
+			telInput.style.backgroundColor = '';
+			if (nameInput !== null) {
+				nameInput.style.backgroundColor = '';
+				if (nameInput !== null && !nameInput.value.trim()) {
+					nameInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+					isValid = false;
+				}
+			}
+
+			if (telInput.value.length < 12) {
+				telInput.style.backgroundColor = 'rgb(255, 142, 142, 0.2)';
+				isValid = false;
+			}
+
+			if (!isValid) {
+				return;
+			}
+
+			form.classList.add('form-submit-progress');
+			grecaptcha.ready(function () {
+				grecaptcha.execute(recaptchaKey, { action: 'submit' }).then(function (token) {
+					grcInput.value = token;
+
+					setTimeout(() => {
+						fetch(window.sendformUrl + window.location.search, {
+							method: 'POST',
+							body: new FormData(form),
+						})
+							.then(function (response) {
+								form.classList.remove('form-submit-progress');
+								if (response.status >= 200 && response.status < 300) {
+									return response
+								} else {
+									alert('Ошибка. Попробуйте ещё раз или свяжитесь с нами иным способом');
+								}
+							})
+							.then(function (response) {
+								return response.json()
+							})
+							.then(function (response) {
+								//console.log(response);//TODO remove
+								if (response.success === true) {
+									closeAllPopUps();
+									openPopUp(document.querySelector('.js-popup-successfull-send'));
+								} else {
+									if (response.errorText !== '') {
+										alert(response.errorText);
+									} else {
+										alert('Ошибка. Попробуйте ещё раз или свяжитесь с нами иным способом');
+									}
+
+								}
+							}).catch(function (error) {
+								form.classList.remove('form-submit-progress');
+								alert('Ошибка. Попробуйте ещё раз или свяжитесь с нами иным способом');
+							});
+					}, 100);
+				});
+			});
+		});
+	});
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+  const openButton = document.getElementById('cookies-text-open');
+  const contentText = document.querySelector('.cookies__content-text');
+
+  openButton.addEventListener('click', function () {
+      // Устанавливаем высоту контента на auto, чтобы она соответствовала содержимому
+      contentText.style.maxHeight = contentText.scrollHeight + 'px';
+
+      // Отключаем кнопку
+      openButton.style.display = "none";
+  });
+});
 
 /* filter */
 document.addEventListener('DOMContentLoaded', () => {
@@ -380,6 +453,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Закрытие select при клике вне его и вне слайдера
+  document.addEventListener('click', (event) => {
+    const activeSelect = document.querySelector('.filter__content-blocks__fields-block.select.active');
+    if (activeSelect && !event.target.closest('.filter__content-blocks__fields-block.select') && !event.target.closest('.slider__blocks')) {
+      activeSelect.classList.remove('active');
+    }
+  });
+
   // Инициализация кнопки "Ещё"
   function initializeShowMore(labels, button, visibleCount) {
     let allLabelsVisible = false;
@@ -444,6 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const expandButton = document.querySelector('.expand-filter');
   initializeExpandButton(expandButton, filterBtns);
 });
+
 
 
 /* Главная */
@@ -889,62 +971,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* Контакты */
 document.addEventListener("DOMContentLoaded", function () {
-  ymaps.ready(function () {
-      // Создаем карту
-      var myMap = new ymaps.Map("map", {
-          center: [44.791303, 37.402264],
-          zoom: 16
-      });
 
-      // Контейнер для меток
-      var markers = [];
+  if(ymaps) {
+    ymaps.ready(function () {
+        // Создаем карту
+        var myMap = new ymaps.Map("map", {
+            center: [44.801736, 37.416887],
+            zoom: 16
+        });
 
-      // Данные меток из HTML
-      var markerData = document.getElementById("marker-data").children;
-      Array.from(markerData).forEach((item, index) => {
-          var coords = JSON.parse(item.getAttribute("data-coords"));
-          var title = item.getAttribute("data-title");
+        // Контейнер для меток
+        var markers = [];
 
-          // HTML-содержимое для кастомной метки с разделением на иконку и текст
-          var markerContent = `
-              <div class="map-marker">
-                  <div class="map-marker-icon">
-                      <svg width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M0 0V5.25418L5.23193 0H0Z" />
-                          <path d="M0 13.0872L12.6456 0.389617C11.7922 0.133588 10.7978 0 9.66235 0H9.27275L0 9.30983V13.0872Z" />
-                          <path d="M17.4137 10.9276C17.0056 10.0594 16.3822 9.35064 15.551 8.80519C16.2746 7.85157 16.6382 6.73469 16.6382 5.46567C16.6382 4.69016 16.4972 3.9666 16.2152 3.2987C15.9889 2.75695 15.6549 2.27457 15.2319 1.85156L0 17.1429V20H11.0501C12.2375 20 13.269 19.8553 14.1447 19.5733C15.0204 19.2876 15.744 18.8794 16.3191 18.3451C16.8943 17.8108 17.321 17.1688 17.603 16.4193C17.885 15.6697 18.026 14.8274 18.026 13.8998C18.026 12.7903 17.8219 11.8033 17.4137 10.9313" />
-                      </svg>
-                  </div>
-                  <div class="map-marker-text">${title}</div>
-              </div>`;
+        // Данные меток из HTML
+        var markerData = document.getElementById("marker-data").children;
+        Array.from(markerData).forEach((item, index) => {
+            var coords = JSON.parse(item.getAttribute("data-coords"));
+            var title = item.getAttribute("data-title");
 
-          // Метка с HTML-содержимым
-          var marker = new ymaps.Placemark(coords, {
-              hintContent: title,
-              balloonContent: title
-          }, {
-              iconLayout: 'default#imageWithContent',
-              iconContentLayout: ymaps.templateLayoutFactory.createClass(markerContent),
-              iconImageSize: [30, 30],
-              iconImageOffset: [-15, -30]
-          });
+            // HTML-содержимое для кастомной метки с разделением на иконку и текст
+            var markerContent = `
+                <div class="map-marker">
+                    <div class="map-marker-icon" style="
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 5px;
+                        box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+                        background: #fed400;">
+                        <svg width="19" height="20" viewBox="0 0 19 20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M0 0V5.25418L5.23193 0H0Z" />
+                            <path d="M0 13.0872L12.6456 0.389617C11.7922 0.133588 10.7978 0 9.66235 0H9.27275L0 9.30983V13.0872Z" />
+                            <path d="M17.4137 10.9276C17.0056 10.0594 16.3822 9.35064 15.551 8.80519C16.2746 7.85157 16.6382 6.73469 16.6382 5.46567C16.6382 4.69016 16.4972 3.9666 16.2152 3.2987C15.9889 2.75695 15.6549 2.27457 15.2319 1.85156L0 17.1429V20H11.0501C12.2375 20 13.269 19.8553 14.1447 19.5733C15.0204 19.2876 15.744 18.8794 16.3191 18.3451C16.8943 17.8108 17.321 17.1688 17.603 16.4193C17.885 15.6697 18.026 14.8274 18.026 13.8998C18.026 12.7903 17.8219 11.8033 17.4137 10.9313" />
+                        </svg>
+                    </div>
+                    <div class="map-marker-text" style="
+                    width: auto;
+                     margin-top: 10px;
+                    text-wrap: nowrap;
+                    padding: 5px 10px;
+                    margin-bottom: 10px;
+                    border-radius: 2px;
+                    font-weight: 500;
+                    font-size: 12px;
+                    line-height: 110%;
+                    letter-spacing: -0.01em;
+                    color: #000;
+                    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.1);
+                    background: var(--white);">${title}</div>
+                </div>`;
 
-          // Добовление метки на карту и в массив
-          myMap.geoObjects.add(marker);
-          markers.push(marker);
-      });
+            // Метка с HTML-содержимым
+            var marker = new ymaps.Placemark(coords, {
+                hintContent: title,
+                balloonContent: title
+            }, {
+                iconLayout: 'default#imageWithContent',
+                iconContentLayout: ymaps.templateLayoutFactory.createClass(markerContent),
+                iconImageSize: [48, 48],
+                iconImageOffset: [-15, -30]
+            });
 
-      // Обработчики для кнопок
-      document.querySelectorAll(".contacts-hero__content-list__item-btn").forEach(button => {
-          button.addEventListener("click", function () {
-              var index = this.getAttribute("data-marker");
-              var marker = markers[index];
-              if (marker) {
-                  myMap.panTo(marker.geometry.getCoordinates(), { flying: true });
-              }
-          });
-      });
-  });
+            // Добовление метки на карту и в массив
+            myMap.geoObjects.add(marker);
+            markers.push(marker);
+        });
+
+        // Обработчики для кнопок
+        document.querySelectorAll(".contacts-hero__content-list__item-btn").forEach(button => {
+            button.addEventListener("click", function () {
+                var index = this.getAttribute("data-marker");
+                var marker = markers[index];
+                if (marker) {
+                    myMap.panTo(marker.geometry.getCoordinates(), { flying: true });
+                }
+            });
+        });
+    });
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
