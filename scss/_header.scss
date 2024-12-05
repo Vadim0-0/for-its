@@ -142,12 +142,16 @@
   &-menu {
     position: absolute;
     width: 100%;
-    top: -1000%;
+    top: 100px;
     z-index: -1;
+    visibility: hidden;
+    opacity: 0;
     @include transitionEase;
 
     &.active {
       top: 114px;
+      opacity: 1;
+      visibility: visible;
     }
 
     & .container {
@@ -304,6 +308,13 @@
                   & a {
                     padding: 15px 0;
                   }
+                }
+              }
+
+              & .object-btn {
+
+                & svg {
+                  margin-top: 4px;
                 }
               }
             }
