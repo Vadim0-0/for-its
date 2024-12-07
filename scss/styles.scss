@@ -1677,11 +1677,6 @@
       }
     }
   }
-
-  & .ymaps-2-1-79-controls__control_toolbar,
-  & .ymaps-2-1-79-controls__control {
-    display: none;
-  }
 }
 
 .contacts-feedback {
@@ -2723,11 +2718,6 @@
             height: auto !important;
           }
         }
-      }
-
-      & .ymaps-2-1-79-controls__control_toolbar,
-      & .ymaps-2-1-79-controls__control {
-        display: none;
       }
     }
 
@@ -4251,7 +4241,7 @@
 
         &:nth-child(1) {
           position: absolute;
-          bottom: 43px;
+          bottom: 41.6px;
         }
       }
 
@@ -5171,13 +5161,11 @@
       height: 100%;
       padding: 36px;
       background-color: var(--white);
-      pointer-events: none;
       opacity: 0;
       visibility: hidden;
       @include transitionEaseInOut;
 
       &.active {
-        pointer-events: all;
         opacity: 1;
         visibility: visible;
       }
@@ -8060,6 +8048,7 @@
           bottom: -59px;
           left: 50%;
           transform: translateX(-50%);
+          padding: 11px 23px;
         }
       }
 
@@ -8128,7 +8117,7 @@
           font-size: 12px;
 
           &:nth-child(1) {
-            bottom: 20px;
+            bottom: 33.5px;
           }
         }
 
