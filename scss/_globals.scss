@@ -15,6 +15,7 @@ html {
 }
 
 main {
+  padding-top: 95px;
   flex: 1 0 auto;
 }
 
@@ -193,6 +194,10 @@ button {
 }
 
 @media (max-width: 768px) {
+  main {
+    padding-top: 51px;
+  }
+
   .section-title {
     letter-spacing: 0px;
     font-size: 24px;
