@@ -2,7 +2,7 @@
   position: fixed;
   padding: 30px 0;
   background-color: var(--white);
-  z-index: 2;
+  z-index: 5;
   top: 0;
   left: 0;
   width: 100%;
@@ -132,8 +132,12 @@
     &-tel {
       margin-left: auto;
 
-      & a {
+      &__content {
         @include flex-center(12px);
+
+        & svg {
+          cursor: pointer;
+        }
       }
     }
 
@@ -200,6 +204,19 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+@media (max-width: 1160px) {
+
+  .header {
+
+    &__content {
+
+      &-nav {
+        margin-left: 20px;
       }
     }
   }
@@ -315,10 +332,7 @@
               }
 
               & .object-btn {
-
-                & svg {
-                  margin-top: 4px;
-                }
+                font-size: 14px;
               }
             }
           }
