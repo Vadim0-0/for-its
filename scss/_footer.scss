@@ -9,7 +9,7 @@
     &-top {
       @include flex-betweenCenter;
       align-items: flex-start;
-      margin-bottom: 38px;
+      margin-bottom: -6px;
 
       &__nav {
 
@@ -163,13 +163,13 @@
       }
 
       &__left {
-        max-width: 602px;
+        max-width: 610px;
 
         &-links {
           display: flex;
           align-items: center;
           gap: 121px;
-          margin-top: 7px;
+          margin-top: 24px;
         }
       }
     }
@@ -187,6 +187,7 @@
         position: relative;
         flex-direction: column;
         align-items: flex-start;
+        margin-bottom: 39px;
 
         &__links {
           width: 90px;
