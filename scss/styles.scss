@@ -380,6 +380,11 @@
             background-color: var(--white);
             cursor: pointer;
             @include transitionEaseInOut;
+
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            color: #000;
           }
 
           & input {
@@ -413,6 +418,17 @@
         font-size: 14px;
         line-height: 171%;
         color: #414141;
+
+        & svg {
+          @include transitionEase;
+        }
+
+        &.active {
+
+          & svg {
+            transform: rotate(180deg)
+          }
+        }
       }
 
       & .resetting-filter {
@@ -772,6 +788,10 @@
                 line-height: 120%;
                 letter-spacing: -0.01em;
                 color: rgba(0, 0, 0, 0.5);
+
+                & sup {
+                  font-size: 11px
+                }
               }
             }
 
@@ -1651,6 +1671,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      transform: translateX(15px);
 
       &-icon {
         @include flex-center;
@@ -2066,6 +2087,10 @@
               font-size: 20px;
               line-height: 120%;
               color: #000;
+
+              & sup {
+                font-size: 12px;
+              }
             }
 
             &-info {
@@ -2354,34 +2379,114 @@
           color: #000;
         }
 
+        &::before {
+          position: absolute;
+          content: '';
+          background-repeat: no-repeat;
+          background-size: 100%;
+          @include transitionEase;
+        }
+
         &:nth-child(1) {
           top: 130px;
           left: 729px;
+
+          &.active {
+
+            &::before {
+              top: -19px;
+              left: -58px;
+              width: 188px;
+              height: 79px;
+              background-image: url(../img/apartmens/generalPlan/home-7.svg);
+              z-index: -1;
+            }
+          }
         }
 
         &:nth-child(2) {
           top: 251px;
           left: 734px;
+
+          &.active {
+
+            &::before {
+              top: -36px;
+              left: -84px;
+              width: 217.5px;
+              height: 112px;
+              background-image: url(../img/apartmens/generalPlan/home-8.svg);
+              z-index: -1;
+            }
+          }
         }
 
         &:nth-child(3) {
           top: 187px;
           left: 593px;
+
+          &.active {
+
+            &::before {
+              top: -34px;
+              left: -70px;
+              width: 166.5px;
+              height: 102.5px;
+              background-image: url(../img/apartmens/generalPlan/home-9.svg);
+              z-index: -1;
+            }
+          }
         }
 
         &:nth-child(4) {
           top: 317px;
           left: 577px;
+
+          &.active {
+
+            &::before {
+              top: -48px;
+              left: -78px;
+              width: 210px;
+              height: 112px;
+              background-image: url(../img/apartmens/generalPlan/home-10.svg);
+              z-index: -1;
+            }
+          }
         }
 
         &:nth-child(5) {
           top: 243px;
           left: 444px;
+
+          &.active {
+
+            &::before {
+              top: -38px;
+              left: -66px;
+              width: 190px;
+              height: 105px;
+              background-image: url(../img/apartmens/generalPlan/home-11.svg);
+              z-index: -1;
+            }
+          }
         }
 
         &:nth-child(6) {
           top: 378px;
           left: 418px;
+
+          &.active {
+
+            &::before {
+              top: -55px;
+              left: -84px;
+              width: 222.5px;
+              height: 138px;
+              background-image: url(../img/apartmens/generalPlan/home-12.svg);
+              z-index: -1;
+            }
+          }
         }
       }
 
@@ -2409,6 +2514,36 @@
           opacity: 1;
           pointer-events: all;
           visibility: visible;
+        }
+
+        &:nth-child(1) {
+          bottom: 86px;
+          left: 0;
+        }
+
+        &:nth-child(2) {
+          bottom: -32px;
+          left: 0;
+        }
+
+        &:nth-child(3) {
+          bottom: 45px;
+          left: -142px;
+        }
+
+        &:nth-child(4) {
+          bottom: -27px;
+          left: 60px;
+        }
+
+        &:nth-child(5) {
+          bottom: -8px;
+          left: -281px;
+        }
+
+        &:nth-child(6) {
+          bottom: -19px;
+          left: -49px;
         }
 
         & h3 {
@@ -2719,12 +2854,56 @@
           }
         }
       }
+
+      & .ymaps-2-1-79-placemark-overlay {
+        width: 30px !important;
+        height: 30px !important;
+      }
+
+      & .ymaps-2-1-79-controls__control {
+        inset: 180px 36px auto auto !important;
+
+        & .ymaps-2-1-79-zoom {
+          height: 50px !important;
+        }
+
+        & .ymaps-2-1-79-zoom__scale {
+          display: none;
+        }
+
+        & .ymaps-2-1-79-zoom__button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 48px;
+          height: 48px;
+          padding: 0;
+        }
+
+        & .ymaps-2-1-79-float-button-icon {
+          position: inherit !important;
+          left: inherit !important;
+        }
+
+        & .ymaps-2-1-79-zoom__plus {
+          & .ymaps-2-1-79-zoom__icon {
+            background-image: url(../img/apartmens/generalPlan/mynaui_plus.svg);
+          }
+        }
+
+        & .ymaps-2-1-79-zoom__minus {
+          & .ymaps-2-1-79-zoom__icon {
+            background-image: url(../img/apartmens/generalPlan/mynaui_minus.svg);
+          }
+        }
+
+      }
     }
 
     & .filter-buttons{
       position: absolute;
       overflow: hidden;
-      top: 36px;
+      top: 45px;
       left: 36px;
       display: flex;
       flex-direction: column;
@@ -4120,6 +4299,7 @@
 
     & img {
       width: 100%;
+      mix-blend-mode: multiply;
     }
 
     &.active {
@@ -4221,7 +4401,7 @@
       padding-top: 55px;
       padding-bottom: 80px;
       top: 0;
-      z-index: 5;
+      z-index: 4;
 
       &.left {
         left: 39px;
@@ -4258,7 +4438,8 @@
 
     & .table-wrapper {
       padding-top: 24px;
-      overflow-x: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       display: flex;
       flex-wrap: nowrap;
       flex-grow: 1;
@@ -4308,6 +4489,7 @@
           z-index: 1;
 
           & .tooltip {
+            position: fixed;
             visibility: visible;
             opacity: 1;
           }
@@ -4333,6 +4515,27 @@
               bottom: 50%;
               left: -15px;
               transform: translateY(50%) rotate(90deg);
+
+            }
+          }
+        }
+
+        &:nth-child(2),
+        &:nth-child(18),
+        &:nth-child(34),
+        &:nth-child(50),
+        &:nth-child(66),
+        &:nth-child(82),
+        &:nth-child(98),
+        &:nth-child(114),
+        &:nth-child(130),
+        &:nth-child(146) {
+
+          & .tooltip {
+            left: 36px;
+
+            &::after {
+              left: 45%;
 
             }
           }
@@ -4458,10 +4661,13 @@
     }
 
     & .details-panel {
-      position: absolute;
+      position: fixed;
       width: 433px;
-      top: -83px;
+      top: 0;
       right: -50%;
+      overflow-y: auto;
+      max-height: 100%;
+      min-height: 100%;
       padding: 40px;
       border-radius: 12px 0 0 12px;
       box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.05);
@@ -4577,6 +4783,10 @@
             background-color: var(--yellow);
           }
         }
+
+        &.disabled {
+          display: none;
+        }
       }
 
       &__list {
@@ -4598,6 +4808,10 @@
               font-weight: 500;
               color: #000;
             }
+
+            & sup {
+              font-size: 10px;
+            }
           }
         }
       }
@@ -4605,11 +4819,19 @@
       &__btn1 {
         margin-bottom: 16px;
         width: 100%;
+
+        &.disabled {
+          display: none;
+        }
       }
 
       &__btn2 {
         padding: 16px;
         width: 100%;
+
+        &.disabled {
+          display: none;
+        }
       }
     }
   }
@@ -5694,7 +5916,7 @@
       }
 
       &-blocks {
-        margin-bottom: 12px;
+        margin-bottom: 21px;
 
         &__fields {
           display: flex;
@@ -5769,6 +5991,24 @@
                 }
               }
             }
+          }
+        }
+
+        &__btns {
+          gap: 8px;
+          row-gap: 5px;
+          padding-top: 16px;
+
+          &-label {
+
+            &__span {
+              padding: 8px 14px;
+              font-size: 10px;
+            }
+          }
+
+          & .show-more {
+            font-size: 11px
           }
         }
       }
@@ -7084,31 +7324,91 @@
           &:nth-child(1) {
             top: 95px;
             left: 534px;
+
+            &.active {
+
+              &::before {
+                top: -15px;
+                left: -46px;
+                width: 138px;
+                height: 63px;
+              }
+            }
           }
 
           &:nth-child(2) {
             top: 182px;
             left: 533px;
+
+            &.active {
+
+              &::before {
+                top: -26px;
+                left: -59px;
+                width: 158.5px;
+                height: 112px;
+              }
+            }
           }
 
           &:nth-child(3) {
             top: 136px;
             left: 432px;
+
+            &.active {
+
+              &::before {
+                top: -25px;
+                left: -51px;
+                width: 122.5px;
+                height: 102.5px;
+              }
+            }
           }
 
           &:nth-child(4) {
             top: 230px;
             left: 419px;
+
+            &.active {
+
+              &::before {
+                top: -33px;
+                left: -55px;
+                width: 154px;
+                height: 112px;
+              }
+            }
           }
 
           &:nth-child(5) {
             top: 176px;
             left: 322px;
+
+            &.active {
+
+              &::before {
+                top: -27px;
+                left: -45px;
+                width: 139px;
+                height: 105px;
+              }
+            }
           }
 
           &:nth-child(6) {
             top: 274px;
             left: 304px;
+
+            &.active {
+
+              &::before {
+                top: -37px;
+                left: -60px;
+                width: 161.5px;
+                height: 138px;
+              }
+            }
           }
         }
 
@@ -7119,6 +7419,54 @@
 
         &__item {
           padding: 10px;
+
+          &:nth-child(1) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
+
+          &:nth-child(2) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
+
+          &:nth-child(3) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
+
+          &:nth-child(4) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
+
+          &:nth-child(5) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
+
+          &:nth-child(6) {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+          }
 
           & h3 {
             margin-bottom: 10px;
@@ -7182,9 +7530,12 @@
       }
 
       &-examples {
-        gap: 15px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        gap: 0;
 
         &__btns {
+          margin-bottom: 15px;
           width: 105%;
 
           & button {
@@ -7285,6 +7636,23 @@
           & p {
             font-size: 10px;
           }
+        }
+      }
+
+      &-map {
+
+        & .ymaps-2-1-79-controls__control {
+          inset: 180px 20px auto auto !important;
+
+          & .ymaps-2-1-79-zoom {
+            height: 30px !important;
+          }
+
+          & .ymaps-2-1-79-zoom__button {
+            width: 40px;
+            height: 40px;
+          }
+
         }
       }
     }
@@ -7586,7 +7954,14 @@
     &__content {
 
       &-top {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        gap: 0;
         margin-bottom: 20px;
+
+        & h2 {
+          margin-bottom: 20px
+        }
 
         &__btns {
           @include grid-ColumnsEqually(4, 10px);
@@ -7894,7 +8269,7 @@
               &__bottom {
                 @include flex-center;
                 overflow: visible;
-                padding: 15px 0;
+                padding: 10px 0 30px 0;
                 border-radius: 8px;
               }
             }
@@ -7979,6 +8354,19 @@
               }
             }
           }
+        }
+      }
+    }
+  }
+
+  .apartmentPage-placesNearby {
+
+    & .residentialComplex-placesNearby__content {
+
+      &-blocks {
+
+        &__block {
+          min-width: 100%;
         }
       }
     }
@@ -8156,7 +8544,6 @@
       }
 
       & .details-panel {
-        height: 150%;
         width: 100%;
         right: -200%;
         padding: 15px;
@@ -8260,7 +8647,7 @@
       }
 
       &-blocks {
-        min-height: 373px;
+        min-height: 400px;
 
         &__block {
           display: flex;
@@ -8323,7 +8710,7 @@
 
         &__item {
           min-height: 100px;
-          padding: 15px;
+          padding: 15px !important;
           border-radius: 8px 8px 0 8px;
 
           & h3 {
@@ -8549,6 +8936,16 @@
             }
           }
         }
+      }
+    }
+  }
+
+  .purchaseMethods-hero {
+
+    &__content {
+
+      &-blocks {
+        min-height: 116vw;
       }
     }
   }
