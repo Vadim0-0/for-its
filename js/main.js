@@ -72,12 +72,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Функция переключения класса active
   function toggleActive(button, list) {
+      const currentlyActiveIndex = getCurrentlyActiveIndex();
+
+      // Если есть активный другой блок, закрываем его
+      if (currentlyActiveIndex !== -1 && objectBtns[currentlyActiveIndex] !== button) {
+          removeActive(objectBtns[currentlyActiveIndex], objectLists[currentlyActiveIndex]);
+      }
+
       list.classList.toggle('active');
       button.classList.toggle('active');
   }
 
   // Функция добавления класса active
   function addActive(button, list) {
+      const currentlyActiveIndex = getCurrentlyActiveIndex();
+
+      // Если есть активный другой блок, закрываем его
+      if (currentlyActiveIndex !== -1 && objectBtns[currentlyActiveIndex] !== button) {
+          removeActive(objectBtns[currentlyActiveIndex], objectLists[currentlyActiveIndex]);
+      }
+
       list.classList.add('active');
       button.classList.add('active');
   }
@@ -91,6 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // Проверка ширины экрана
   function isMobileScreen() {
       return window.innerWidth <= 768;
+  }
+
+  // Получение индекса текущего активного блока
+  function getCurrentlyActiveIndex() {
+      return Array.from(objectBtns).findIndex(button => button.classList.contains('active'));
   }
 
   // Добавление обработчиков событий для всех кнопок
@@ -138,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function () {
   updateEventListeners();
   window.addEventListener('resize', updateEventListeners);
 });
+
 
 document.addEventListener("DOMContentLoaded", function() {
   const openButton = document.getElementById("header-mobile-menu-open");
@@ -191,12 +211,26 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Функция переключения класса active
   function toggleActive(button, list) {
+      const currentlyActiveIndex = getCurrentlyActiveIndex();
+
+      // Если есть активный другой блок, закрываем его
+      if (currentlyActiveIndex !== -1 && objectBtns[currentlyActiveIndex] !== button) {
+          removeActive(objectBtns[currentlyActiveIndex], objectLists[currentlyActiveIndex]);
+      }
+
       list.classList.toggle('active');
       button.classList.toggle('active');
   }
 
   // Функция добавления класса active
   function addActive(button, list) {
+      const currentlyActiveIndex = getCurrentlyActiveIndex();
+
+      // Если есть активный другой блок, закрываем его
+      if (currentlyActiveIndex !== -1 && objectBtns[currentlyActiveIndex] !== button) {
+          removeActive(objectBtns[currentlyActiveIndex], objectLists[currentlyActiveIndex]);
+      }
+
       list.classList.add('active');
       button.classList.add('active');
   }
@@ -210,6 +244,11 @@ document.addEventListener('DOMContentLoaded', function () {
   // Проверка ширины экрана
   function isMobileScreen() {
       return window.innerWidth <= 768;
+  }
+
+  // Получение индекса текущего активного блока
+  function getCurrentlyActiveIndex() {
+      return Array.from(objectBtns).findIndex(button => button.classList.contains('active'));
   }
 
   // Добавление обработчиков событий для всех кнопок
@@ -330,20 +369,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const choices = select.querySelectorAll('.select-blocks__choise');
 
     select.addEventListener('click', (event) => {
-      if (!event.target.closest('.select-blocks__choise')) {
+      // Проверяем, был ли клик внутри блока select
+      if (select.classList.contains('active')) {
+        select.classList.remove('active');
+      } else {
+        // Закрываем другие активные select перед открытием текущего
         document.querySelectorAll('.filter__content-blocks__fields-block.select.active')
           .forEach(s => s.classList.remove('active'));
-        select.classList.toggle('active');
+        select.classList.add('active');
       }
     });
 
     choices.forEach(choice => {
-      choice.addEventListener('click', () => {
+      choice.addEventListener('click', (event) => {
         selectDescr.textContent = choice.textContent;
         select.classList.remove('active');
+        event.stopPropagation(); // Останавливаем всплытие, чтобы избежать повторного закрытия
       });
     });
   }
+
 
   // Закрытие select при клике вне его и вне слайдера
   document.addEventListener('click', (event) => {
@@ -615,7 +660,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Функция для десктопа
   const handleFacilitiesDesktop = () => {
     facilities.forEach(facility => {
-      // Игнорируем элементы с классом "one-object"
       if (facility.classList.contains('one-object')) return;
 
       const img = facility.querySelector('.index-ourFacilities__content-info__img');
@@ -665,17 +709,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const articleTop = facility.querySelector('.index-ourFacilities__content-info__article-top');
       const expandBtn = facility.querySelector('.index-ourFacilities__content-info__btn');
 
+      const updateHeight = () => {
+        if (expandBtn.classList.contains('active')) {
+          article.style.height = `${article.scrollHeight}px`;
+        } else {
+          article.style.height = `${articleTop.offsetHeight}px`;
+        }
+      };
+
       article.style.height = `${articleTop.offsetHeight}px`;
 
-      expandBtn.addEventListener('click', function() {
-        if (expandBtn.classList.contains('active')) {
-          article.style.height = `${articleTop.offsetHeight}px`;
-          expandBtn.querySelector('p').textContent = 'Раскрыть';
-        } else {
-          article.style.height = `${article.scrollHeight}px`;
-          expandBtn.querySelector('p').textContent = 'Свернуть';
-        }
+      expandBtn.addEventListener('click', function () {
         expandBtn.classList.toggle('active');
+        updateHeight();
+        expandBtn.querySelector('p').textContent = expandBtn.classList.contains('active') ? 'Свернуть' : 'Раскрыть';
+      });
+
+      window.addEventListener('resize', () => {
+        if (expandBtn.classList.contains('active')) {
+          article.style.height = `${article.scrollHeight}px`;
+        }
       });
     });
   };
@@ -709,6 +762,9 @@ document.addEventListener('DOMContentLoaded', () => {
   checkScreenWidth();
   window.addEventListener('resize', checkScreenWidth);
 });
+
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
   // Элементы для навигации
@@ -1194,10 +1250,12 @@ document.addEventListener('DOMContentLoaded', () => {
   // Добавляем обработчик события для каждого элемента "facilities"
   facilitiesItems.forEach((facility, index) => {
     facility.addEventListener('click', (event) => {
-      // Удаляем класс "active" у всех карточек
+      // Удаляем класс "active" у всех элементов "facilities" и "cards"
+      facilitiesItems.forEach(fac => fac.classList.remove('active'));
       cardsItems.forEach(card => card.classList.remove('active'));
 
-      // Добавляем класс "active" только к соответствующей карточке
+      // Добавляем класс "active" только к соответствующему элементу "facility" и "card"
+      facility.classList.add('active');
       if (cardsItems[index]) {
         cardsItems[index].classList.add('active');
       }
@@ -1220,7 +1278,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Обработчик клика на документе
   document.addEventListener('click', () => {
-    // Удаляем класс "active" у всех карточек
+    // Удаляем класс "active" у всех элементов "facilities" и "cards"
+    facilitiesItems.forEach(fac => fac.classList.remove('active'));
     cardsItems.forEach(card => card.classList.remove('active'));
   });
 });
@@ -2724,6 +2783,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const planBtn = document.getElementById("apartmentPage-plan-btn");
   const floorPlanBtn = document.getElementById("apartmentPage-floorPlan-btn");
   const generalPlanBtn = document.getElementById("apartmentPage-generalPlan-btn");
+  const planImg = document.getElementById("apartmentPage-plan-img");
+  const floorPlanImg = document.getElementById("apartmentPage-floorPlan-img");
+  const generalPlanImg = document.getElementById("apartmentPage-generalPlan-img");
   const closeBtn = document.querySelector(".popUp-plan-close");
 
   // Контейнер и блоки содержимого
@@ -2741,27 +2803,23 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.style.overflow = ""; // Возвращаем скролл
   }
 
+  // Утилита для открытия pop-up и активации нужного блока
+  function openPopUp(activeBlock) {
+    removeActiveClasses();
+    popUpPlan.classList.add("active");
+    activeBlock.classList.add("active");
+    document.body.style.overflow = "hidden"; // Отключаем скролл
+  }
+
   // Добавляем события на кнопки
-  planBtn.addEventListener("click", () => {
-    removeActiveClasses();
-    popUpPlan.classList.add("active");
-    planBlock.classList.add("active");
-    document.body.style.overflow = "hidden"; // Отключаем скролл
-  });
+  planBtn.addEventListener("click", () => openPopUp(planBlock));
+  floorPlanBtn.addEventListener("click", () => openPopUp(floorPlanBlock));
+  generalPlanBtn.addEventListener("click", () => openPopUp(generalPlanBlock));
 
-  floorPlanBtn.addEventListener("click", () => {
-    removeActiveClasses();
-    popUpPlan.classList.add("active");
-    floorPlanBlock.classList.add("active");
-    document.body.style.overflow = "hidden"; // Отключаем скролл
-  });
-
-  generalPlanBtn.addEventListener("click", () => {
-    removeActiveClasses();
-    popUpPlan.classList.add("active");
-    generalPlanBlock.classList.add("active");
-    document.body.style.overflow = "hidden"; // Отключаем скролл
-  });
+  // Добавляем события на изображения
+  planImg.addEventListener("click", () => openPopUp(planBlock));
+  floorPlanImg.addEventListener("click", () => openPopUp(floorPlanBlock));
+  generalPlanImg.addEventListener("click", () => openPopUp(generalPlanBlock));
 
   // Закрытие модального окна
   closeBtn.addEventListener("click", () => {
@@ -2884,10 +2942,10 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   /* Вписывать данные, автоматически подставятся. При указании "Подъезд 3" автоматически добавится ещё одна таблица */
   const data = [
-    { buildingType: "Литер 1", building: "Подъезд 1", floor: 10, column: 1, type: 2, size: 51.2, status: 'green', price: 12535000 },
-    { buildingType: "Литер 1", building: "Подъезд 1", floor: 9, column: 2, type: 2, size: 51.2, status: 'yellow', price: 12300000 },
-    { buildingType: "Литер 1", building: "Подъезд 2", floor: 8, column: 1, type: 2, size: 51.2, status: 'green', price: 13000000 },
-    { buildingType: "Литер 1", building: "Подъезд 2", floor: 7, column: 2, type: 3, size: 60.0, status: 'grey', price: 0 }
+    { buildingType: "Литер 1", building: "Подъезд 1", floor: 10, rooms: 1, column: 1, type: 2, size: 51.2, status: 'green', price: 12535000 },
+    { buildingType: "Литер 1", building: "Подъезд 1", floor: 9, rooms: 2, column: 2, type: 2, size: 51.2, status: 'yellow', price: 12300000 },
+    { buildingType: "Литер 1", building: "Подъезд 2", floor: 8, rooms: 3, column: 1, type: 2, size: 51.2, status: 'green', price: 13000000 },
+    { buildingType: "Литер 1", building: "Подъезд 2", floor: 7, rooms: 1, column: 2, type: 3, size: 60.0, status: 'grey', price: 0 }
   ];
 
   const floors = 10;
@@ -2952,34 +3010,69 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="tooltip-top__type">${cellData.type}</p>
                 <p class="tooltip-top__number">Квартира №${floor * 10 + column}</p>
               </div>
-              <p class="tooltip-price">${cellData.price} ₽</p>
+              ${
+                cellData.status !== 'yellow' && cellData.status !== 'grey'
+                  ? `<p class="tooltip-price">от ${cellData.price.toLocaleString()} ₽</p>`
+                  : ''
+              }
               <p class="tooltip-size">${cellData.size} м²</p>
             </div>
           `;
           cell.addEventListener('click', () => {
-            panelTitle.textContent = `Квартира №${floor * 10 + column} ` + cellData.size + 'м²';
+            const rooms = cellData.rooms;
+            panelTitle.textContent = `${rooms}-комнатная №${floor * 10 + column} ` + cellData.size + 'м²';
             panelFloor.textContent = floor;
             panelBuildingType.textContent = buildingType;
             panelEntrance.textContent = building;
-            panelSize.textContent = cellData.size;
+            panelSize.textContent = cellData.size + ' м²';
             panelStatus.textContent = cellData.status === 'green' ? 'Свободно' :
-              cellData.status === 'yellow' ? 'Забронировано' : 'Не доступно';
+              cellData.status === 'yellow' ? 'Забронировано' : 'Недоступно';
 
-              // Очистим старые классы
-              panelStatus.classList.remove('green', 'yellow', 'grey');
+            // Очистим старые классы
+            panelStatus.classList.remove('green', 'yellow', 'grey');
 
-              // Добавим новый класс в зависимости от статуса
-              if (cellData.status === 'green') {
-                  panelStatus.classList.add('green');
-              } else if (cellData.status === 'yellow') {
-                  panelStatus.classList.add('yellow');
-              } else {
-                  panelStatus.classList.add('grey');
-              }
+            // Добавим новый класс в зависимости от статуса
+            if (cellData.status === 'green') {
+                panelStatus.classList.add('green');
+            } else if (cellData.status === 'yellow') {
+                panelStatus.classList.add('yellow');
+            } else {
+                panelStatus.classList.add('grey');
+            }
 
-            panelPrice.textContent = cellData.price.toLocaleString() + " ₽";
-            detailsPanel.classList.add('open');
-          });
+            // Отключение кнопок и блока цены при статусах yellow и grey
+            const btn1 = document.querySelector('.details-panel__btn1');
+            const btn2 = document.querySelector('.details-panel__btn2');
+            const panelPriceBlock = document.querySelector('.details-panel-price');
+
+            if (cellData.status === 'yellow' || cellData.status === 'grey') {
+              btn1.classList.add('disabled');
+              btn2.classList.add('disabled');
+              panelPriceBlock.classList.add('disabled');
+            } else {
+              btn1.classList.remove('disabled');
+              btn2.classList.remove('disabled');
+              panelPriceBlock.classList.remove('disabled');
+            }
+
+            // Установка цены (если статус не yellow и не grey)
+            panelPrice.textContent = cellData.status !== 'yellow' && cellData.status !== 'grey'
+              ? "от " + cellData.price.toLocaleString() + " ₽"
+              : '';
+
+               // Отключение скролла у body для экранов менее 768px
+                if (window.innerWidth < 768) {
+                  document.body.style.overflow = 'hidden';
+                }
+
+                detailsPanel.classList.add('open');
+              });
+
+              closeDetailsButton.addEventListener('click', () => {
+                detailsPanel.classList.remove('open');
+                // Включение скролла у body
+                document.body.style.overflow = '';
+            });
         }
         buildingTable.appendChild(cell);
       }
@@ -3005,89 +3098,6 @@ document.addEventListener('DOMContentLoaded', () => {
     detailsPanel.classList.remove('open');
   }
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-  const productLists = document.querySelectorAll('.apartmentProgram-table__content .table-wrapper'); // Находим все элементы с этим классом
-  const maxScrollStep = 40; // Максимальная длина шага прокрутки
-
-  // Функция плавного скроллинга для одного элемента
-  function startSmoothScroll(container, targetScrollPosition) {
-    let isScrolling = false;
-    let animationFrameId;
-
-    function smoothScrollStep() {
-      const currentScrollPosition = container.scrollLeft;
-      const difference = targetScrollPosition - currentScrollPosition;
-
-      if (Math.abs(difference) > 1) {
-        const scrollStep = Math.sign(difference) * Math.min(maxScrollStep, Math.abs(difference));
-        container.scrollLeft += scrollStep;
-        animationFrameId = requestAnimationFrame(smoothScrollStep);
-      } else {
-        isScrolling = false;
-        container.scrollLeft = targetScrollPosition;
-        cancelAnimationFrame(animationFrameId);
-      }
-    }
-
-    if (!isScrolling) {
-      isScrolling = true;
-      animationFrameId = requestAnimationFrame(smoothScrollStep);
-    }
-  }
-
-  // Проверка переполнения контейнера
-  function isOverflowing(container) {
-    return container.scrollWidth > container.clientWidth;
-  }
-
-  // Добавление обработчиков событий для всех контейнеров
-  productLists.forEach((container) => {
-    let targetScrollPosition = 0;
-
-    // Обработчик колеса мыши
-    container.addEventListener('wheel', (event) => {
-      if (isOverflowing(container)) {
-        event.preventDefault();
-        targetScrollPosition += event.deltaY;
-        targetScrollPosition = Math.max(
-          0,
-          Math.min(targetScrollPosition, container.scrollWidth - container.clientWidth)
-        );
-        startSmoothScroll(container, targetScrollPosition);
-      }
-    });
-
-    // Обработчик для свайпа на мобильных устройствах
-    let startX;
-
-    container.addEventListener('touchstart', (event) => {
-      if (isOverflowing(container)) {
-        startX = event.touches[0].clientX;
-        cancelAnimationFrame(animationFrameId); // Останавливаем предыдущее движение
-      }
-    });
-
-    container.addEventListener('touchmove', (event) => {
-      if (isOverflowing(container) && startX) {
-        const touchX = event.touches[0].clientX;
-        const scrollDelta = startX - touchX;
-        targetScrollPosition += scrollDelta;
-        targetScrollPosition = Math.max(
-          0,
-          Math.min(targetScrollPosition, container.scrollWidth - container.clientWidth)
-        );
-        startX = touchX;
-        startSmoothScroll(container, targetScrollPosition);
-      }
-    });
-
-    container.addEventListener('touchend', () => {
-      startX = null;
-    });
-  });
-});
-
 
 /* Способы покупки */
 document.addEventListener('DOMContentLoaded', () => {
